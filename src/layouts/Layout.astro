@@ -1,9 +1,17 @@
 ---
+import '@fontsource/inter';
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono';
+import '@fontsource/oswald';
+import '@fontsource/red-hat-display';
+import '@fontsource-variable/red-hat-display';
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+const currentYear = new Date().getFullYear()
+
 ---
 
 <!DOCTYPE html>
@@ -15,21 +23,74 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="layout min-h-svh bg-neutral-800">
+    <div class="absolute h-full w-full overflow-hidden top-0 left-0 z-0">
+      <slot name="background" />
+    </div>
+    <header class="flex items-center justify-center col-start-2 col-end-3 row-start-1 sticky top-0 md:top-1 z-10 transition-all h-16">
+      <nav class="flex bg-neutral-900/80 px-6 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-6xl w-full shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600 border-opacity-50 h-full md:mx-1 transition-all">
+        <a href="">Blog</a>
+        <a href="">Projects</a>
+        <a href="">About</a>
+      </nav> 
+    </header>
+    <main class="h-full col-start-2 col-end-3 m-auto px-6 py-3 justify-self-stretch relative max-w-5xl container">
+      <slot  />
+      <footer class="m-3 opacity-50" >
+        <div class="text-sm">
+          &copy; Copyright by Blaine Nicholls {currentYear.toString()}   
+        </div>
+      </footer>
+    </main>
 	</body>
 </html>
 <style is:global>
 	:root {
 		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+    --shadow-color: hsla(0,0%,0%,0.3);
+    --text-color: #f4f4f5;
+    --color-border: hsla(0, 0%, 50%, 0.5);
 	}
+  
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		background-color: #18181b;
+    color: var(--text-color);
 	}
+  
+  body {
+    margin: 0;
+    position: relative;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+  
+
+  .header {
+    background-color: #111;
+    grid-column: 1/-1;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    padding-inline: 1em
+  }
+
+  .header__nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  
+  .header__nav--right-block {
+    margin-left: auto;
+  }
+
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
+
 </style>

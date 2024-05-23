@@ -1,0 +1,55 @@
+---
+
+---
+<html>
+	<head>
+		<link rel="stylesheet" href="/projects/commercial/command-palette/style.css"/>
+	</head>
+</html>
+<div>
+	<command-palette data-theme="dark" style="margin: 2.5rem" id="testPalette" placeholder="Type a command...">
+		<command-palette-group label="Brands">
+			<command-palette-item data-icon="simple-icons:amazon">Amazon</command-palette-item>
+			<command-palette-item data-icon="simple-icons:discord">Discord</command-palette-item>
+			<command-palette-item data-icon="simple-icons:facebook">Facebook</command-palette-item>
+			<command-palette-item data-icon="simple-icons:github">GitHub</command-palette-item>
+			<command-palette-item data-icon="simple-icons:google">Google</command-palette-item>
+			<command-palette-item data-icon="simple-icons:instagram">Instagram</command-palette-item>
+			<command-palette-item data-icon="simple-icons:linkedin">LinkedIn</command-palette-item>
+			<command-palette-item data-icon="simple-icons:netlify">Netlify</command-palette-item>
+			<command-palette-item data-icon="simple-icons:slack">Slack</command-palette-item>
+			<command-palette-item data-icon="simple-icons:spotify">Spotify</command-palette-item>
+			<command-palette-item data-icon="simple-icons:twitter">Twitter</command-palette-item>
+			<command-palette-item data-icon="simple-icons:vercel">Vercel</command-palette-item>
+			<command-palette-item data-icon="simple-icons:youtube">YouTube</command-palette-item>
+		</command-palette-group>
+		<command-palette-group label="Commands">
+			<command-palette-item data-icon="home">Go home</command-palette-item>
+			<command-palette-item data-icon="search">Search files</command-palette-item>
+			<command-palette-item data-icon="file">Save document</command-palette-item>
+			<command-palette-item data-icon="delete">Delete file</command-palette-item>
+			<command-palette-item data-icon="edit">Edit settings</command-palette-item>
+			<command-palette-item data-icon="user">User profile</command-palette-item>
+			<command-palette-item data-icon="bell">Notifications</command-palette-item>
+			<command-palette-item data-icon="settings">Open settings</command-palette-item>
+			<command-palette-item data-icon="info">Get info</command-palette-item>
+			<command-palette-item data-icon="download">Download report</command-palette-item>
+			<command-palette-item data-icon="upload">Upload file</command-palette-item>
+			<command-palette-item data-icon="link">Connect</command-palette-item>
+			<command-palette-item data-icon="map">View map</command-palette-item>
+			<command-palette-item data-icon="calendar">Open calendar</command-palette-item>
+			<command-palette-item data-icon="tabler:chart-line">View statistics</command-palette-item>
+		</command-palette-group>
+	</command-palette>
+
+	<script type="module">
+	import './command-palette/command-palette.js';	
+	import iconifyPlugin from './command-palette/plugins/iconify-icon.js';
+
+	const commandPalette = document.getElementById('testPalette');
+
+	commandPalette.addPlugins( new iconifyPlugin());
+
+
+	</script>
+</div>
