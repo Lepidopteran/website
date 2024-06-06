@@ -1,13 +1,16 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 <html>
 	<head>
-		<link rel="stylesheet" href="/projects/commercial/command-palette/style.css"/>
+		<link rel="stylesheet" href="/projects/commercial/command-palette/generic.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	</head>
 </html>
-<div>
-	<command-palette data-theme="dark" style="margin: 2.5rem" id="testPalette" placeholder="Type a command...">
+<body class="bg-neutral-900 text-neutral-100">
+	<template id="paletteTemplate">
+	<command-palette class="grow" placeholder="Type a command...">
 		<command-palette-group label="Brands">
 			<command-palette-item data-icon="simple-icons:amazon">Amazon</command-palette-item>
 			<command-palette-item data-icon="simple-icons:discord">Discord</command-palette-item>
@@ -25,6 +28,7 @@
 		</command-palette-group>
 		<command-palette-group label="Commands">
 			<command-palette-item data-icon="home">Go home</command-palette-item>
+			<command-palette-item data-icon="grass">Go touch some grass</command-palette-item>
 			<command-palette-item data-icon="search">Search files</command-palette-item>
 			<command-palette-item data-icon="file">Save document</command-palette-item>
 			<command-palette-item data-icon="delete">Delete file</command-palette-item>
@@ -41,15 +45,52 @@
 			<command-palette-item data-icon="tabler:chart-line">View statistics</command-palette-item>
 		</command-palette-group>
 	</command-palette>
+	</template>
+
+	<section class="relative h-svh bg-neutral-800 flex flex-col items-center justify-center">
+		<h1 class="text-center text-4xl font-bold text-neutral-100 m-10" >Command Palette Demo</h1>
+		<div class="w-full px-6 max-w-3xl">
+			<h2 class="text-center text-2xl font-bold text-neutral-100 m-10" >Dark theme</h2>
+			<div id="darkPalette" class="w-full"></div>
+		</div>
+		<Icon name="ph:arrow-down" class="absolute bottom-4 text-neutral-100 text-3xl animate-bounce"/>
+	</section>
+
+	<section class="relative h-svh bg-neutral-100 text-neutral-800 flex flex-col items-center justify-center">
+		<div class="w-full px-6 max-w-3xl">
+			<h2 class="text-center text-2xl font-bold m-10" >Light theme</h2>
+			<div id="lightPalette" class="w-full"></div>
+		</div>
+	</section>
 
 	<script type="module">
 	import './command-palette/command-palette.js';	
 	import iconifyPlugin from './command-palette/plugins/iconify-icon.js';
 
-	const commandPalette = document.getElementById('testPalette');
+	const palettes = [
+		{
+			container: document.getElementById("darkPalette"),
+			theme: "dark"
+		},
+		{
+			container: document.getElementById("lightPalette"),
+			theme: "light"
+		},
+	]
 
-	commandPalette.addPlugins( new iconifyPlugin());
+	for (const palette of palettes) {
+		const template = document.getElementById("paletteTemplate");
+		const clone = template.content.cloneNode(true);
+		const paletteElement = clone.querySelector("command-palette");
+		palette.container.appendChild(clone);
+		paletteElement.setAttribute("data-theme", palette.theme);
+		paletteElement.addPlugin(new iconifyPlugin({
+			cacheMethod: "localStorage",
+		}));
+	}
+
+
 
 
 	</script>
-</div>
+</body>

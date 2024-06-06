@@ -6,6 +6,10 @@ import SkillCard from "../components/SkillCard.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import blaine from "../imgs/blaine.png";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const projectElements = [];
 ---
 
 <Layout title="Blaine's Portfolio">
@@ -39,7 +43,6 @@ import blaine from "../imgs/blaine.png";
       </hgroup>
       <TerminalCard class="col-start-1">
         <pre
-          class=""
           slot="body">
         (
       )    )
@@ -50,7 +53,7 @@ import blaine from "../imgs/blaine.png";
    '.           .'
      '--.....--'
 
-    Soup is Good</pre>
+    Soup is Good!</pre>
       </TerminalCard>
       <div class="space-y-2 col-start-1">
         <h3 class="text-xl font-bold font-oswald tracking-wider">
@@ -62,307 +65,387 @@ import blaine from "../imgs/blaine.png";
   </section>
   <section class="space-y-6">
     <h3 class="text-2xl font-bold font-oswald text-center mb-4">Projects</h3>
-  </section>
-  <section class="space-y-6">
-    <h3 class="text-2xl font-bold font-oswald text-center mb-4">About Me</h3>
-    <p class="text-pretty">
-      My name is Blaine Nicholls and I am a computer programmer. I am currently
-      employed at <a class="underline" href="https://www.tstate.com/"
-        >Tri-State Expedited</a
-      >, where I am working on a variety of projects using a variety of
-      technologies. I also have a number of personal projects that I am working on in my free time.
-    </p>
+		<div>
+			<div class="flex justify-between items-center">
+				<h2 class="text-xl font-bold font-oswald">Projects</h2>
+				<a href="./projects/commercial" class="text-neutral-300 underline">View all</a>
+			</div>
+			<div class="flex gap-2">
+				{projects.map((project) => {
+					const card = (
+					<project-card class="w-64 cursor-pointer">
+						<img slot="image" data-role="thumbnail" src={project.data.thumbnail} alt={project.data.title} class="rounded-lg border border-neutral-50/25" />
+						<div>
+							<h2 data-role="title" class="text-xl">{project.data.title}</h2>
+						</div>
+						
+						<div class="hidden">
+							<p data-role="description">{project.data.description}</p>
+						</div>
+					</project-card>
+						);
 
-    <h4 class="text-xl font-bold font-oswald mb-4">Operating Systems</h4>
+						return card;
+					}
+				)}	
+			</div>
+		</div>
+		<script>
 
-    <div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
-      <input
-        type="radio"
-        role="tab"
-        class="peer/linux sr-only"
-        tabindex="0"
-        checked="true"
-        id="OperatingSystemLinuxRadio"
-        name="OperatingSystemInput"
-      />
-      <input
-        type="radio"
-        role="tab"
-        class="peer/windows sr-only"
-        tabindex="0"
-        id="OperatingSystemWindowsRadio"
-        name="OperatingSystemInput"
-      />
-      <div
-        id="OperatingSystemCardGroup"
-        class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
-      >
-        <div
-          id="OperatingSystemLinuxCard"
-          class="flex flex-col glow-orange-300 items-center gap-4 bg-gradient-to-b from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border border-orange-400 border-opacity-40 p-4 box-border justify-self-end relative"
-        >
-          <Icon class="h-32 w-32" name="linux" />
-          <span class="font-bold">Linux</span>
-          <label
-            for="OperatingSystemLinuxRadio"
-            tabindex="-1"
-            title="Interactive Linux operating system card"
-            class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
-        </div>
-        <div
-          id="OperatingSystemWindowsCard"
-          class="flex flex-col glow-neutral-500 transition items-center gap-4 bg-gradient-to-b from-neutral-900 backdrop-blur rounded-lg border border-neutral-700 p-4 box-border justify-self-start relative"
-        >
-          <Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
-          <span class="font-bold">Windows</span>
-          <label
-            for="OperatingSystemWindowsRadio"
-            tabindex="-1"
-            title="Interactive Windows operating system card"
-            class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
-        </div>
-      </div>
-      <p
-        role="tabpanel"
-        aria-labelledby="OperatingSystemLinuxRadio"
-        class="hidden text-pretty peer-checked/linux:block"
-      >
-        For the past {new Date().getFullYear() - 2019} years now, my primary operating
-        system has been Linux, which I use for both development and personal tasks.
-        I've experimented with a couple of distros but have currently settled on
-        <a
-          class="underline underline-offset-2 opacity-80"
-          href="https://fedoraproject.org/">Fedora</a
-        >, although I also have experience using <a
-          class="underline underline-offset-2 opacity-80"
-          href="https://www.debian.org/">Debian</a
-        >, <a
-          class="underline underline-offset-2 opacity-80"
-          href="https://ubuntu.com/">Ubuntu</a
-        >, and <a
-          class="underline underline-offset-2 opacity-80"
-          href="https://archlinux.org/">Arch</a
-        >.
-      </p>
-      <p
-        role="tabpanel"
-        aria-labelledby="OperatingSystemWindowsRadio"
-        class="hidden text-pretty peer-checked/windows:block"
-      >
+		window.addEventListener("card-click", (e) => {
+			const project = e.detail;
+			const dialog = document.getElementById("galleryDialog");
+			const gallery = document.getElementById("gallery");
+			const title = document.getElementById("galleryTitle");
+			const description = document.getElementById("galleryDescription");
+
+			dialog.showModal();
+
+			title.textContent = project.parts.title.textContent;
+			description.textContent = project.parts.description.textContent;
+
+		});
+
+	</script>
+	</section>
+	<dialog id="galleryDialog" class="w-svw">
+		<project-gallery id="gallery">
+			<div slot="header">
+				<h2 id="galleryTitle" class="text-2xl font-bold font-oswald">Project Title</h2>
+				<p id="galleryDesciption" class="text-pretty">Project Description</p>
+			</div>
+		</project-gallery>
+	</dialog>
+	<script>
+		interface Project {
+			title: string;
+			thumbnail: string;
+			description: string;
+			demo?: string;
+			content: {
+				type: "video" | "image";
+				thumbnail?: string;
+				data: string;
+			}[];
+		}
+
+		const galleryDialog = document.getElementById("galleryDialog") as HTMLDialogElement;
+		const gallery = document.getElementById("gallery");
+
+		window.addEventListener("open-project", (e) => {
+			galleryDialog.showModal();
+		});
+
+		function openProject(project: Project) {
+			if (!galleryDialog || !gallery) return;
+			for (const el of gallery?.querySelectorAll("not:[slot]")) {
+				if (el instanceof HTMLElement) {
+					el.remove();
+				}
+			}
+		}
+
+	</script>
+	<section class="space-y-6">
+		<h3 class="text-2xl font-bold font-oswald text-center mb-4">About Me</h3>
+		<p class="text-pretty">
+			My name is Blaine Nicholls and I am a computer programmer. I am currently
+			employed at <a class="underline" href="https://www.tstate.com/"
+			>Tri-State Expedited</a
+			>, where I am working on a variety of projects using a variety of
+			technologies. I also have a number of personal projects that I am working on in my free time.
+		</p>
+
+		<h4 class="text-xl font-bold font-oswald mb-4">Operating Systems</h4>
+
+		<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
+			<input
+			type="radio"
+			role="tab"
+			class="peer/linux sr-only"
+			tabindex="0"
+			checked="true"
+			id="OperatingSystemLinuxRadio"
+			name="OperatingSystemInput"
+		/>
+			<input
+			type="radio"
+			role="tab"
+			class="peer/windows sr-only"
+			tabindex="0"
+			id="OperatingSystemWindowsRadio"
+			name="OperatingSystemInput"
+		/>
+			<div
+				id="OperatingSystemCardGroup"
+				class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
+			>
+				<div
+					id="OperatingSystemLinuxCard"
+					class="flex flex-col glow-orange-300 items-center gap-4 bg-gradient-to-b from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border border-orange-400 border-opacity-40 p-4 box-border justify-self-end relative"
+				>
+					<Icon class="h-32 w-32" name="linux" />
+					<span class="font-bold">Linux</span>
+					<label
+						for="OperatingSystemLinuxRadio"
+						tabindex="-1"
+						title="Interactive Linux operating system card"
+						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				</div>
+				<div
+					id="OperatingSystemWindowsCard"
+					class="flex flex-col glow-neutral-500 transition items-center gap-4 bg-gradient-to-b from-neutral-900 backdrop-blur rounded-lg border border-neutral-700 p-4 box-border justify-self-start relative"
+				>
+					<Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
+					<span class="font-bold">Windows</span>
+					<label
+						for="OperatingSystemWindowsRadio"
+						tabindex="-1"
+						title="Interactive Windows operating system card"
+						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				</div>
+			</div>
+			<p
+				role="tabpanel"
+				aria-labelledby="OperatingSystemLinuxRadio"
+				class="hidden text-pretty peer-checked/linux:block"
+			>
+				For the past {new Date().getFullYear() - 2019} years now, my primary operating
+				system has been Linux, which I use for both development and personal tasks.
+				I've experimented with a couple of distros but have currently settled on
+				<a
+					class="underline underline-offset-2 opacity-80"
+					href="https://fedoraproject.org/">Fedora</a
+				>, although I also have experience using <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://www.debian.org/">Debian</a
+				>, <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://ubuntu.com/">Ubuntu</a
+				>, and <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://archlinux.org/">Arch</a
+				>.
+			</p>
+			<p
+				role="tabpanel"
+				aria-labelledby="OperatingSystemWindowsRadio"
+				class="hidden text-pretty peer-checked/windows:block"
+			>
 				I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
-      </p>
-    </div>
+			</p>
+		</div>
 
-    <h4 class="font-oswald font-bold text-xl">Programming languages</h4>
+		<h4 class="font-oswald font-bold text-xl">Programming languages</h4>
 
-    <div
-      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-    >
-      <SkillCard
-        name="Javascript"
-        size="64"
-        link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-        iconClassName="text-yellow-400"
-        icon="simple-icons:javascript"
-      />
-      <SkillCard
-        name="Typescript"
-        size="64"
-        link="https://www.typescriptlang.org/"
-        iconClassName="text-blue-500"
-        icon="simple-icons:typescript"
-      />
-      <SkillCard
-        name="Rust"
-        size="64"
-        link="https://www.rust-lang.org/"
-        iconClassName="text-neutral-200"
-        icon="simple-icons:rust"
-      />
-      <SkillCard
-        name="DotNet"
-        size="64"
-        link="https://dotnet.microsoft.com/en-us/"
-        icon="logos:dotnet"
-      />
-      <SkillCard
-        name="Python"
-        size="64"
-        link="https://www.python.org/"
-        icon="devicon:python"
-      />
-      <SkillCard
-        name="GDScript"
-        size="64"
-        link="https://godotengine.org/"
-        icon="logos:godot-icon"
-      />
-    </div>
+		<div
+			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+		>
+			<SkillCard
+			name="Javascript"
+			size="64"
+			link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+			iconClassName="text-yellow-400"
+			icon="simple-icons:javascript"
+		/>
+			<SkillCard
+			name="Typescript"
+			size="64"
+			link="https://www.typescriptlang.org/"
+			iconClassName="text-blue-500"
+			icon="simple-icons:typescript"
+		/>
+			<SkillCard
+			name="Rust"
+			size="64"
+			link="https://www.rust-lang.org/"
+			iconClassName="text-neutral-200"
+			icon="simple-icons:rust"
+		/>
+			<SkillCard
+			name="DotNet"
+			size="64"
+			link="https://dotnet.microsoft.com/en-us/"
+			icon="logos:dotnet"
+		/>
+			<SkillCard
+			name="Python"
+			size="64"
+			link="https://www.python.org/"
+			icon="devicon:python"
+		/>
+			<SkillCard
+			name="GDScript"
+			size="64"
+			link="https://godotengine.org/"
+			icon="logos:godot-icon"
+		/>
+		</div>
 
-    <h4 class="font-oswald font-bold text-xl">Software</h4>
-    <div
-      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-    >
-      <SkillCard
-        name="VSCode"
-        size="64"
-        link="https://code.visualstudio.com/"
-        iconClassName="text-blue-500"
-        icon="logos:visual-studio-code"
-      />
-      <SkillCard
-        name="Visual Studio"
-        size="64"
-        link="https://visualstudio.microsoft.com/"
-        icon="logos:visual-studio"
-      />
-      <SkillCard
-        name="NeoVim"
-        size="64"
-        link="https://neovim.io/"
-        icon="devicon:neovim"
-      />
-      <SkillCard
-        name="Git"
-        size="64"
-        link="https://git-scm.com/"
-        icon="logos:git-icon"
-      />
-      <SkillCard
-        name="Blender"
-        size="64"
-        link="https://www.blender.org/"
-        icon="logos:blender"
-      />
-      <SkillCard
-        name="Godot"
-        size="64"
-        link="https://godotengine.org/"
-        icon="logos:godot-icon"
-      />
-      <SkillCard
-        name="Gimp"
-        size="64"
-        link="https://www.gimp.org/"
-        icon="devicon:gimp"
-      />
-      <SkillCard
-        name="Inkscape"
-        size="64"
-        link="https://inkscape.org/"
-        icon="devicon:inkscape"
-      />
-    </div>
+		<h4 class="font-oswald font-bold text-xl">Software</h4>
+		<div
+			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+		>
+			<SkillCard
+			name="VSCode"
+			size="64"
+			link="https://code.visualstudio.com/"
+			iconClassName="text-blue-500"
+			icon="logos:visual-studio-code"
+		/>
+			<SkillCard
+			name="Visual Studio"
+			size="64"
+			link="https://visualstudio.microsoft.com/"
+			icon="logos:visual-studio"
+		/>
+			<SkillCard
+			name="NeoVim"
+			size="64"
+			link="https://neovim.io/"
+			icon="devicon:neovim"
+		/>
+			<SkillCard
+			name="Git"
+			size="64"
+			link="https://git-scm.com/"
+			icon="logos:git-icon"
+		/>
+			<SkillCard
+			name="Blender"
+			size="64"
+			link="https://www.blender.org/"
+			icon="logos:blender"
+		/>
+			<SkillCard
+			name="Godot"
+			size="64"
+			link="https://godotengine.org/"
+			icon="logos:godot-icon"
+		/>
+			<SkillCard
+			name="Gimp"
+			size="64"
+			link="https://www.gimp.org/"
+			icon="devicon:gimp"
+		/>
+			<SkillCard
+			name="Inkscape"
+			size="64"
+			link="https://inkscape.org/"
+			icon="devicon:inkscape"
+		/>
+		</div>
 
-    <h4>Frameworks</h4>
+		<h4>Frameworks</h4>
 
-    <div
-      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-    >
-      <SkillCard
-        name="TailwindCSS"
-        size="64"
-        link="https://tailwindcss.com/"
-        icon="logos:tailwindcss-icon"
-      />
-      <SkillCard
-        name="React"
-        size="64"
-        link="https://reactjs.dev/"
-        icon="logos:react"
-      />
-      <SkillCard
-        name="Svelte"
-        size="64"
-        link="https://svelte.dev/"
-        icon="logos:svelte-icon"
-      />
-      <SkillCard
-        name="Astro"
-        size="64"
-        link="https://astro.build/"
-        icon="simple-icons:astro"
-      />
-    </div>
+		<div
+			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+		>
+			<SkillCard
+			name="TailwindCSS"
+			size="64"
+			link="https://tailwindcss.com/"
+			icon="logos:tailwindcss-icon"
+		/>
+			<SkillCard
+			name="React"
+			size="64"
+			link="https://reactjs.dev/"
+			icon="logos:react"
+		/>
+			<SkillCard
+			name="Svelte"
+			size="64"
+			link="https://svelte.dev/"
+			icon="logos:svelte-icon"
+		/>
+			<SkillCard
+			name="Astro"
+			size="64"
+			link="https://astro.build/"
+			icon="simple-icons:astro"
+		/>
+		</div>
 
-    <h4>Technologies</h4>
+		<h4>Technologies</h4>
 
-    <div
-      class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-    >
-      <SkillCard
-        name="Docker"
-        size="64"
-        iconClassName="text-sky-500"
-        link="https://www.docker.com/"
-        icon="simple-icons:docker"
-      />
-      <SkillCard
-        name="Web Components"
-        size="64"
-        link="https://developer.mozilla.org/en-US/docs/Web/Web_Components"
-        icon="mdi:application-brackets-outline"
-      />
-      <SkillCard
-        name="Tauri"
-        size="64"
-        link="https://tauri.studio/"
-        icon="logos:tauri"
-      />
-    </div>
-  </section>
+		<div
+			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+		>
+			<SkillCard
+			name="Docker"
+			size="64"
+			iconClassName="text-sky-500"
+			link="https://www.docker.com/"
+			icon="simple-icons:docker"
+		/>
+			<SkillCard
+			name="Web Components"
+			size="64"
+			link="https://developer.mozilla.org/en-US/docs/Web/Web_Components"
+			icon="mdi:application-brackets-outline"
+		/>
+			<SkillCard
+			name="Tauri"
+			size="64"
+			link="https://tauri.studio/"
+			icon="logos:tauri"
+		/>
+		</div>
+	</section>
 </Layout>
 
 <style>
-  h4 {
-    @apply font-bold font-oswald text-xl;
-  }
+h4 {
+	@apply font-bold font-oswald text-xl;
+}
 
-  #OperatingSystemLinuxRadio:checked
-    ~ #OperatingSystemCardGroup
-    #OperatingSystemLinuxCard,
-  #OperatingSystemWindowsRadio:checked
-    ~ #OperatingSystemCardGroup
-    #OperatingSystemWindowsCard {
-    @apply glow animate-float;
-  }
+#OperatingSystemLinuxRadio:checked
+~ #OperatingSystemCardGroup
+#OperatingSystemLinuxCard,
+#OperatingSystemWindowsRadio:checked
+~ #OperatingSystemCardGroup
+#OperatingSystemWindowsCard {
+	@apply glow animate-float;
+}
 
-  #OperatingSystemLinuxRadio:not(:checked)
-    ~ #OperatingSystemCardGroup
-    #OperatingSystemLinuxCard:hover,
-  #OperatingSystemWindowsRadio:not(:checked)
-    ~ #OperatingSystemCardGroup
-    #OperatingSystemWindowsCard:hover {
-    @apply transform hover:scale-105;
-  }
+#OperatingSystemLinuxRadio:not(:checked)
+~ #OperatingSystemCardGroup
+#OperatingSystemLinuxCard:hover,
+#OperatingSystemWindowsRadio:not(:checked)
+~ #OperatingSystemCardGroup
+#OperatingSystemWindowsCard:hover {
+	@apply transform hover:scale-105;
+}
 
-  #OperatingSystemWindowsRadio:checked
-    ~ #OperatingSystemCardGroup
-    #OperatingSystemWindowsCard {
-    @apply border-neutral-600;
-  }
+#OperatingSystemWindowsRadio:checked
+~ #OperatingSystemCardGroup
+#OperatingSystemWindowsCard {
+	@apply border-neutral-600;
+}
 
-  #radialBg {
-    background-image: radial-gradient(
-      circle at bottom,
-      rgba(82, 82, 82, 0.5) 25%,
-      transparent 50%
-    );
-  }
+#radialBg {
+	background-image: radial-gradient(
+		circle at bottom,
+		rgba(82, 82, 82, 0.5) 25%,
+		transparent 50%
+		);
+}
 
-  .background-grid {
-    --grid-size: 35px;
-    --grid-width: 97%;
-    background-image: linear-gradient(
-        transparent var(--grid-width),
-        var(--grid-color, currentColor) var(--grid-width)
-      ),
-      linear-gradient(
-        90deg,
-        transparent var(--grid-width),
-        var(--grid-color, currentColor) var(--grid-width)
-      );
-    background-size: var(--grid-size) var(--grid-size);
-    @apply absolute w-full h-full bg-center -z-[1];
-  }
+.background-grid {
+	--grid-size: 35px;
+	--grid-width: 97%;
+	background-image: linear-gradient(
+		transparent var(--grid-width),
+		var(--grid-color, currentColor) var(--grid-width)
+		),
+		linear-gradient(
+		90deg,
+		transparent var(--grid-width),
+		var(--grid-color, currentColor) var(--grid-width)
+		);
+	background-size: var(--grid-size) var(--grid-size);
+	@apply absolute w-full h-full bg-center -z-[1];
+}
 </style>
