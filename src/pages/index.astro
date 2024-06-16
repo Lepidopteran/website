@@ -63,18 +63,17 @@ const projectElements = [];
       </div>
     </div>
   </section>
-  <section class="space-y-6">
-    <h3 class="text-2xl font-bold font-oswald text-center mb-4">Projects</h3>
+  <section class="space-y-2">
+		<div class="flex justify-between items-center">
+			<h2 class="text-xl font-bold font-oswald">Projects</h2>
+			<a href="./projects/" class="text-neutral-300 underline">View all</a>
+		</div>
 		<div>
-			<div class="flex justify-between items-center">
-				<h2 class="text-xl font-bold font-oswald">Projects</h2>
-				<a href="./projects/commercial" class="text-neutral-300 underline">View all</a>
-			</div>
-			<div class="flex gap-2">
+			<div class="flex gap-2 w-full overflow-x-auto">
 				{projects.map((project) => {
 					const card = (
-					<project-card class="w-64 cursor-pointer">
-						<img slot="image" data-role="thumbnail" src={project.data.thumbnail} alt={project.data.title} class="rounded-lg border border-neutral-50/25" />
+					<project-card class="grow cursor-pointer">
+						<img slot="image" data-role="thumbnail" src={project.data.thumbnail} alt={project.data.title} class="rounded-lg border border-neutral-50/25 w-96 h-28 object-cover " />
 						<div>
 							<h2 data-role="title" class="text-xl">{project.data.title}</h2>
 						</div>
@@ -155,86 +154,6 @@ const projectElements = [];
 			>, where I am working on a variety of projects using a variety of
 			technologies. I also have a number of personal projects that I am working on in my free time.
 		</p>
-
-		<h4 class="text-xl font-bold font-oswald mb-4">Operating Systems</h4>
-
-		<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
-			<input
-			type="radio"
-			role="tab"
-			class="peer/linux sr-only"
-			tabindex="0"
-			checked="true"
-			id="OperatingSystemLinuxRadio"
-			name="OperatingSystemInput"
-		/>
-			<input
-			type="radio"
-			role="tab"
-			class="peer/windows sr-only"
-			tabindex="0"
-			id="OperatingSystemWindowsRadio"
-			name="OperatingSystemInput"
-		/>
-			<div
-				id="OperatingSystemCardGroup"
-				class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
-			>
-				<div
-					id="OperatingSystemLinuxCard"
-					class="flex flex-col glow-orange-300 items-center gap-4 bg-gradient-to-b from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border border-orange-400 border-opacity-40 p-4 box-border justify-self-end relative"
-				>
-					<Icon class="h-32 w-32" name="linux" />
-					<span class="font-bold">Linux</span>
-					<label
-						for="OperatingSystemLinuxRadio"
-						tabindex="-1"
-						title="Interactive Linux operating system card"
-						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
-				</div>
-				<div
-					id="OperatingSystemWindowsCard"
-					class="flex flex-col glow-neutral-500 transition items-center gap-4 bg-gradient-to-b from-neutral-900 backdrop-blur rounded-lg border border-neutral-700 p-4 box-border justify-self-start relative"
-				>
-					<Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
-					<span class="font-bold">Windows</span>
-					<label
-						for="OperatingSystemWindowsRadio"
-						tabindex="-1"
-						title="Interactive Windows operating system card"
-						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
-				</div>
-			</div>
-			<p
-				role="tabpanel"
-				aria-labelledby="OperatingSystemLinuxRadio"
-				class="hidden text-pretty peer-checked/linux:block"
-			>
-				For the past {new Date().getFullYear() - 2019} years now, my primary operating
-				system has been Linux, which I use for both development and personal tasks.
-				I've experimented with a couple of distros but have currently settled on
-				<a
-					class="underline underline-offset-2 opacity-80"
-					href="https://fedoraproject.org/">Fedora</a
-				>, although I also have experience using <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://www.debian.org/">Debian</a
-				>, <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://ubuntu.com/">Ubuntu</a
-				>, and <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://archlinux.org/">Arch</a
-				>.
-			</p>
-			<p
-				role="tabpanel"
-				aria-labelledby="OperatingSystemWindowsRadio"
-				class="hidden text-pretty peer-checked/windows:block"
-			>
-				I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
-			</p>
-		</div>
 
 		<h4 class="font-oswald font-bold text-xl">Programming languages</h4>
 
@@ -393,6 +312,86 @@ const projectElements = [];
 			icon="logos:tauri"
 		/>
 		</div>
+		<h4 class="text-xl font-bold font-oswald mb-4">Operating Systems</h4>
+
+		<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
+			<input
+			type="radio"
+			role="tab"
+			class="peer/linux sr-only"
+			tabindex="0"
+			checked="true"
+			id="OperatingSystemLinuxRadio"
+			name="OperatingSystemInput"
+		/>
+			<input
+			type="radio"
+			role="tab"
+			class="peer/windows sr-only"
+			tabindex="0"
+			id="OperatingSystemWindowsRadio"
+			name="OperatingSystemInput"
+		/>
+			<div
+				id="OperatingSystemCardGroup"
+				class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
+			>
+				<div
+					id="OperatingSystemLinuxCard"
+					class="flex flex-col glow-orange-300 items-center gap-4 bg-gradient-to-b from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border border-orange-400 border-opacity-40 p-4 box-border justify-self-end relative"
+				>
+					<Icon class="h-32 w-32" name="linux" />
+					<span class="font-bold">Linux</span>
+					<label
+						for="OperatingSystemLinuxRadio"
+						tabindex="-1"
+						title="Interactive Linux operating system card"
+						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				</div>
+				<div
+					id="OperatingSystemWindowsCard"
+					class="flex flex-col glow-neutral-500 transition items-center gap-4 bg-gradient-to-b from-neutral-900 backdrop-blur rounded-lg border border-neutral-700 p-4 box-border justify-self-start relative"
+				>
+					<Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
+					<span class="font-bold">Windows</span>
+					<label
+						for="OperatingSystemWindowsRadio"
+						tabindex="-1"
+						title="Interactive Windows operating system card"
+						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				</div>
+			</div>
+			<p
+				role="tabpanel"
+				aria-labelledby="OperatingSystemLinuxRadio"
+				class="hidden text-pretty peer-checked/linux:block"
+			>
+				For the past {new Date().getFullYear() - 2019} years now, my primary operating
+				system has been Linux, which I use for both development and personal tasks.
+				I've experimented with a couple of distros but have currently settled on
+				<a
+					class="underline underline-offset-2 opacity-80"
+					href="https://fedoraproject.org/">Fedora</a
+				>, although I also have experience using <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://www.debian.org/">Debian</a
+				>, <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://ubuntu.com/">Ubuntu</a
+				>, and <a
+					class="underline underline-offset-2 opacity-80"
+					href="https://archlinux.org/">Arch</a
+				>.
+			</p>
+			<p
+				role="tabpanel"
+				aria-labelledby="OperatingSystemWindowsRadio"
+				class="hidden text-pretty peer-checked/windows:block"
+			>
+				I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
+			</p>
+		</div>
+
 	</section>
 </Layout>
 
