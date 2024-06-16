@@ -10,9 +10,9 @@ const projectSchema = z.object({
 	content: z.array(
 		z
 			.object({
-				type: z.enum(["video", "image"]),
+				type: z.enum(["video", "image", "code", "text"]),
+				content: z.string(),
 				description: z.string().optional(),
-				value: z.string(),
 				thumbnail: z.string().optional(),
 			})
 			,
