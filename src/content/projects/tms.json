@@ -1,6 +1,7 @@
 {
 	"title": "c3TMS", 
 	"id": "c3TMS", 
+	"featured": true,
 	"description": "wow", 
 	"tags":[ "commercial", "dashboard", "maps", "documents", "logistics"],
 	"thumbnail": "projects/c3TMS/thumbnail.png"

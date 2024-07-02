@@ -1,6 +1,17 @@
 {
-"title": "Frame Fusion",
-"id": "frameFusion",
-"description": "wow",
-"thumbnail": "/projects/frame-fusion/thumbnail.png"
+	"title": "Frame Fusion",
+	"featured": true,
+	"id": "frameFusion",
+	"description": "wow",
+	"thumbnail": "/projects/frame-fusion/thumbnail.png",
+	"content": [
+		{
+			"type": "video",
+			"src": "/projects/frame-fusion/Compare.mp4"
+		},
+		{
+			"type": "video",
+			"src": "/projects/frame-fusion/UI.mp4"
+		}
+	]
 }

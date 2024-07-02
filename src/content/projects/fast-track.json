@@ -1,6 +1,7 @@
 {
 "title": "Fast Track",
 "id": "fastTrack",
+"featured": true,
 "description": "",
 "tags": ["commercial", "tracking", "loads", "shipments", "map"],
 "thumbnail": "/projects/fast-track/thumbnail.png"

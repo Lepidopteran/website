@@ -5,13 +5,14 @@ const projectSchema = z.object({
 	id: z.string(),
 	description: z.string(),
 	thumbnail: z.string(),
-	demo: z.string().url().optional(),
+	featured: z.boolean().optional(),
+	demo: z.string().optional(),
 	tags: z.array(z.string()).optional(),
 	content: z.array(
 		z
 			.object({
 				type: z.enum(["video", "image", "code", "text"]),
-				content: z.string(),
+				src: z.string(),
 				description: z.string().optional(),
 				thumbnail: z.string().optional(),
 			})

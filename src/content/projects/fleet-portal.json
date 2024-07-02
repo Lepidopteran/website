@@ -1,6 +1,7 @@
 { 
 	"title": "Fleet Portal",
 	"id": "fleetPortal",
+	"featured": true,
 	"description": "wow",
 	"tags": ["commercial", "charts", "dashboard", "messages", "maps", "tracking"],
 	"thumbnail": "/projects/fleet-portal/dashboard.png"

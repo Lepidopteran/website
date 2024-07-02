@@ -3,13 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import AlbumCard from "../components/AlbumCard.svelte";
 import TerminalCard from "../components/TerminalCard.astro";
 import SkillCard from "../components/SkillCard.astro";
+import Card from "../components/Card.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import blaine from "../imgs/blaine.png";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
-const projectElements = [];
+
 ---
 
 <Layout title="Blaine's Portfolio">
@@ -70,42 +71,62 @@ const projectElements = [];
 		</div>
 		<div class="overflow-x-auto box-border px-2">
 			<div class="flex items-start justify-between gap-2">
-				{projects.map((project) => {
-					const card = (
-					<project-card class="min-w-48 cursor-pointer">
-						<img slot="image" data-role="thumbnail" src={project.data.thumbnail} alt={project.data.title} class="rounded-lg border border-neutral-50/25 h-28 object-cover " />
-						<div>
-							<h2 data-role="title" class="text-xl">{project.data.title}</h2>
-						</div>
-						
-						<div class="hidden">
-							<p data-role="description">{project.data.description}</p>
-						</div>
-					</project-card>
-						);
-
-						return card;
-					}
+				{ projects.map((project) => {
+					if (project.data.featured) {
+							return <Card class="min-w-48" title={project.data.title} thumbnail={project.data.thumbnail} dialog={project.data.id}></Card>;
+							}
+						}
 				)}	
 			</div>
+
+			{ projects.map((project) => {
+				if (project.data.featured) {
+					return <dialog id={project.data.id} class="bg-neutral-800 rounded-xl pb-4">
+					<div>
+					<div class="flex justify-between sticky top-0 bg-neutral-800 px-6 py-4">
+							<div class="flex items-center">
+								<h2 class="text-2xl font-bold font-oswald">{project.data.title}</h2>
+							</div>
+							<div class="flex items-center gap-4 ">
+								{ project.data.demo && <a href={project.data.demo} class="text-blue-50 bg-blue-500 px-2 py-1 font-bold rounded-md border-2 border-blue-200/10 transition shadow-lg active:scale-95 hover:shadow-blue-950 block text-center">Demo</a>
+								}
+								<a href="#" class="text-neutral-50 size-8 bg-neutral-800 hover:bg-red-400 hover:text-neutral-800 p-2 rounded-full flex justify-center items-center" aria-label="Close dialog">
+									<Icon name="mdi:close" class="size-6" />
+								</a>
+							</div>
+						</div>
+						<p class="text-pretty">{project.data.description}</p>
+						<div class="flex flex-col gap-4 px-4">
+							{ project.data.content?.map((content) => {
+						return (
+							<div class="flex even:flex-row-reverse">
+								{content.type === "video" && <video class="w-full rounded-lg" controls>
+									<source src = {content.src} type="video/mp4" />
+								</video>
+							}
+							{content.type === "image" && <img class="w-full rounded-lg" src={content.src} alt={project.data.title} />}
+
+						</div>)
+
+
+						
+
+								})}
+							</div>
+						</div>
+					</dialog>;
+				}
+			})}
+
 		</div>
 		<script>
 
-		window.addEventListener("card-click", (e) => {
-			const project = e.detail;
-			const dialog = document.getElementById("galleryDialog");
-			const gallery = document.getElementById("gallery");
-			const title = document.getElementById("galleryTitle");
-			const description = document.getElementById("galleryDescription");
-
+		document.addEventListener("open-dialog", (e) => {
+			const dialog = document.getElementById(e.detail.dialog);
 			dialog.showModal();
-
-			title.textContent = project.parts.title.textContent;
-			description.textContent = project.parts.description.textContent;
-
 		});
 
-	</script>
+		</script>
 	</section>
 	<dialog id="galleryDialog" class="w-svw">
 		<project-gallery id="gallery">
@@ -145,7 +166,7 @@ const projectElements = [];
 		}
 
 	</script>
-	<section class="space-y-6">
+	<section class="space-y-6 px-4">
 		<h3 class="text-2xl font-bold font-oswald text-center mb-4">About Me</h3>
 		<p class="text-pretty">
 			My name is Blaine Nicholls and I am a computer programmer. I am currently
@@ -396,6 +417,11 @@ const projectElements = [];
 </Layout>
 
 <style>
+
+.dialog:target {
+	display: flex;
+}
+
 h4 {
 	@apply font-bold font-oswald text-xl;
 }

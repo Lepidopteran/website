@@ -1,12 +1,22 @@
 ---
-const { title, icon, link } = Astro.props;
+const { title, thumbnail, dialog, class: className } = Astro.props;
 ---
-<div class="card">
-  
-</div>
+<button id="card-btn" data-dialog={dialog} type="button" class={className}>
+	<img src={thumbnail} class="rounded-lg border border-neutral-50/25 h-28 object-cover" alt={title}>
+	<span class="text-xl font-bold">{title}</span>
+</button>
+<script>
+	const btn = document.getElementById('card-btn');
 
-<style>
-  .card {
-    @apply p-4 flex flex-col items-center gap-2;
-  }
-</style>
+	btn?.addEventListener('click', () => {
+		const event = new CustomEvent('open-dialog', {
+			detail: {
+				dialog: btn.dataset.dialog
+			},
+			bubbles: true,
+		});
+
+		btn.dispatchEvent(event);
+	});
+
+</script>
