@@ -128,7 +128,7 @@
 </script>
 
 <div
-  class="rounded-lg overflow-hidden shadow-md border bg-neutral-900 border-neutral-600 p-3 flex flex-col gap-3 {className}"
+	class="rounded-lg overflow-hidden shadow-md border-t bg-neutral-900 border-neutral-600 shadow-black/85 p-3 flex flex-col gap-3 {className}"
 >
   <div class="flex max-sm:flex-col gap-2 md:gap-4">
     {#if Loading}

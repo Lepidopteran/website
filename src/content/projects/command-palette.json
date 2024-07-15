@@ -1,5 +1,5 @@
 {
-"title": "Command Palette",
+"title": "Command Palette Web Component",
 "id": "commandPalette",
 "featured": true,
 "description": "A web component that provides a command palette created with pure CSS and JavaScript that can be used in any web application.",

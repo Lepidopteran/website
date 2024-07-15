@@ -7,6 +7,7 @@ import Card from "../components/Card.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import blaine from "../imgs/blaine.png";
+import htmlCertificate from "../imgs/certificates/html-certification.jpg";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
@@ -19,30 +20,30 @@ const projects = await getCollection("projects");
     <div class="background-grid">
       <div class="background-grid blur-sm"></div>
     </div>
-    <div class="bg-gradient-to-t from-neutral-950 absolute h-full w-full">
+    <div class="bg-gradient-to-t from-neutral-900 absolute h-full w-full">
     </div>
   </div>
   <div slot="background" class="h-svh w-full text-neutral-50/5">
-    <div class="bg-gradient-to-b from-neutral-950 from-25% to-stone-900 h-full w-full"></div>
+    <div class="bg-gradient-to-b from-neutral-900 from-25% to-neutral-900 h-full w-full"></div>
   </div>
   <div slot="background" class="h-full w-full text-neutral-50/5">
-    <div class="bg-gradient-to-b to-neutral-950 from-25% from-stone-900 h-full w-full"></div>
+    <div class="bg-gradient-to-b to-neutral-950 from-25% from-neutral-900 h-full w-full"></div>
   </div>
 
   <section
-    class="grid sm:grid-cols-2 sm:auto-rows-min items-center justify-items-stretch max-w-screen-lg w-full my-8 gap-4 mx-auto relative px-4"
+    class="grid sm:grid-cols-2 sm:auto-rows-min items-center justify-items-stretch max-w-screen-xl w-full my-8 gap-8 relative px-4"
   >
     <Image
       src={blaine}
-      class="rounded-xl border object-cover h-full max-sm:w-full sm:col-start-2 border-neutral-600/65 max-h-fit sm:row-span-full shadow-lg shadow-neutral-900"
+      class="rounded-xl border-t object-cover h-full max-sm:w-full sm:col-start-2 border-white/50 max-h-fit sm:row-span-full shadow-lg shadow-neutral-950"
       alt="Blaine Nicholls"
     />
     <div class="grid grid-cols-1 gap-3">
       <hgroup class="space-y-2 font-redhat col-start-1 mb-4">
         <h1 class="text-4xl font-bold">Blaine Nicholls</h1>
-        <p class="text-xl leading-6">Computer Programmer</p>
+        <p class="text-xl leading-6">Computer Nerd</p>
       </hgroup>
-      <TerminalCard class="col-start-1">
+			<TerminalCard class="col-start-1 border-t border-white/25 shadow-md shadow-black/85">
         <pre
           slot="body">
         (
@@ -57,65 +58,61 @@ const projects = await getCollection("projects");
     Soup is Good!</pre>
       </TerminalCard>
       <div class="space-y-2 col-start-1">
-        <h3 class="text-xl font-bold font-oswald tracking-wider">
+        <h3 class="text-xl font-bold">
           Most Listened to Album This Week
         </h3>
         <AlbumCard client:visible />
       </div>
     </div>
   </section>
-  <section class="space-y-2">
+	<section class="space-y-2">
 		<div class="flex justify-between px-2 box-border items-center">
-			<h2 class="text-xl font-bold font-oswald">Projects</h2>
+			<h2 class="text-xl font-bold">Projects</h2>
 			<a href="./projects/" class="text-neutral-300 underline">View all</a>
 		</div>
 		<div class="overflow-x-auto box-border px-2">
 			<div class="flex items-start justify-between gap-2">
 				{ projects.map((project) => {
-					if (project.data.featured) {
-							return <Card class="min-w-48" title={project.data.title} thumbnail={project.data.thumbnail} dialog={project.data.id}></Card>;
-							}
-						}
+				if (project.data.featured) {
+				return <Card class="min-w-48" title={project.data.title} thumbnail={project.data.thumbnail} dialog={project.data.id}></Card>;
+				}
+				}
 				)}	
 			</div>
 
 			{ projects.map((project) => {
-				if (project.data.featured) {
-					return <dialog id={project.data.id} class="bg-neutral-800 rounded-xl pb-4">
-					<div>
+			if (project.data.featured) {
+			return <dialog id={project.data.id} class="bg-neutral-800 rounded-xl pb-4">
+				<div>
 					<div class="flex justify-between sticky top-0 bg-neutral-800 px-6 py-4">
-							<div class="flex items-center">
-								<h2 class="text-2xl font-bold font-oswald">{project.data.title}</h2>
-							</div>
-							<div class="flex items-center gap-4 ">
-								{ project.data.demo && <a href={project.data.demo} class="text-blue-50 bg-blue-500 px-2 py-1 font-bold rounded-md border-2 border-blue-200/10 transition shadow-lg active:scale-95 hover:shadow-blue-950 block text-center">Demo</a>
-								}
-								<a href="#" class="text-neutral-50 size-8 bg-neutral-800 hover:bg-red-400 hover:text-neutral-800 p-2 rounded-full flex justify-center items-center" aria-label="Close dialog">
-									<Icon name="mdi:close" class="size-6" />
-								</a>
-							</div>
+						<div class="flex items-center">
+							<h2 class="text-2xl font-bold font-oswald">{project.data.title}</h2>
 						</div>
-						<p class="text-pretty">{project.data.description}</p>
-						<div class="flex flex-col gap-4 px-4">
-							{ project.data.content?.map((content) => {
+						<div class="flex items-center gap-4 ">
+							{ project.data.demo && <a href={project.data.demo} class="text-blue-50 bg-blue-500 px-2 py-1 font-bold rounded-md border-2 border-blue-200/10 transition shadow-lg active:scale-95 hover:shadow-blue-950 block text-center">Demo</a>
+							}
+							<a href="#" class="text-neutral-50 size-8 bg-neutral-800 hover:bg-red-400 hover:text-neutral-800 p-2 rounded-full flex justify-center items-center" aria-label="Close dialog">
+								<Icon name="mdi:close" class="size-6" />
+							</a>
+						</div>
+					</div>
+					<p class="text-pretty">{project.data.description}</p>
+					<div class="flex flex-col gap-4 px-4">
+						{ project.data.content?.map((content) => {
 						return (
 							<div class="flex even:flex-row-reverse">
-								{content.type === "video" && <video class="w-full rounded-lg" controls>
-									<source src = {content.src} type="video/mp4" />
-								</video>
+							{content.type === "video" && <video class="w-full rounded-lg" controls>
+								<source src = {content.src} type="video/mp4" />
+							</video>
 							}
 							{content.type === "image" && <img class="w-full rounded-lg" src={content.src} alt={project.data.title} />}
 
 						</div>)
-
-
-						
-
-								})}
-							</div>
-						</div>
-					</dialog>;
-				}
+						})}
+					</div>
+				</div>
+			</dialog>;
+			}
 			})}
 
 		</div>
@@ -131,288 +128,307 @@ const projects = await getCollection("projects");
 	<dialog id="galleryDialog" class="w-svw">
 		<project-gallery id="gallery">
 			<div slot="header">
-				<h2 id="galleryTitle" class="text-2xl font-bold font-oswald">Project Title</h2>
+				<h2 id="galleryTitle" class="text-2xl font-bold">Project Title</h2>
 				<p id="galleryDesciption" class="text-pretty">Project Description</p>
 			</div>
 		</project-gallery>
 	</dialog>
 	<script>
-		interface Project {
-			title: string;
-			thumbnail: string;
-			description: string;
-			demo?: string;
-			content: {
-				type: "video" | "image";
-				thumbnail?: string;
-				data: string;
-			}[];
-		}
+	interface Project {
+		title: string;
+		thumbnail: string;
+		description: string;
+		demo?: string;
+		content: {
+			type: "video" | "image";
+			thumbnail?: string;
+			data: string;
+		}[];
+	}
 
-		const galleryDialog = document.getElementById("galleryDialog") as HTMLDialogElement;
-		const gallery = document.getElementById("gallery");
+	const galleryDialog = document.getElementById("galleryDialog") as HTMLDialogElement;
+	const gallery = document.getElementById("gallery");
 
-		window.addEventListener("open-project", (e) => {
-			galleryDialog.showModal();
-		});
+	window.addEventListener("open-project", (e) => {
+		galleryDialog.showModal();
+	});
 
-		function openProject(project: Project) {
-			if (!galleryDialog || !gallery) return;
-			for (const el of gallery?.querySelectorAll("not:[slot]")) {
-				if (el instanceof HTMLElement) {
-					el.remove();
-				}
+	function openProject(project: Project) {
+		if (!galleryDialog || !gallery) return;
+		for (const el of gallery?.querySelectorAll("not:[slot]")) {
+			if (el instanceof HTMLElement) {
+				el.remove();
 			}
 		}
+	}
 
 	</script>
 	<section class="space-y-6 px-4">
-		<h3 class="text-2xl font-bold font-oswald text-center mb-4">About Me</h3>
-		<p class="text-pretty">
-			My name is Blaine Nicholls and I am a computer programmer. I am currently
-			employed at <a class="underline" href="https://www.tstate.com/"
-			>Tri-State Expedited</a
-			>, where I am working on a variety of projects using a variety of
-			technologies. I also have a number of personal projects that I am working on in my free time.
-		</p>
-
-		<h4 class="font-oswald font-bold text-xl">Programming languages</h4>
-
-		<div
-			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-		>
-			<SkillCard
-			name="Javascript"
-			size="64"
-			link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-			iconClassName="text-yellow-400"
-			icon="simple-icons:javascript"
-		/>
-			<SkillCard
-			name="Typescript"
-			size="64"
-			link="https://www.typescriptlang.org/"
-			iconClassName="text-blue-500"
-			icon="simple-icons:typescript"
-		/>
-			<SkillCard
-			name="Rust"
-			size="64"
-			link="https://www.rust-lang.org/"
-			iconClassName="text-neutral-200"
-			icon="simple-icons:rust"
-		/>
-			<SkillCard
-			name="DotNet"
-			size="64"
-			link="https://dotnet.microsoft.com/en-us/"
-			icon="logos:dotnet"
-		/>
-			<SkillCard
-			name="Python"
-			size="64"
-			link="https://www.python.org/"
-			icon="devicon:python"
-		/>
-			<SkillCard
-			name="GDScript"
-			size="64"
-			link="https://godotengine.org/"
-			icon="logos:godot-icon"
-		/>
+		<div class="flex gap-2">
+			<div class="shadow-md shadow-neutral-950 border-t border-white/25 bg-neutral-800 max-w-lg rounded-xl p-4 mt-4">
+				<h3 class="text-xl font-bold opacity-50">About Me</h3>
+				<p class="text-pretty mt-2 text-lg">
+					Hey there! I'm Blaine, I love to code websites and applications. I also can create 3D models, animations, and music. I have a sarcastic and often dark sense of humor, and I love to make people laugh. I'm always looking for new projects to work on, so if you have an idea, feel free to reach out! 
+				</p>
+			</div>
 		</div>
+	</section>
 
-		<h4 class="font-oswald font-bold text-xl">Software</h4>
+	<h4 class="mb-4">Operating Systems</h4>
+
+	<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
+		<input
+		type="radio"
+		role="tab"
+		class="peer/linux sr-only"
+		tabindex="0"
+		checked="true"
+		id="OperatingSystemLinuxRadio"
+		name="OperatingSystemInput"
+		/>
+		<input
+		type="radio"
+		role="tab"
+		class="peer/windows sr-only"
+		tabindex="0"
+		id="OperatingSystemWindowsRadio"
+		name="OperatingSystemInput"
+		/>
 		<div
-			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-		>
-			<SkillCard
-			name="VSCode"
-			size="64"
-			link="https://code.visualstudio.com/"
-			iconClassName="text-blue-500"
-			icon="logos:visual-studio-code"
-		/>
-			<SkillCard
-			name="Visual Studio"
-			size="64"
-			link="https://visualstudio.microsoft.com/"
-			icon="logos:visual-studio"
-		/>
-			<SkillCard
-			name="NeoVim"
-			size="64"
-			link="https://neovim.io/"
-			icon="devicon:neovim"
-		/>
-			<SkillCard
-			name="Git"
-			size="64"
-			link="https://git-scm.com/"
-			icon="logos:git-icon"
-		/>
-			<SkillCard
-			name="Blender"
-			size="64"
-			link="https://www.blender.org/"
-			icon="logos:blender"
-		/>
-			<SkillCard
-			name="Godot"
-			size="64"
-			link="https://godotengine.org/"
-			icon="logos:godot-icon"
-		/>
-			<SkillCard
-			name="Gimp"
-			size="64"
-			link="https://www.gimp.org/"
-			icon="devicon:gimp"
-		/>
-			<SkillCard
-			name="Inkscape"
-			size="64"
-			link="https://inkscape.org/"
-			icon="devicon:inkscape"
-		/>
-		</div>
-
-		<h4>Frameworks</h4>
-
-		<div
-			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-		>
-			<SkillCard
-			name="TailwindCSS"
-			size="64"
-			link="https://tailwindcss.com/"
-			icon="logos:tailwindcss-icon"
-		/>
-			<SkillCard
-			name="React"
-			size="64"
-			link="https://reactjs.dev/"
-			icon="logos:react"
-		/>
-			<SkillCard
-			name="Svelte"
-			size="64"
-			link="https://svelte.dev/"
-			icon="logos:svelte-icon"
-		/>
-			<SkillCard
-			name="Astro"
-			size="64"
-			link="https://astro.build/"
-			icon="simple-icons:astro"
-		/>
-		</div>
-
-		<h4>Technologies</h4>
-
-		<div
-			class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
-		>
-			<SkillCard
-			name="Docker"
-			size="64"
-			iconClassName="text-sky-500"
-			link="https://www.docker.com/"
-			icon="simple-icons:docker"
-		/>
-			<SkillCard
-			name="Web Components"
-			size="64"
-			link="https://developer.mozilla.org/en-US/docs/Web/Web_Components"
-			icon="mdi:application-brackets-outline"
-		/>
-			<SkillCard
-			name="Tauri"
-			size="64"
-			link="https://tauri.studio/"
-			icon="logos:tauri"
-		/>
-		</div>
-		<h4 class="text-xl font-bold font-oswald mb-4">Operating Systems</h4>
-
-		<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
-			<input
-			type="radio"
-			role="tab"
-			class="peer/linux sr-only"
-			tabindex="0"
-			checked="true"
-			id="OperatingSystemLinuxRadio"
-			name="OperatingSystemInput"
-		/>
-			<input
-			type="radio"
-			role="tab"
-			class="peer/windows sr-only"
-			tabindex="0"
-			id="OperatingSystemWindowsRadio"
-			name="OperatingSystemInput"
-		/>
-			<div
-				id="OperatingSystemCardGroup"
-				class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
+			id="OperatingSystemCardGroup"
+			class="flex sm:justify-center gap-8 md:gap-4 col-span-2"
 			>
-				<div
-					id="OperatingSystemLinuxCard"
-					class="flex flex-col glow-orange-300 items-center gap-4 bg-gradient-to-b from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border border-orange-400 border-opacity-40 p-4 box-border justify-self-end relative"
+			<div
+				id="OperatingSystemLinuxCard"
+				class="flex flex-col items-center gap-3 bg-gradient-to-t from-neutral-900 transition translate-y-0 backdrop-blur rounded-lg border-t border-white/25 shadow-md shadow-black/85 border-opacity-40 p-4 box-border justify-self-end relative"
 				>
-					<Icon class="h-32 w-32" name="linux" />
-					<span class="font-bold">Linux</span>
-					<label
-						for="OperatingSystemLinuxRadio"
-						tabindex="-1"
-						title="Interactive Linux operating system card"
-						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				<Icon class="h-32 w-32" name="linux" />
+				<span class="font-bold">Linux</span>
+				<label
+					for="OperatingSystemLinuxRadio"
+					tabindex="-1"
+					title="Interactive Linux operating system card"
+					class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+			</div>
+			<div
+				id="OperatingSystemWindowsCard"
+				class="flex flex-col transition items-center gap-4 bg-gradient-to-t from-neutral-900 backdrop-blur rounded-lg shadow-md shadow-black/85 border-t border-neutral-700 p-4 box-border justify-self-start relative"
+				>
+				<Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
+				<span class="font-bold">Windows</span>
+				<label
+					for="OperatingSystemWindowsRadio"
+					tabindex="-1"
+					title="Interactive Windows operating system card"
+					class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+			</div>
+		</div>
+		<p
+			role="tabpanel"
+			aria-labelledby="OperatingSystemLinuxRadio"
+			class="hidden text-pretty peer-checked/linux:block"
+			>
+			For the past {new Date().getFullYear() - 2019} years now, my primary operating
+			system has been Linux, which I use for both development and personal tasks.
+			I've experimented with a couple of distros but have currently settled on
+			<a
+				class="underline underline-offset-2 opacity-80"
+				href="https://fedoraproject.org/">Fedora</a
+			>, although I also have experience using <a
+				class="underline underline-offset-2 opacity-80"
+				href="https://www.debian.org/">Debian</a
+			>, <a
+				class="underline underline-offset-2 opacity-80"
+				href="https://ubuntu.com/">Ubuntu</a
+			>, and <a
+				class="underline underline-offset-2 opacity-80"
+				href="https://archlinux.org/">Arch</a
+			>.
+		</p>
+		<p
+			role="tabpanel"
+			aria-labelledby="OperatingSystemWindowsRadio"
+			class="hidden text-pretty peer-checked/windows:block"
+			>
+			I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
+		</p>
+	</div>
+	<section class="px-4">
+		<h3 class="font-bold text-3xl text-center">Skills</h2>
+			<div class="flex flex-col md:flex-row gap-4 mt-4">
+				<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800">
+					<h4>Languages</h4>
+					<div
+						class="grid grid-cols-3 gap-4"
+						>
+						<SkillCard
+						name="Javascript"
+						size="64"
+						link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+						iconClassName="text-yellow-400"
+						icon="simple-icons:javascript"
+						/>
+						<SkillCard
+						name="Typescript"
+						size="64"
+						link="https://www.typescriptlang.org/"
+						iconClassName="text-blue-500"
+						icon="simple-icons:typescript"
+						/>
+						<SkillCard
+						name="Rust"
+						size="64"
+						link="https://www.rust-lang.org/"
+						iconClassName="text-neutral-200"
+						icon="simple-icons:rust"
+						/>
+						<SkillCard
+						name="DotNet"
+						size="64"
+						link="https://dotnet.microsoft.com/en-us/"
+						icon="logos:dotnet"
+						/>
+						<SkillCard
+						name="Python"
+						size="64"
+						link="https://www.python.org/"
+						icon="devicon:python"
+						/>
+						<SkillCard
+						name="GDScript"
+						size="64"
+						link="https://godotengine.org/"
+						icon="logos:godot-icon"
+						/>
+					</div>
+
 				</div>
-				<div
-					id="OperatingSystemWindowsCard"
-					class="flex flex-col glow-neutral-500 transition items-center gap-4 bg-gradient-to-b from-neutral-900 backdrop-blur rounded-lg border border-neutral-700 p-4 box-border justify-self-start relative"
-				>
-					<Icon class="h-32 w-32 text-cyan-500" name="simple-icons:windows" />
-					<span class="font-bold">Windows</span>
-					<label
-						for="OperatingSystemWindowsRadio"
-						tabindex="-1"
-						title="Interactive Windows operating system card"
-						class="absolute top-0 right-0 w-full h-full cursor-pointer"></label>
+				<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800">
+
+				<h4>Technologies</h4>
+
+					<div
+						class="grid grid-cols-3 md:grid-cols-4 justify-items-center gap-4"
+						>
+						<SkillCard
+						name="TailwindCSS"
+						size="64"
+						link="https://tailwindcss.com/"
+						icon="logos:tailwindcss-icon"
+						/>
+						<SkillCard
+						name="React"
+						size="64"
+						link="https://reactjs.dev/"
+						icon="logos:react"
+						/>
+						<SkillCard
+						name="Svelte"
+						size="64"
+						link="https://svelte.dev/"
+						icon="logos:svelte-icon"
+						/>
+						<SkillCard
+						name="Astro"
+						size="64"
+						link="https://astro.build/"
+						icon="simple-icons:astro"
+						/>
+						<SkillCard
+						name="Docker"
+						size="64"
+						iconClassName="text-sky-500"
+						link="https://www.docker.com/"
+						icon="simple-icons:docker"
+						/>
+						<SkillCard
+						name="Web Components"
+						size="64"
+						link="https://developer.mozilla.org/en-US/docs/Web/Web_Components"
+						icon="mdi:application-brackets-outline"
+						/>
+						<SkillCard
+						name="Tauri"
+						size="64"
+						link="https://tauri.studio/"
+						icon="logos:tauri"
+						/>
+					</div>
 				</div>
 			</div>
-			<p
-				role="tabpanel"
-				aria-labelledby="OperatingSystemLinuxRadio"
-				class="hidden text-pretty peer-checked/linux:block"
-			>
-				For the past {new Date().getFullYear() - 2019} years now, my primary operating
-				system has been Linux, which I use for both development and personal tasks.
-				I've experimented with a couple of distros but have currently settled on
-				<a
-					class="underline underline-offset-2 opacity-80"
-					href="https://fedoraproject.org/">Fedora</a
-				>, although I also have experience using <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://www.debian.org/">Debian</a
-				>, <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://ubuntu.com/">Ubuntu</a
-				>, and <a
-					class="underline underline-offset-2 opacity-80"
-					href="https://archlinux.org/">Arch</a
-				>.
-			</p>
-			<p
-				role="tabpanel"
-				aria-labelledby="OperatingSystemWindowsRadio"
-				class="hidden text-pretty peer-checked/windows:block"
-			>
-				I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
-			</p>
-		</div>
-
+			<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800 mt-4">
+			<h4>Tools</h4>
+				<div
+					class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-4"
+					>
+					<SkillCard
+					name="VSCode"
+					size="64"
+					link="https://code.visualstudio.com/"
+					iconClassName="text-blue-500"
+					icon="logos:visual-studio-code"
+					/>
+					<SkillCard
+					name="Visual Studio"
+					size="64"
+					link="https://visualstudio.microsoft.com/"
+					icon="logos:visual-studio"
+					/>
+					<SkillCard
+					name="NeoVim"
+					size="64"
+					link="https://neovim.io/"
+					icon="devicon:neovim"
+					/>
+					<SkillCard
+					name="Git"
+					size="64"
+					link="https://git-scm.com/"
+					icon="logos:git-icon"
+					/>
+					<SkillCard
+					name="Blender"
+					size="64"
+					link="https://www.blender.org/"
+					icon="logos:blender"
+					/>
+					<SkillCard
+					name="Godot"
+					size="64"
+					link="https://godotengine.org/"
+					icon="logos:godot-icon"
+					/>
+					<SkillCard
+					name="Gimp"
+					size="64"
+					link="https://www.gimp.org/"
+					icon="devicon:gimp"
+					/>
+					<SkillCard
+					name="Inkscape"
+					size="64"
+					link="https://inkscape.org/"
+					icon="devicon:inkscape"
+					/>
+				</div>
+			</div>
+	</section>
+	<section class="mt-8">
+		<h3 class="font-bold text-3xl text-center">
+			Certifications
+		</h3>
+		<Image
+			src={htmlCertificate}
+			alt="HTML Certificate"
+class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 w-full max-w-lg mx-auto mt-4"
+			loading="lazy"
+			decoding="async"
+			width="800"
+			height="600"
+			loading="lazy"
+			decoding="async"
+			alt="HTML Certification"
+		/>
 	</section>
 </Layout>
 
@@ -423,7 +439,7 @@ const projects = await getCollection("projects");
 }
 
 h4 {
-	@apply font-bold font-oswald text-xl;
+	@apply font-bold text-xl;
 }
 
 #OperatingSystemLinuxRadio:checked
@@ -432,7 +448,7 @@ h4 {
 #OperatingSystemWindowsRadio:checked
 ~ #OperatingSystemCardGroup
 #OperatingSystemWindowsCard {
-	@apply glow animate-float;
+	@apply animate-float shadow-lg shadow-black/85 bg-neutral-800;
 }
 
 #OperatingSystemLinuxRadio:not(:checked)
