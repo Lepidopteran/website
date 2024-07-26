@@ -39,9 +39,17 @@ const projects = await getCollection("projects");
       alt="Blaine Nicholls"
     />
     <div class="grid grid-cols-1 gap-3">
-      <hgroup class="space-y-2 font-redhat col-start-1 mb-4">
-        <h1 class="text-4xl font-bold">Blaine Nicholls</h1>
-        <p class="text-xl leading-6">Computer Nerd</p>
+      <hgroup class="font-redhat col-start-1 mb-4 inline-flex flex-col">
+				<div class="relative inline-block">
+					<div>
+						<div class="absolute -bottom-2 left-0 w-full h-1.5 px-4 pr-72 bg-gradient-to-r from-emerald-300 to-pink-500 rounded-full"></div>
+						<div class="absolute -bottom-2 left-0 w-full h-1.5 px-4 pr-72 bg-gradient-to-r from-emerald-300 to-pink-500 rounded-full blur-md"></div>
+					</div>
+					<h1 class="text-4xl col-start-1 col-end-2 row-start-1 font-bold relative">
+						Blaine Nicholls
+					</h1>
+				</div>
+        <p class="text-xl leading-6 mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-pink-600 inline-block">Computer Nerd</p>
       </hgroup>
 			<TerminalCard class="col-start-1 border-t border-white/25 shadow-md shadow-black/85">
         <pre
@@ -71,10 +79,10 @@ const projects = await getCollection("projects");
 			<a href="./projects/" class="text-neutral-300 underline">View all</a>
 		</div>
 		<div class="overflow-x-auto box-border px-2">
-			<div class="flex items-start justify-between gap-2">
+			<div class="flex items-start justify-start gap-4">
 				{ projects.map((project) => {
 				if (project.data.featured) {
-				return <Card class="min-w-48" title={project.data.title} thumbnail={project.data.thumbnail} dialog={project.data.id}></Card>;
+				return <Card class="min-w-48 max-w-48" title={project.data.title} thumbnail={project.data.thumbnail} dialog={project.data.id}></Card>;
 				}
 				}
 				)}	
@@ -165,18 +173,21 @@ const projects = await getCollection("projects");
 	</script>
 	<section class="space-y-6 px-4">
 		<div class="flex gap-2">
-			<div class="shadow-md shadow-neutral-950 border-t border-white/25 bg-neutral-800 max-w-lg rounded-xl p-4 mt-4">
+			<div class="shadow-md shadow-neutral-950 border-t border-white/25 bg-neutral-800 max-w-3xl rounded-xl p-4 mt-4">
 				<h3 class="text-xl font-bold opacity-50">About Me</h3>
 				<p class="text-pretty mt-2 text-lg">
-					Hey there! I'm Blaine, I love to code websites and applications. I also can create 3D models, animations, and music. I have a sarcastic and often dark sense of humor, and I love to make people laugh. I'm always looking for new projects to work on, so if you have an idea, feel free to reach out! 
+					Hey there! I'm Blaine, I love to code websites and applications.
+					I also can create 3D models, animations, and music.
+					I have a sarcastic and often dark sense of humor, and I love to make people laugh.
+					I'm always looking for new projects to work on, so if you have an idea, feel free to reach out! 
 				</p>
 			</div>
 		</div>
 	</section>
 
-	<h4 class="mb-4">Operating Systems</h4>
+	<h4 class="my-3 ml-6">Operating Systems</h4>
 
-	<div role="tablist" class="flex max-md:flex-col gap-x-12 gap-y-8 mb-4">
+	<div role="tablist" class="flex max-md:flex-col gap-x-8 gap-y-8 mb-4 px-8 py-4 justify-center items-start">
 		<input
 		type="radio"
 		role="tab"
@@ -226,7 +237,7 @@ const projects = await getCollection("projects");
 		<p
 			role="tabpanel"
 			aria-labelledby="OperatingSystemLinuxRadio"
-			class="hidden text-pretty peer-checked/linux:block"
+			class="hidden text-pretty text-lg peer-checked/linux:block bg-neutral-800 max-w-xl p-4 rounded-xl shadow-md shadow-black/85 border-t border-white/25"
 			>
 			For the past {new Date().getFullYear() - 2019} years now, my primary operating
 			system has been Linux, which I use for both development and personal tasks.
@@ -248,12 +259,12 @@ const projects = await getCollection("projects");
 		<p
 			role="tabpanel"
 			aria-labelledby="OperatingSystemWindowsRadio"
-			class="hidden text-pretty peer-checked/windows:block"
+			class="hidden text-pretty text-lg peer-checked/windows:block bg-neutral-800 max-w-xl p-4 rounded-xl shadow-md shadow-black/85 border-t border-white/25"
 			>
 			I have significant experience with Windows, particularly Windows 10 and Windows 11, for a variety of tasks. While it is not my primary operating system, I have gained proficiency in utilizing their features, showcasing my adaptability and technical skills across these versions.
 		</p>
 	</div>
-	<section class="px-4">
+	<section class="px-4 lg:px-8">
 		<h3 class="font-bold text-3xl text-center">Skills</h2>
 			<div class="flex flex-col md:flex-row gap-4 mt-4">
 				<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800">
@@ -417,10 +428,11 @@ const projects = await getCollection("projects");
 		<h3 class="font-bold text-3xl text-center">
 			Certifications
 		</h3>
-		<Image
+		<div class="flex gap-4 items-center justify-center">
+			<Image
 			src={htmlCertificate}
 			alt="HTML Certificate"
-class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 w-full max-w-lg mx-auto mt-4"
+			class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 w-full max-w-lg mx-auto mt-4"
 			loading="lazy"
 			decoding="async"
 			width="800"
@@ -428,7 +440,10 @@ class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 w-full max-
 			loading="lazy"
 			decoding="async"
 			alt="HTML Certification"
-		/>
+			/>
+
+		</div>
+		<h4 class="text-center text-white/30 mt-2">More Certifications to Come...</h4>
 	</section>
 </Layout>
 
