@@ -445,6 +445,30 @@ const projects = await getCollection("projects");
 		</div>
 		<h4 class="text-center text-white/30 mt-2">More Certifications to Come...</h4>
 	</section>
+	<section class="mt-6">
+		<h3 class="font-bold text-3xl text-center">
+			Featured Projects
+		</h3>
+		<div class="max-w-4xl w-screen m-auto">
+			{ projects.map((project) => {
+			if (project.data.featured) {
+			return <div class="flex even:flex-row-reverse gap-4 items-start justify-between mt-8 px-4">
+				<img 
+					src={project.data.thumbnail} 
+					alt={project.data.title} 
+					class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 max-w-xl w-1/2 object-cover"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="w-96">
+					<h4 class="text-2xl font-bold">{project.data.title}</h4>
+					<p class="text-pretty">{project.data.description}</p>
+				</div>
+			</div>
+			}
+			}
+			)}
+	</section>
 </Layout>
 
 <style>
