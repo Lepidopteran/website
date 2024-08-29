@@ -354,14 +354,16 @@ const projects = await getCollection("projects");
 		<div class="max-w-4xl w-screen m-auto">
 			{ projects.map((project) => {
 			if (project.data.featured) {
-			return <div class="flex even:flex-row-reverse gap-4 items-start justify-between mt-8 px-4">
-				<img 
-					src={project.data.thumbnail} 
-					alt={project.data.title} 
-					class="rounded-lg border-t border-white/25 shadow-lg shadow-black/85 max-w-xl w-1/2 object-cover"
-					loading="lazy"
-					decoding="async"
-				/>
+			return <div class="flex even:flex-row-reverse gap-4 items-center justify-between mt-8 px-4">
+				<a href=`/projects/${project.data.id}`} class="max-w-xl shadow-md shadow-black/85 w-1/2 hover:scale-105 hover:shadow-lg transition duration-75">
+					<img 
+						src={project.data.thumbnail} 
+						alt={project.data.title} 
+						class="rounded-lg border-t border-white/25 object-cover"
+						loading="lazy"
+						decoding="async"
+					/>
+				</a>
 				<div class="w-96">
 					<h4 class="text-2xl font-bold">{project.data.title}</h4>
 					<p class="text-pretty">{project.data.description}</p>
