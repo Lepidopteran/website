@@ -2,7 +2,6 @@ import { z, defineCollection } from "astro:content";
 
 const projectSchema = z.object({
 	title: z.string(),
-	id: z.string(),
 	description: z.string(),
 	thumbnail: z.string(),
 	featured: z.boolean().optional(),

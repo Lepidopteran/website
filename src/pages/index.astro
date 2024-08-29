@@ -355,7 +355,7 @@ const projects = await getCollection("projects");
 			{ projects.map((project) => {
 			if (project.data.featured) {
 			return <div class="flex even:flex-row-reverse gap-4 items-center justify-between mt-8 px-4">
-				<a href=`/projects/${project.data.id}`} class="max-w-xl shadow-md shadow-black/85 w-1/2 hover:scale-105 hover:shadow-lg transition duration-75">
+				<a href=`/projects#${project.id}`} class="max-w-xl shadow-md shadow-black/85 w-1/2 hover:scale-105 hover:shadow-lg transition duration-75">
 					<img 
 						src={project.data.thumbnail} 
 						alt={project.data.title} 

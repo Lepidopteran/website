@@ -1,6 +1,5 @@
 {
 "title": "Fast Track",
-"id": "fastTrack",
 "featured": true,
 "description": "A web application that allows users to track their shipments and loads in real-time on a map. The application is designed to be used by commercial truck drivers and dispatchers.",
 "tags": ["commercial", "tracking", "loads", "shipments", "map"],
