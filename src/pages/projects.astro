@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+const projects = await getCollection("projects");
+---
+
+<Layout title="Projects">
+	<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+		{
+			projects.map((project) => {
+				return (
+					<div
+						class="bg-neutral-900 shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800"
+						id={project.id}
+					>
+						<img src={project.data.thumbnail} class="rounded-lg border-t border-white/25 h-48 object-cover shadow-md shadow-black/25" alt={project.data.title}>
+						<h4 class="text-xl font-bold mt-4">{project.data.title}</h4>
+			<div class="flex mt-2 gap-4">
+				{project.data.demo && <a
+						href={project.data.demo}
+						class="bg-emerald-800 text-neutral-50 hover:bg-emerald-600 shadow-md transition px-2 rounded-full border-t border-white/25"
+						>
+						Demo
+					</a>
+				}
+			</div>
+						<p class="mt-2">{project.data.description}</p>
+					</div>
+				);
+			})
+		}
+</Layout>
