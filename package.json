@@ -38,6 +38,9 @@
     "@iconify-json/logos": "^1.1.42",
     "@iconify-json/mdi": "^1.1.64",
     "@iconify-json/ph": "^1.1.11",
-    "@iconify-json/simple-icons": "^1.1.92"
+    "@iconify-json/simple-icons": "^1.1.92",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.2.7"
   }
 }
