@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AlbumCard from "../components/AlbumCard.svelte";
+import BowlOfSoup from "../components/BowlOfSoup.astro";
 import TerminalCard from "../components/TerminalCard.astro";
 import SkillCard from "../components/SkillCard.astro";
 import { Icon } from "astro-icon/components";
@@ -368,6 +369,11 @@ const projects = await getCollection("projects");
 			}
 			)}
 	</section>
+	<div class="flex flex-col items-center justify-center mt-24">
+		<p class="font-light text-2xl">You've reached the end...</p>
+		<p class="font-light text-2xl mb-4">Have a bowl of soup</p>
+		<BowlOfSoup class="relative size-24 top-[3px]" />
+	</div>
 </Layout>
 
 <style>
