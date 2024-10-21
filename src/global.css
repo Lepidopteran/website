@@ -1,10 +1,27 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+		.link {
+			@apply hover:text-primary-500;		
+		}
+
+		.btn {
+			@apply text-neutral-100 bg-neutral-500/50 text-center backdrop-blur hover:bg-neutral-400/85 px-3 py-1.5 block rounded-lg shadow-inner shadow-neutral-500/50 font-bold border-t border-white/25;
+			@apply hover:bg-neutral-400/85 active:bg-neutral-500/50;
+			@apply transition-all duration-300 ease-in-out;
+
+		&.btn-primary {
+			@apply text-primary-100 bg-primary-500/50 hover:bg-primary-400/85;
+		}
+
+		&.btn-secondary {
+			@apply text-secondary-100 bg-secondary-500/50 hover:bg-secondary-400/85;
+		}
+
+		&.btn-accent {
+			@apply text-accent-100 bg-accent-500/50 hover:bg-accent-400/85;
+		}
   }
 }
