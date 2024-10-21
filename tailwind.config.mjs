@@ -1,9 +1,10 @@
 import defaultTheme from "tailwindcss/defaultTheme";
+import colors from "tailwindcss/colors";
 import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,css}"],
   theme: {
     extend: {
       fontFamily: {
@@ -20,37 +21,42 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5%)' },
         }
-      }
+      },
+			colors: {
+				primary: colors.purple ,
+				secondary: colors.green,
+				accent: colors.indigo,
+			}
     }, 
   },
   plugins: [
-    plugin(function({ addUtilities, theme }) {
+    plugin(({ addUtilities, theme }) => {
       const colorUtilities = {};
       const colors = theme('colors');
 
       const baseGlowUtility = {
         '.glow': {
-          boxShadow: `0 0 10px var(--glow-color, #fff)`,
+          boxShadow: '0 0 10px var(--glow-color, #fff)',
         },
       };
 
-      Object.keys(colors).forEach(colorName => {
+      for (const colorName of Object.keys(colors)) {
         const value = colors[colorName];
         if (typeof value === 'object') {
-          Object.keys(value).forEach(shade => {
+          for (const shade of Object.keys(value)) {
             const className = `.glow-${colorName}-${shade}`;
             const colorValue = value[shade];
             colorUtilities[className] = {
               '--glow-color': colorValue,
             };
-          });
+          }
         } else {
           const className = `.set-glow-${colorName}`;
           colorUtilities[className] = {
             '--glow-color': value,
           };
         }
-      });
+      }
 
       addUtilities(baseGlowUtility, ['responsive', 'hover']);
       addUtilities(colorUtilities, ['responsive', 'hover']);
