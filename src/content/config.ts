@@ -1,29 +1,46 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 
-const projectSchema = z.object({
+const baseSchema = {
 	title: z.string(),
-	description: z.string(),
-	thumbnail: z.string(),
-	featured: z.boolean().optional(),
-	demo: z.string().optional(),
+	description: z.string().optional(),
 	tags: z.array(z.string()).optional(),
-	content: z.array(
-		z
-			.object({
-				type: z.enum(["video", "image", "code", "text"]),
-				src: z.string(),
-				description: z.string().optional(),
-				thumbnail: z.string().optional(),
-			})
-			,
-	).optional(),
+};
+
+const baseProjectSchema = {
+	...baseSchema,
+  featured: z.boolean().optional(),
+};
+
+const softwareProjectSchema = z.object({
+  ...baseProjectSchema,
+  thumbnail: z.string().optional(),
+	sourcecode: z.string().optional(),
+  demo: z.string().optional(),
+	post: reference("projects").optional(),
 });
 
-const projects = defineCollection({
-	type: "data",
-	schema: projectSchema,
+const artProjectSchema = z.object({
+  ...baseProjectSchema,
+  image: z.string(),
+});
+
+const musicTrackSchema = z.object({
+  ...baseProjectSchema,
+  src: z.string(),
+  albumArt: z.string().optional(),
 });
 
 export const collections = {
-	projects,
+  projects: defineCollection({ 
+		type: "content",
+		schema: softwareProjectSchema 
+	}),
+  art: defineCollection({
+    type: "data",
+    schema: artProjectSchema,
+  }),
+  music: defineCollection({
+    type: "data",
+    schema: musicTrackSchema,
+  }),
 };

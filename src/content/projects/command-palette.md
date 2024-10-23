@@ -1,0 +1,8 @@
+---
+title: Command Palette Web Component
+featured: true
+description: A web component that provides a command palette created with pure CSS and JavaScript that can be used in any web application.
+demo: "/projects/commercial/demos/command-palette"
+tags: ["commercial", "component", "web component", "demo"]
+thumbnail: "/projects/command-palette/light-mode-palette.png"
+---
