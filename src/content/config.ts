@@ -32,7 +32,7 @@ const musicTrackSchema = z.object({
 
 export const collections = {
   projects: defineCollection({ 
-		type: "content",
+		type: "data",
 		schema: softwareProjectSchema 
 	}),
   art: defineCollection({
