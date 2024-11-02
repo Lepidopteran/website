@@ -1,22 +1,11 @@
 ---
-const { title, thumbnail, dialog, class: className } = Astro.props;
+const {class: className, title, ...rest } = Astro.props
 ---
-<button id="card-btn" data-dialog={dialog} type="button" class={className}>
-	<img src={thumbnail} class="rounded-lg border-t border-white/25 h-28 object-cover shadow-md shadow-black/25" alt={title}>
-	<span class="text-xl font-bold">{title}</span>
-</button>
-<script>
-	const btn = document.getElementById('card-btn');
 
-	btn?.addEventListener('click', () => {
-		const event = new CustomEvent('open-dialog', {
-			detail: {
-				dialog: btn.dataset.dialog
-			},
-			bubbles: true,
-		});
+<div class:list={["bg-neutral-800", "border-t", "border-white/25", "rounded-xl", "overflow-hidden", className]} {...rest}>
+	{ title && <div class="px-2 font-bold text-xl">{title}</div> }
 
-		btn.dispatchEvent(event);
-	});
-
-</script>
+	<div class="p-2">
+		<slot/>
+	</div>
+</div>
