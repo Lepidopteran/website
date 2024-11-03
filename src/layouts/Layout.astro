@@ -7,13 +7,23 @@ import '@fontsource/red-hat-display';
 import '@fontsource-variable/red-hat-display';
 import { Icon } from 'astro-icon/components';
 import '../global.css';
+
 export interface Props {
 	title: string;
 }
 
+type Tab = {
+	name: string;
+	href: string;
+};
+
+const tabs: Tab[] = [
+	{ name: 'Home', href: '/' },
+	{ name: 'Projects', href: '/projects' },
+];
+
 const { title } = Astro.props;
 const currentYear = new Date().getFullYear()
-
 ---
 
 <!DOCTYPE html>
@@ -31,85 +41,103 @@ const currentYear = new Date().getFullYear()
 		<div class="absolute h-full w-full overflow-hidden top-0 left-0 z-0">
 			<slot name="background" />
 		</div>
-		<header class="flex items-center justify-center col-start-2 col-end-3 row-start-1 sticky top-0 md:top-1 z-10 transition-all h-16">
-			<nav class="flex bg-neutral-900/80 px-6 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-screen-2xl w-full shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600 border-opacity-50 box-border h-full md:mx-1 transition-all">
-				<a href="/">Home</a>
-				<a href="/projects">Projects</a>
-			</nav> 
+		<header class="flex items-center justify-center col-start-2 col-end-3 row-start-1 sticky top-0 md:top-1 z-10 transition-all h-14">
+			<div class="flex justify-between bg-neutral-900/80 px-4 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-screen-2xl w-full xl:w-3/5 shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600 border-opacity-50 box-border h-full md:mx-1 transition-all">
+				<a class="flex gap-3 items-center relative" href="/">
+					<span class="font-redhat text-lg whitespace-nowrap">Blaine Nicholls</span>
+				</a>
+				<nav class="flex gap-4 bg-primary-800/15 shadow-inner shadow-primary-500/25 px-4 py-2 rounded-full items-center">
+					{tabs.map((tab) => (
+						<a
+							href={tab.href}
+							class={tab.href === Astro.url.pathname ? 'text-primary-300' : 'text-neutral-300'}
+							>
+							{tab.name}
+							</a>
+					))}
+				</nav> 
+			</div>
 		</header>
 		<main class="h-full col-start-2 col-end-3 m-auto pt-3 justify-self-stretch relative max-w-6xl container">
 			<slot  />
 		</main>
 		<footer class="bg-neutral-800/50 border-t flex justify-center border-white/25 p-3 pt-10 mt-8 shadow-[rgba(0,0,15,0.5)_-1.5rem_0_2rem] relative z-10">
-			<div class="max-w-6xl m-auto w-full">
-				<div class="grid gap-2 grid-cols-2 md:grid-cols-3 items-baseline justify-start">
-					<div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 rounded-xl flex flex-col grow gap-2 col-span-2 md:col-span-1 shadow-lg shadow-black/35 border-t">
-						<h4 class="text-lg pl-2 text-neutral-50/75 font-bold">Contact</h4>
-						<input type="text" name="name" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Name" />
-						<input type="email" name="email" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Email" />
-						<input type="text" name="subject" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Subject" />
-						<textarea name="message" class="bg-transparent w-full h-24 text-neutral-50 border-white/25 border-t p-2 rounded-md shadow-md shadow-neutral-900" placeholder="Message"></textarea>
-						<button class="bg-emerald-800 text-neutral-50 hover:bg-emerald-600 shadow-md transition w-full p-2 rounded-md border-t border-white/25">Send</button>
-					</div>	
-					<div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 rounded-xl shadow-lg shadow-black/35 border-t">
-						<h4 class="text-neutral-50/75 font-bold">Socials</h4>	
-						<ul class="mt-1">
-							<li>
-								<a href="https://github.com/Lepidopteran" class="text-neutral-50 hover:text-blue-600 flex items-center gap-1 py-1">
-									<Icon class="inline mr-2" name="simple-icons:github" />
-									GitHub
-								</a>
-							</li>
-							<li>
-								<a href="https://www.linkedin.com/in/blaine-nicholls-42b78a312" class="text-neutral-50 hover:text-blue-600 flex items-center gap-1 py-1">
-									<Icon class="inline mr-2" name="simple-icons:linkedin" />
-									LinkedIn
-								</a>
-							</li>
-							<li>
-								<a href="https://www.youtube.com/@blainen4867" class="text-neutral-50 hover:text-blue-600 flex items-center gap-1 py-1">
-									<Icon class="inline mr-2" name="simple-icons:youtube" />
-									YouTube
-								</a>
-							</li>
-							<li>
-								<a href="https://mastodon.social/@blainenicholls" class="text-neutral-50 hover:text-blue-600 flex items-center gap-1 py-1">
-									<Icon class="inline mr-2" name="simple-icons:mastodon" />
-									Mastodon
-								</a>
-							</li>
-						</ul>
+			<div class="max-w-5xl m-auto w-full">
+				<div class="grid gap-2 grid-cols-[2fr_1fr] items-start justify-start">
+				<form name="contact" method="POST" data-netlify="true">
+						<div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 rounded-xl flex flex-col grow gap-2 col-span-2 md:col-span-1 shadow-lg shadow-black/35 border-t">
+								<h4 class="text-lg pl-2 text-neutral-50/75 font-bold">Contact</h4>
+								<input type="text" name="name" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Name" />
+								<input type="email" name="email" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Email" />
+								<input type="text" name="subject" class="bg-transparent w-full text-neutral-50 p-2 border-t border-white/25 rounded-md shadow-md shadow-neutral-900" placeholder="Subject" />
+								<textarea name="message" class="bg-transparent w-full h-24 text-neutral-50 border-white/25 border-t p-2 rounded-md shadow-md shadow-neutral-900" placeholder="Message"></textarea>
+								<button type="submit" class="btn btn-primary">Send</button>
+						</div>
+				</form>
+					<div class="flex flex-col grow gap-2 size-full col-span-2 md:col-span-1">
+						<div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 w-full rounded-xl shadow-lg shadow-black/35 border-t">
+							<h4 class="text-neutral-50/75 font-bold">Resources</h4>	
+							<ul>
+								<li>
+									<a href="/" class="link py-1">
+										Home
+									</a>
+								</li>
+								<li>
+									<a href="/projects" class="link py-1">
+										Projects
+									</a>
+								</li>
+								<li>
+									<a href="/certifications" class="link py-1">
+										Certificates
+									</a>
+								</li>
+								<!-- TODO: Add legal stuff -->
+								<!-- <li> -->
+								<!-- 	<a href="" class="link py-1"> -->
+								<!-- 		Privacy Policy -->
+								<!-- 	</a> -->
+								<!-- </li> -->
+								<!-- <li> -->
+								<!-- 	<a href="" class="link py-1"> -->
+								<!-- 		Terms of Service -->
+								<!-- 	</a> -->
+								<!-- </li> -->
+						</div>
+						<div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 rounded-xl grow shadow-lg shadow-black/35 border-t">
+							<h4 class="text-neutral-50/75 font-bold">Socials</h4>	
+							<ul>
+								<li>
+									<a href="https://github.com/Lepidopteran" class="link flex items-center gap-1">
+										<Icon class="inline mr-2" name="simple-icons:github" />
+										GitHub
+									</a>
+								</li>
+								<li>
+									<a href="https://www.linkedin.com/in/blaine-nicholls-42b78a312" class="link flex items-center gap-1">
+										<Icon class="inline mr-2" name="simple-icons:linkedin" />
+										LinkedIn
+									</a>
+								</li>
+								<li>
+									<a href="https://www.youtube.com/@blainecodes" class="link flex items-center gap-1">
+										<Icon class="inline mr-2" name="simple-icons:youtube" />
+										YouTube
+									</a>
+								</li>
+								<li>
+									<a href="https://mastodon.social/@blainenicholls" class="link flex items-center gap-1">
+										<Icon class="inline mr-2" name="simple-icons:mastodon" />
+										Mastodon
+									</a>
+								</li>
+							</ul>
+						</div>
+				<a href="https://ko-fi.com/blainenicholls" class="btn btn-secondary">
+					Buy me a coffee ❤ 
+				</a>
 					</div>
-					<!-- TODO: Include Resources -->
-					<!-- <div> -->
-						<!-- <div class="border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-800/50 p-3 pt-2 rounded-xl shadow-lg shadow-black/35 border-t"> -->
-						<!-- 	<h4 class="text-neutral-50/75 font-bold">Resources</h4>	 -->
-						<!-- 	<ul class="mt-1"> -->
-						<!-- 		<li> -->
-						<!-- 			<a href="" class="text-neutral-50 hover:text-blue-600 py-1"> -->
-						<!-- 				Home -->
-						<!-- 			</a> -->
-						<!-- 		</li> -->
-						<!-- 		<li> -->
-						<!-- 			<a href="" class="text-neutral-50 hover:text-blue-600 py-1"> -->
-						<!-- 				Projects -->
-						<!-- 			</a> -->
-						<!-- 		</li> -->
-						<!-- 		<li> -->
-						<!-- 			<a href="" class="text-neutral-50 hover:text-blue-600 py-1"> -->
-						<!-- 				Privacy Policy -->
-						<!-- 			</a> -->
-						<!-- 		</li> -->
-						<!-- 		<li> -->
-						<!-- 			<a href="" class="text-neutral-50 hover:text-blue-600 py-1"> -->
-						<!-- 				Terms of Service -->
-						<!-- 			</a> -->
-						<!-- 		</li> -->
-						<!-- </div> -->
-						<!-- <a href="https://ko-fi.com/blainenicholls" class="text-neutral-950 bg-yellow-400 backdrop-blur hover:bg-yellow-400/50 px-3 py-1.5 mt-3 block rounded-lg shadow-lg shadow-yellow-700/25 font-bold border-t border-white/25"> -->
-						<!-- 	Support Me ❤  -->
-						<!-- </a> -->
-					<!-- </div> -->
 				</div>
 				<div class="text-sm opacity-50 mt-3">
 					&copy; Copyright by Blaine Nicholls {currentYear.toString()}   
