@@ -24,4 +24,8 @@
 			@apply text-accent-100 bg-accent-500/50 hover:bg-accent-400/85;
 		}
   }
+
+	.card {
+		@apply bg-neutral-800 border-t border-white/25 rounded-xl overflow-hidden;
+	}
 }
