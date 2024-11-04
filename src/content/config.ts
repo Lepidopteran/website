@@ -1,4 +1,5 @@
 import { defineCollection, reference, z } from "astro:content";
+import { glob } from 'astro/loaders';
 
 const baseSchema = {
 	title: z.string(),
@@ -32,15 +33,15 @@ const musicTrackSchema = z.object({
 
 export const collections = {
   projects: defineCollection({ 
-		type: "data",
+		loader: glob({pattern: '**\/[^_]*.json', base: "./src/content/projects"}),
 		schema: softwareProjectSchema 
 	}),
   art: defineCollection({
-    type: "data",
+		loader: glob({pattern: '**\/[^_]*.json', base: "./src/content/art"}),
     schema: artProjectSchema,
   }),
   music: defineCollection({
-    type: "data",
+		loader: glob({pattern: '**\/[^_]*.json', base: "./src/content/music"}),
     schema: musicTrackSchema,
   }),
 };
