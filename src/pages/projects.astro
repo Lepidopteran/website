@@ -19,6 +19,21 @@ const projects = await getCollection("projects");
 				{project.data.demo && <a
 						href={project.data.demo}
 						class="bg-emerald-800 text-neutral-50 hover:bg-emerald-600 shadow-md transition px-2 rounded-full border-t border-white/25"
+	<div slot="background" class="size-full bg-neutral-900 noise">
+		<svg>
+			<defs>
+				<filter id="noise">
+					<feTurbulence
+						type="fractalNoise"
+						baseFrequency="0.5"
+						numOctaves="2"
+						result="warp"
+					/>
+					<feComposite in="SourceGraphic" in2="warp" operator="out" />
+				</filter>
+			</defs>
+		</svg>
+	</div>
 						>
 						Demo
 					</a>
@@ -32,4 +47,9 @@ const projects = await getCollection("projects");
 	</div>
 
 	<span class="text-xl font-bold mt-4 text-center block">And more to come...</span>
+	<style>
+		.noise {
+			filter: url(#noise);
+		}
+	</style>
 </Layout>
