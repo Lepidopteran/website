@@ -3,5 +3,12 @@
 	"featured": true,
 	"description": "A web application that allows users to track their shipments and loads in real-time on a map. The application is designed to be used by commercial truck drivers and dispatchers.",
 	"tags": ["commercial", "tracking", "loads", "shipments", "map"],
-	"thumbnail": "/projects/fast-track/thumbnail.png"
+	"thumbnail": "/projects/fast-track/thumbnail.png",
+	"assets": [
+		{
+			"type": "image",
+			"src": "/projects/fast-track/thumbnail.png",
+			"altText": "Fast Track UI"
+		}
+	]
 }

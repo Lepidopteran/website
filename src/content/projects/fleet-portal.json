@@ -3,5 +3,12 @@
 	"featured": true,
 	"description": "A web-based portal for managing a fleet of vehicles. The portal includes a dashboard with charts and maps, being able to view message history between drivers and dispatch, and a tracking system.",
 	"tags": ["commercial", "charts", "dashboard", "messages", "maps", "tracking"],
-	"thumbnail": "/projects/fleet-portal/dashboard.png"
+	"thumbnail": "/projects/fleet-portal/dashboard.png",
+	"assets": [
+		{
+			"type": "image",
+			"src": "/projects/fleet-portal/dashboard.png",
+			"altText": "Fleet Portal Dashboard"
+		}
+	]
 }

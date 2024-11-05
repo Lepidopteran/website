@@ -17,6 +17,15 @@ const softwareProjectSchema = z.object({
   thumbnail: z.string().optional(),
 	sourcecode: z.string().optional(),
   demo: z.string().optional(),
+	assets: z.array(
+		z.object(
+			{
+				src: z.string(),
+				type: z.enum(["video", "image", "embed", "audio"]),
+				altText: z.string().optional()
+			}
+		)
+	),
 	post: reference("projects").optional(),
 });
 
