@@ -1,15 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import AlbumCard from "../components/AlbumCard.svelte";
 import BowlOfSoup from "../components/BowlOfSoup.astro";
 import TerminalCard from "../components/TerminalCard.astro";
 import SkillCard from "../components/SkillCard.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import blaine from "../imgs/blaine.png";
-import htmlCertificate from "../imgs/certificates/html-certification.jpg";
-import { getCollection } from "astro:content";
 
+import { getCollection } from "astro:content";
 const projects = await getCollection("projects");
 
 ---
