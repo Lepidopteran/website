@@ -13,7 +13,7 @@ const projects = await getCollection("projects");
 ---
 
 <Layout title="Blaine's Portfolio">
-  <div slot="background" class="h-svh relative w-full text-neutral-50/5">
+	<div slot="background" class="h-1/4 relative w-full text-neutral-50/5">
 
     <div class="background-grid">
       <div class="background-grid blur-sm"></div>
@@ -21,11 +21,37 @@ const projects = await getCollection("projects");
     <div class="bg-gradient-to-t from-neutral-900 absolute h-full w-full">
     </div>
   </div>
-  <div slot="background" class="h-svh w-full text-neutral-50/5">
-    <div class="bg-gradient-to-b from-neutral-900 from-25% to-neutral-900 h-full w-full"></div>
+
+	<div slot="background" class="h-1/4 w-full text-neutral-50/25 relative">
+    <div class="bg-gradient-to-b from-neutral-900 via-transparent to-neutral-900 to size-full absolute"></div>
+		<div class="size-full background-dot-grid bg-neutral-900"></div>
   </div>
-  <div slot="background" class="h-full w-full text-neutral-50/5">
-    <div class="bg-gradient-to-b to-neutral-950 from-25% from-neutral-900 h-full w-full"></div>
+
+	<div slot="background" class="h-1/4 w-full text-neutral-50/25 bg-neutral-900 relative flex justify-center items-center overflow-hidden">
+		<div class="absolute size-full noise bg-neutral-900/50"></div>
+		<div class="size-[240px] absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px]">
+			<div class="size-full bg-primary-600 rounded-full absolute translate-y-64"></div>
+			<div class="size-full bg-accent-600 rounded-full absolute -translate-x-64"></div>
+			<div class="size-full bg-secondary-400 rounded-full absolute translate-x-64"></div>
+		</div>
+    <div class="bg-gradient-to-b from-neutral-900 from-10% via-50% via-transparent to-neutral-900 to-90% size-full absolute"></div>
+		<svg>
+			<defs>
+				<filter id="noise">
+					<feTurbulence
+						type="fractalNoise"
+						baseFrequency="0.5"
+						numOctaves="2"
+						result="warp"
+					/>
+					<feComposite in="SourceGraphic" in2="warp" operator="out" />
+				</filter>
+			</defs>
+		</svg>
+  </div>
+
+  <div slot="background" class="h-full w-full text-neutral-50/5 relative">
+    <div class="bg-gradient-to-b to-neutral-950 from-10% from-neutral-900 h-full w-full"></div>
   </div>
 
   <section
@@ -406,5 +432,15 @@ h4 {
 		);
 	background-size: var(--grid-size) var(--grid-size);
 	@apply absolute w-full h-full bg-center -z-[1];
+}
+
+.background-dot-grid {
+	background-image: radial-gradient(currentColor 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px -19px;
+}
+
+.noise {
+	filter: url(#noise);
 }
 </style>
