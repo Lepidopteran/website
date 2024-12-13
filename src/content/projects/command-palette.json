@@ -8,12 +8,12 @@
 	"assets": [
 		{
 			"type": "image",
-			"src":  "/projects/command-palette/dark-mode-palette.png",
+			"src": "/projects/command-palette/dark-mode-palette.png",
 			"altText": "command palette dark theme"
 		},
 		{
 			"type": "image",
-			"src":  "/projects/command-palette/light-mode-palette.png",
+			"src": "/projects/command-palette/light-mode-palette.png",
 			"altText": "command palette light theme"
 		}
 	]
