@@ -8,7 +8,11 @@ import { Image } from "astro:assets";
 import blaine from "../imgs/blaine.png";
 
 import { getCollection } from "astro:content";
-const projects = await getCollection("projects");
+const projects = await getCollection("projects", ({ data }) => data.featured);
+const languages = await getCollection(
+	"programming-languages",
+	({ data }) => data.featured,
+);
 ---
 
 <Layout title="Blaine's Portfolio">
@@ -94,7 +98,7 @@ const projects = await getCollection("projects");
 					<div class="max-w-[50ch] text-balance text-lg leading-6 margin-auto">
 						<p class="text-pretty mt-2 whitespace-pre-line">Hi, I'm Blaine,
 
-							I build websites & software.
+							I build urls & software.
 							I also create 3D models, music, and animations.
 
 							Interests and proficiencies:
@@ -211,49 +215,24 @@ const projects = await getCollection("projects");
 				<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-900">
 					<h4>Languages</h4>
 					<div
-						class="grid grid-cols-3 gap-4"
+						class="grid grid-cols-4 gap-4"
 						>
+					{ languages.map((language) => (
+						language.data.url ? (
 						<SkillCard
-						name="Javascript"
+						name={language.data.name}
 						size="64"
-						link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-						iconClassName="text-yellow-400"
-						icon="simple-icons:javascript"
+						link={language.data.url}
+						icon={language.data.icon}
 						/>
+						) :	
 						<SkillCard
-						name="Typescript"
+						name={language.data.name}
 						size="64"
-						link="https://www.typescriptlang.org/"
-						iconClassName="text-blue-500"
-						icon="simple-icons:typescript"
+						icon={language.data.icon}
 						/>
-						<SkillCard
-						name="Rust"
-						size="64"
-						link="https://www.rust-lang.org/"
-						iconClassName="text-neutral-200"
-						icon="simple-icons:rust"
-						/>
-						<SkillCard
-						name="DotNet"
-						size="64"
-						link="https://dotnet.microsoft.com/en-us/"
-						icon="logos:dotnet"
-						/>
-						<SkillCard
-						name="Python"
-						size="64"
-						link="https://www.python.org/"
-						icon="devicon:python"
-						/>
-						<SkillCard
-						name="GDScript"
-						size="64"
-						link="https://godotengine.org/"
-						icon="logos:godot-icon"
-						/>
+					))}
 					</div>
-
 				</div>
 				<div class="shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800 to-neutral-900">
 				<h4>Technologies</h4>
@@ -362,6 +341,7 @@ const projects = await getCollection("projects");
 					icon="devicon:inkscape"
 					/>
 				</div>
+
 			</div>
 	</section>
 	<section class="mt-6">
@@ -369,9 +349,8 @@ const projects = await getCollection("projects");
 			Projects I've Worked On
 		</h3>
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 pt-4">
-			{ projects.map((project) => {
-			if (project.data.featured) {
-			return <a href=`/projects/${project.id}`} class="hover:shadow-lg hover:shadow-primary-600/10 rounded-lg transition duration-75 block md:h-48 overflow-visible">
+			{ projects.map((project) => (
+			<a href=`/projects/${project.id}`} class="hover:shadow-lg hover:shadow-primary-600/10 rounded-lg transition duration-75 block md:h-48 overflow-visible">
 				<div class="grid h-full sm:grid-cols-2 justify-items-center items-center gap-4 items-center justify-around px-4 bg-gradient-to-b from-neutral-800/85 to-neutral-900/85 shadow-inner shadow-white/25 p-4 border-t border-white/25 rounded-lg overflow-hidden">
 						<img 
 							src={project.data.thumbnail} 
@@ -386,9 +365,7 @@ const projects = await getCollection("projects");
 					</div>
 				</div>
 			</a>
-			}
-			}
-			)}
+			))}
 	</section>
 	<div class="flex flex-col items-center justify-center mt-24">
 		<p class="font-light text-2xl">You've reached the end...</p>

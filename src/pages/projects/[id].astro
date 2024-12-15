@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntries } from "astro:content";
 import Projects from "../projects.astro";
 import ProjectModal from "../../components/ProjectModal.svelte";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
 	const projects = await getCollection("projects");
@@ -13,14 +14,18 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { data } = project;
-
-const visible = data.sourceCode || data.demo;
+const visible = data.sourceCode || data.demo || data.languages;
+const languages = data.languages && await getEntries(project.data.languages);
 ---
 
 <Projects>
 	<div transition:animate="none">
 		<ProjectModal {...data as object} client:load>
-			{visible && <div class="flex mb-1 gap-4">
+			{visible && <div class="flex mb-1 gap-2">
+				{languages && languages.map((language) => <div class="text-sm px-2 bg-neutral-100/15 border-t border-white/25 rounded-full font-normal flex items-center">
+					<Icon name={language.data.icon} class="mr-1" />
+					{language.data.name}
+				</div>)}
 				{data.sourceCode && <a href={data.sourceCode} class="text-sm btn btn-secondary rounded-full font-normal py-0">View source code</a>}
 				{data.demo && <a href={data.demo} class="text-sm btn btn-secondary rounded-full font-normal py-0">View demo</a>}
 			</div>}

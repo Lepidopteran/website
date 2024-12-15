@@ -65,7 +65,7 @@
 		});
 	}
 
-	let { tags, title, description, featured, assets, children }: Props = $props();
+	let { tags, title, description, featured, assets, children, extraHeader }: Props = $props();
 </script>	
 
 <div bind:this={dialog} class="bg-neutral-900 p-4 shadow-lg shadow-black/85 rounded-2xl border-t border-white/25 box-border">
@@ -127,7 +127,7 @@
 		</div>
 		<div class="flex flex-col justify-center gap-2">
 			<div class="font-bold text-2xl">
-				{title} {#if featured}<span class="ml-1">★</span>{/if}
+				{title} {#if featured}<span class="ml-1">★</span>{/if} {@render extraHeader?.()} 
 			</div>
 			{@render children?.()}
 			<div class="flex gap-2 flex-wrap relative py-2 bg-neutral-900 rounded-lg">

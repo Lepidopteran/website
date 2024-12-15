@@ -3,6 +3,7 @@
 	"featured": true,
 	"description": "A video interpolation tool that uses deep learning to generate high quality in-between frames. The tool is designed to be user-friendly and easy to use, with a simple drag-and-drop interface.",
 	"thumbnail": "/projects/frame-fusion/thumbnail.png",
+	"languages": ["rust", "javascript", "css", "html"],
 	"tags": [
 		"machine-learning",
 		"in-between",
