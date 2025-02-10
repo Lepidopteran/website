@@ -45,6 +45,13 @@
     "featured": true
   },
 	{
+		"id": "lua",
+		"name": "Lua",
+		"icon": "logos:lua",
+		"url": "https://www.lua.org/",
+		"featured": true
+	},
+	{
 		"id": "html",
 		"name": "HTML",
 		"icon": "logos:html-5",
