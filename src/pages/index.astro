@@ -78,7 +78,7 @@ const languages = await getCollection(
 				</div>
         <p class="text-xl text-center leading-6 mt-4 text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-300">Software Engineer | Full-Stack Developer | Computer Nerd</p>
       </hgroup>
-			<TerminalCard class="col-start-1 border-t border-blue-200/25 shadow-md shadow-black/85">
+			<TerminalCard class="col-start-1 border-t border-accent-200/25 shadow-md shadow-black/85">
         <pre
           slot="body">
         (
@@ -98,7 +98,7 @@ const languages = await getCollection(
 					<div class="max-w-[50ch] text-balance text-lg leading-6 margin-auto">
 						<p class="text-pretty mt-2 whitespace-pre-line">Hi, I'm Blaine,
 
-							I build urls & software.
+							I build websites & software.
 							I also create 3D models, music, and animations.
 
 							Interests and proficiencies:
@@ -217,12 +217,12 @@ const languages = await getCollection(
 					<div
 						class="grid grid-cols-4 gap-4"
 						>
-					{ languages.map((language) => (
-						language.data.url ? (
+					{ languages.map(language => (
+						language.data.website ? (
 						<SkillCard
 						name={language.data.name}
 						size="64"
-						link={language.data.url}
+						link={language.data.website}
 						icon={language.data.icon}
 						/>
 						) :	
@@ -295,7 +295,7 @@ const languages = await getCollection(
 					name="VSCode"
 					size="64"
 					link="https://code.visualstudio.com/"
-					iconClassName="text-blue-500"
+					iconClassName="text-accent-500"
 					icon="logos:visual-studio-code"
 					/>
 					<SkillCard
@@ -379,7 +379,7 @@ const languages = await getCollection(
 
 
 h4 {
-	@apply font-bold text-xl;
+	font-size: var(--text-xl);
 }
 
 #OperatingSystemLinuxRadio:checked
@@ -388,7 +388,8 @@ h4 {
 #OperatingSystemWindowsRadio:checked
 ~ #OperatingSystemCardGroup
 #OperatingSystemWindowsCard {
-	@apply animate-float shadow-lg shadow-black/85 bg-neutral-800;
+	shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.25);
+	background-color: var(--color-neutral-800);
 }
 
 #OperatingSystemLinuxRadio:not(:checked)
@@ -397,13 +398,13 @@ h4 {
 #OperatingSystemWindowsRadio:not(:checked)
 ~ #OperatingSystemCardGroup
 #OperatingSystemWindowsCard:hover {
-	@apply transform hover:scale-105;
+	scale: 1.05;
 }
 
 #OperatingSystemWindowsRadio:checked
 ~ #OperatingSystemCardGroup
 #OperatingSystemWindowsCard {
-	@apply border-neutral-600;
+	background-color: var(--color-neutral-600);
 }
 
 #radialBg {
