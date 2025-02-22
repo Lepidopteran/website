@@ -10,12 +10,12 @@
 		{
 			"type": "image",
 			"src": "/projects/command-palette/dark-mode-palette.png",
-			"altText": "command palette dark theme"
+			"altText": "Command Palette Component in a Dark Theme"
 		},
 		{
 			"type": "image",
 			"src": "/projects/command-palette/light-mode-palette.png",
-			"altText": "command palette light theme"
+			"altText": "Command Palette Component in a Light Theme"
 		}
 	]
 }

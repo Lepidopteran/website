@@ -9,8 +9,7 @@
     {
       "src": "/projects/c3TMS/thumbnail.png",
       "type": "image",
-      "description": "Login Screen",
-      "altTitle": "A Login Screen"
+			"altText": "Screenshot of c3TMS Login Screen"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
 	"title": "Frame Fusion",
 	"featured": true,
-	"description": "A video interpolation tool that uses deep learning to generate high quality in-between frames. The tool is designed to be user-friendly and easy to use, with a simple drag-and-drop interface.",
+	"description": "A video interpolation tool that uses deep learning to generate high quality in-between frames.\nThe tool is designed to be user-friendly and easy to use, with a simple drag-and-drop interface.",
 	"thumbnail": "/projects/frame-fusion/thumbnail.png",
 	"languages": ["rust", "javascript", "css", "html"],
 	"tags": [
@@ -16,17 +16,17 @@
 		{
 			"type": "image",
 			"src": "/projects/frame-fusion/thumbnail.png",
-			"altText": "frame fusion UI"
+			"altText": "Screenshot of the Frame Fusion Desktop App"
 		},
 		{
 			"type": "video",
 			"src": "/projects/frame-fusion/Compare.webm",
-			"altText": "Comparison of results"
+			"altText": "Comparison of a Video and Interpolated Video"
 		},
 		{
 			"type": "video",
 			"src": "/projects/frame-fusion/UI.webm",
-			"altText": "A video of the UI"
+			"altText": "Video demonstrating the Frame Fusion Desktop App"
 		}
 	]
 }
