@@ -80,7 +80,7 @@
 
 <div
   bind:this={dialog}
-  class="bg-neutral-900 p-4 shadow-lg shadow-black/85 rounded-2xl border-t border-white/25 box-border"
+  class="bg-neutral-800/50 backdrop-blur p-4 shadow-lg overflow-hidden shadow-black/25 inset-shadow-sm inset-shadow-primary-50/5 rounded-2xl border-t border-white/25 box-border relative"
 >
   <div class="grid gap-x-4 md:grid-cols-2 items-center">
     <div class="flex flex-col justify-center box-border">
@@ -91,7 +91,7 @@
         <div
           bind:this={viewport}
           onscroll={onScroll}
-          class="flex snap-mandatory snap-always scroll-smooth snap-x overflow-x-auto no-scrollbar border-t border-white/25 rounded-xl shadow-xl *:grow *:shrink-0 *:basis-full"
+          class="flex snap-mandatory snap-always scroll-smooth snap-x overflow-x-auto no-scrollbar border-t border-white/25 rounded-xl shadow-lg *:grow *:shrink-0 *:basis-full"
         >
           {#each assets as asset, index}
             {#if asset.type === "image"}
@@ -156,13 +156,14 @@
         </div>
       </div>
       <div
-        class="w-full bottom-0 left-0 flex gap-2 items-center justify-center bg-neutral-900/50 px-6 py-3 no-js-hidden"
+        class="w-full bottom-0 left-0 flex gap-2 items-center justify-center px-6 py-3 no-js-hidden"
         class:hidden={assets.length <= 1}
       >
         {#each assets as _, index}
           <button
-            class="rounded-full bg-neutral-500/50 size-2 shadow-inner shadow-neutral-300"
+            class="rounded-full bg-neutral-500/50 size-2 shadow-inner shadow-neutral-300 cursor-pointer"
             class:active={activeIndex === index}
+						aria-labelledby={index.toString()}
             onclick={() => scrollToIndex(index)}
           >
           </button>
@@ -176,7 +177,7 @@
         {@render extraHeader?.()}
       </div>
       {@render children?.()}
-      <div class="flex gap-2 flex-wrap relative py-2 bg-neutral-900 rounded-lg">
+      <div class="flex gap-2 flex-wrap relative p-2 bg-neutral-900 rounded-lg inset-shadow-sm inset-shadow-black/25">
         {#each tags as tag}
           <span
             class="bg-accent-500/25 text-accent-100 shadow shadow-accent-900/25 border-t border-accent-100/25 opacity-80 select-none px-2 rounded-full"
@@ -186,7 +187,7 @@
       </div>
       {#if description}
         <div
-          class="text-base bg-neutral-800 rounded-lg border border-black/10 border-t-neutral-700 shadow-lg shadow-black/50 overflow-hidden"
+          class="text-base bg-neutral-800 rounded-lg border border-black/10 border-t-neutral-700 shadow shadow-black/25 overflow-hidden"
         >
           <div class="font-bold text-lg px-2 opacity-50">Description</div>
           <div class="p-2 h-24 overflow-y-auto bg-neutral-900">
@@ -205,6 +206,7 @@
     height="24"
     viewBox="0 0 24 24"
 		style="transform: rotate({direction === 'left' ? -90 : 90}deg)"
+		aria-label={`${direction === "left" ? "Previous" : "Next"} Slide`}
 		class="inline"
   >
     <g fill="none">
