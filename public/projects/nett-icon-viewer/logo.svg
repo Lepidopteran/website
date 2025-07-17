@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="256" height="256">
+    <defs>
+        <filter id="g" width="1.13" height="1.13" x="-.065" y="-.065" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation="4.737"/>
+        </filter>
+        <filter id="i" width="1.693" height="1.693" x="-.346" y="-.346" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation="4.508"/>
+        </filter>
+        <filter id="k" width="1.233" height="1.365" x="-.119" y="-.191" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation="10.774"/>
+        </filter>
+        <filter id="h" width="1.006" height="1.006" x="-.003" y="-.003" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation=".127"/>
+        </filter>
+        <filter id="j" width="1.544" height="2.242" x="-.263" y="-.612" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation="11.555"/>
+        </filter>
+        <filter id="d" width="1.063" height="1.063" x="-.032" y="-.032" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation="3.183"/>
+        </filter>
+        <linearGradient id="c">
+            <stop offset=".231" style="stop-color:#e6e6e6;stop-opacity:1"/>
+            <stop offset=".792" style="stop-color:#cbcbcb;stop-opacity:1"/>
+            <stop offset="1" style="stop-color:#cbabab;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop offset="0" style="stop-color:#1b1b1b;stop-opacity:1"/>
+            <stop offset="1" style="stop-color:#404040;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="e" x1="177.277" x2="63.117" y1="203.741" y2="48.468" gradientUnits="userSpaceOnUse"/>
+        <radialGradient xlink:href="#c" id="f" cx="256.5" cy="255.5" r="178.5" fx="256.5" fy="255.5" gradientTransform="translate(-10.058 -9.52)scale(.53824)" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <rect width="240.892" height="240.892" x="7.97" y="9.218" ry="60.223" style="mix-blend-mode:normal;fill:#000;fill-opacity:1;stroke-width:.470493;filter:url(#d)"/>
+    <rect width="240.892" height="240.892" x="7.554" y="7.554" ry="60.223" style="fill:url(#e);fill-opacity:1;stroke-width:.470493"/>
+    <circle cx="128" cy="128" r="96.076" style="opacity:1;fill:url(#f);stroke-width:.556959"/>
+    <circle cx="128" cy="128" r="57.845" style="opacity:1;mix-blend-mode:normal;fill:#8700b4;fill-opacity:1;stroke-width:.747411"/>
+    <circle cx="256.5" cy="255.5" r="105.646" style="opacity:1;fill:none;fill-opacity:1;stroke:#000;stroke-width:4.835;stroke-dasharray:none;stroke-opacity:.5;filter:url(#g)" transform="translate(-10.058 -9.52)scale(.53824)"/>
+    <circle cx="256.896" cy="256.63" r="47.011" style="opacity:1;mix-blend-mode:normal;fill:#000;fill-opacity:1;filter:url(#h)" transform="translate(-12.677 -12.531)scale(.5476)"/>
+    <circle cx="210.013" cy="196.436" r="15.621" style="opacity:1;mix-blend-mode:normal;fill:#fff;fill-opacity:.497951;filter:url(#i)" transform="translate(-5.676 -12.924)scale(.53824)"/>
+    <path d="M365.898 349.96a145.916 142.745 0 0 1-105.776 48.24" style="opacity:1;mix-blend-mode:normal;fill:#000;fill-opacity:.369585;stroke:#404040;stroke-width:5.33632;stroke-dasharray:none;stroke-opacity:.528019;filter:url(#j)" transform="translate(-23.23 -25.25)scale(.60064)"/>
+    <path d="M110.744 262.186a145.916 142.745 0 0 1 81.592-134.89 145.916 142.745 0 0 1 158.95 19.678" style="opacity:1;fill:#fff;fill-opacity:.369585;stroke:#fff;stroke-width:5.33632;stroke-dasharray:none;stroke-opacity:1;filter:url(#k)" transform="translate(-27.842 -27.464)scale(.60064)"/>
+</svg>
