@@ -1,43 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter Variable", "Inter";
-  --font-jetbrains: "JetBrains Mono";
-  --font-oswald: "Oswald";
-  --font-redhat: "Red Hat Display";
-  --color-primary-50: oklch(0.977 0.014 308.299);
-  --color-primary-100: oklch(0.946 0.033 307.174);
-  --color-primary-200: oklch(0.902 0.063 306.703);
-  --color-primary-300: oklch(0.827 0.119 306.383);
-  --color-primary-400: oklch(0.714 0.203 305.504);
-  --color-primary-500: oklch(0.627 0.265 303.9);
-  --color-primary-600: oklch(0.558 0.288 302.321);
-  --color-primary-700: oklch(0.496 0.265 301.924);
-  --color-primary-800: oklch(0.438 0.218 303.724);
-  --color-primary-900: oklch(0.381 0.176 304.987);
-  --color-primary-950: oklch(0.291 0.149 302.717);
-  --color-secondary-50: oklch(0.982 0.018 155.826);
-  --color-secondary-100: oklch(0.962 0.044 156.743);
-  --color-secondary-200: oklch(0.925 0.084 155.995);
-  --color-secondary-300: oklch(0.871 0.15 154.449);
-  --color-secondary-400: oklch(0.792 0.209 151.711);
-  --color-secondary-500: oklch(0.723 0.219 149.579);
-  --color-secondary-600: oklch(0.627 0.194 149.214);
-  --color-secondary-700: oklch(0.527 0.154 150.069);
-  --color-secondary-800: oklch(0.448 0.119 151.328);
-  --color-secondary-900: oklch(0.393 0.095 152.535);
-  --color-secondary-950: oklch(0.266 0.065 152.934);
-  --color-accent-50: oklch(0.962 0.018 272.314);
-  --color-accent-100: oklch(0.93 0.034 272.788);
-  --color-accent-200: oklch(0.87 0.065 274.039);
-  --color-accent-300: oklch(0.785 0.115 274.713);
-  --color-accent-400: oklch(0.673 0.182 276.935);
-  --color-accent-500: oklch(0.585 0.233 277.117);
-  --color-accent-600: oklch(0.511 0.262 276.966);
-  --color-accent-700: oklch(0.457 0.24 277.023);
-  --color-accent-800: oklch(0.398 0.195 277.366);
-  --color-accent-900: oklch(0.359 0.144 278.697);
-  --color-accent-950: oklch(0.257 0.09 281.288);
+	--font-sans: "Inter Variable", "Inter";
+	--font-jetbrains: "JetBrains Mono";
+	--font-oswald: "Oswald";
+	--font-redhat: "Red Hat Display";
+	--color-primary-50: oklch(0.977 0.014 308.299);
+	--color-primary-100: oklch(0.946 0.033 307.174);
+	--color-primary-200: oklch(0.902 0.063 306.703);
+	--color-primary-300: oklch(0.827 0.119 306.383);
+	--color-primary-400: oklch(0.714 0.203 305.504);
+	--color-primary-500: oklch(0.627 0.265 303.9);
+	--color-primary-600: oklch(0.558 0.288 302.321);
+	--color-primary-700: oklch(0.496 0.265 301.924);
+	--color-primary-800: oklch(0.438 0.218 303.724);
+	--color-primary-900: oklch(0.381 0.176 304.987);
+	--color-primary-950: oklch(0.291 0.149 302.717);
+	--color-secondary-50: oklch(0.982 0.018 155.826);
+	--color-secondary-100: oklch(0.962 0.044 156.743);
+	--color-secondary-200: oklch(0.925 0.084 155.995);
+	--color-secondary-300: oklch(0.871 0.15 154.449);
+	--color-secondary-400: oklch(0.792 0.209 151.711);
+	--color-secondary-500: oklch(0.723 0.219 149.579);
+	--color-secondary-600: oklch(0.627 0.194 149.214);
+	--color-secondary-700: oklch(0.527 0.154 150.069);
+	--color-secondary-800: oklch(0.448 0.119 151.328);
+	--color-secondary-900: oklch(0.393 0.095 152.535);
+	--color-secondary-950: oklch(0.266 0.065 152.934);
+	--color-accent-50: oklch(0.962 0.018 272.314);
+	--color-accent-100: oklch(0.93 0.034 272.788);
+	--color-accent-200: oklch(0.87 0.065 274.039);
+	--color-accent-300: oklch(0.785 0.115 274.713);
+	--color-accent-400: oklch(0.673 0.182 276.935);
+	--color-accent-500: oklch(0.585 0.233 277.117);
+	--color-accent-600: oklch(0.511 0.262 276.966);
+	--color-accent-700: oklch(0.457 0.24 277.023);
+	--color-accent-800: oklch(0.398 0.195 277.366);
+	--color-accent-900: oklch(0.359 0.144 278.697);
+	--color-accent-950: oklch(0.257 0.09 281.288);
 }
 
 @layer base {
@@ -47,33 +47,33 @@
 }
 
 @layer components {
-  .link:hover {
-    color: var(--color-primary-500);
-  }
+	.link:hover {
+		color: var(--color-primary-500);
+	}
 
-  .btn {
-    transition: all 0.3s ease-in-out;
-    color: var(--color-neutral-100);
-    background-color: --alpha(var(--color-neutral-500) / 50%);
-    text-align: center;
-    backdrop-filter: blur(10px);
-    padding-inline: --spacing(3);
-    padding-block: --spacing(2);
-    display: block;
-    border-radius: 0.5rem;
-    box-shadow: inset 0 6px 3px --alpha(var(--color-neutral-500) / 25%);
-    font-weight: bold;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+	.btn {
+		transition: all 0.3s ease-in-out;
+		color: var(--color-neutral-100);
+		background-color: --alpha(var(--color-neutral-500) / 50%);
+		text-align: center;
+		backdrop-filter: blur(10px);
+		padding-inline: --spacing(3);
+		padding-block: --spacing(2);
+		display: block;
+		border-radius: 0.5rem;
+		box-shadow: inset 0 6px 3px --alpha(var(--color-neutral-500) / 25%);
+		font-weight: bold;
+		border-top: 1px solid rgba(255, 255, 255, 0.25);
 
-    &:hover {
-      background-color: --alpha(var(--color-neutral-400) / 85%);
-    }
+		&:hover {
+			background-color: --alpha(var(--color-neutral-400) / 85%);
+		}
 
 		&:active {
 			background-color: --alpha(var(--color-neutral-500) / 50%);
 		}
 
-    &.btn-primary {
+		&.btn-primary {
 			color: var(--color-primary-100);
 			background-color: --alpha(var(--color-primary-500) / 50%);
 
@@ -82,7 +82,7 @@
 			}
 		}
 
-    &.btn-secondary {
+		&.btn-secondary {
 			color: var(--color-secondary-100);
 			background-color: --alpha(var(--color-secondary-500) / 50%);
 
@@ -91,7 +91,7 @@
 			}
 		}
 
-    &.btn-accent {
+		&.btn-accent {
 			color: var(--color-accent-100);
 			background-color: --alpha(var(--color-accent-500) / 50%);
 
@@ -101,7 +101,7 @@
 		}
 	}
 
-  .card {
+	.card {
 		background-color: var(--color-neutral-800);
 		border-top: 1px solid rgba(255, 255, 255, 0.25);
 		border-radius: 0.5rem;

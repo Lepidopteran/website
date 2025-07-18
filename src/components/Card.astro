@@ -1,11 +1,11 @@
 ---
-const {class: className, title, ...rest } = Astro.props
+const { class: className, title, ...rest } = Astro.props;
 ---
 
 <div class:list={["card", className]} {...rest}>
-	{ title && <div class="px-2 font-bold text-xl">{title}</div> }
+	{title && <div class="px-2 font-bold text-xl">{title}</div>}
 
 	<div class="p-2">
-		<slot/>
+		<slot />
 	</div>
 </div>

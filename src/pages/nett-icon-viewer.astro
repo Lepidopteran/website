@@ -3,33 +3,31 @@ import Project from "../layouts/Project.astro";
 ---
 
 <Project title="Nett Icon Viewer">
+	<div class="lines-horizontal" slot="background"></div>
 
-	<div class="lines-horizontal" slot="background">
-	</div>
-
-  <section>
-    <div class="flex items-center gap-4 justify-center">
-      <img
+	<section>
+		<div class="flex items-center gap-4 justify-center">
+			<img
 				class="size-24"
-        src="/projects/nett-icon-viewer/logo.svg"
-        alt="Nett Icon Viewer Logo"
-      />
-      <h1 class="text-4xl font-bold">Nett Icon Viewer</h1>
-    </div>
-  </section>
-  <img
-    src="/projects/nett-icon-viewer/main-screenshot.png"
-    alt="Nett Icon Viewer"
-  />
+				src="/projects/nett-icon-viewer/logo.svg"
+				alt="Nett Icon Viewer Logo"
+			/>
+			<h1 class="text-4xl font-bold">Nett Icon Viewer</h1>
+		</div>
+	</section>
+	<img
+		src="/projects/nett-icon-viewer/main-screenshot.png"
+		alt="Nett Icon Viewer"
+	/>
 </Project>
 <style>
-.lines-horizontal {
-	background-image: linear-gradient(
+	.lines-horizontal {
+		background-image: linear-gradient(
 			to right,
 			rgba(255, 255, 255, 0.5),
-			rgba(255, 255, 255, 0.5) 1px,
+			rgba(255, 255, 255, 0.5) 1px
 		);
 		background-size: 4px 4px;
-	background-repeat: repeat;
-}
+		background-repeat: repeat;
+	}
 </style>

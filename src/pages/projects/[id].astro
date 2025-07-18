@@ -21,14 +21,39 @@ const languages = data.languages && await getEntries(project.data.languages);
 <Projects>
 	<div transition:animate="none">
 		<ProjectModal {...data as object} client:load>
-			{visible && <div class="flex mb-1 gap-2">
-				{languages && languages.map((language) => <div class="text-sm px-2 bg-neutral-100/15 border-t border-white/25 rounded-full font-normal flex items-center">
-					<Icon name={language.data.icon} aria-label={language.data.name} class="mr-1" />
-					{language.data.name}
-				</div>)}
-				{data.sourceCode && <a href={data.sourceCode} class="text-sm btn btn-secondary rounded-full font-normal py-0">View source code</a>}
-				{data.demo && <a href={data.demo} class="text-sm btn btn-secondary rounded-full font-normal py-0">View demo</a>}
-			</div>}
+			{
+				visible && (
+					<div class="flex mb-1 gap-2">
+						{languages &&
+							languages.map((language) => (
+								<div class="text-sm px-2 bg-neutral-100/15 border-t border-white/25 rounded-full font-normal flex items-center">
+									<Icon
+										name={language.data.icon}
+										aria-label={language.data.name}
+										class="mr-1"
+									/>
+									{language.data.name}
+								</div>
+							))}
+						{data.sourcecode && (
+							<a
+								href={data.sourcecode}
+								class="text-sm btn btn-secondary rounded-full font-normal py-0"
+							>
+								View source code
+							</a>
+						)}
+						{data.demo && (
+							<a
+								href={data.demo}
+								class="text-sm btn btn-secondary rounded-full font-normal py-0"
+							>
+								View demo
+							</a>
+						)}
+					</div>
+				)
+			}
 		</ProjectModal>
 	</div>
 </Projects>

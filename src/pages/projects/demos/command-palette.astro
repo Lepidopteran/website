@@ -1,95 +1,163 @@
 ---
 import { Icon } from "astro-icon/components";
 ---
+
 <html>
 	<head>
-		<link rel="stylesheet" href="/projects/command-palette/scripts/generic.css"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+		<link
+			rel="stylesheet"
+			href="/projects/command-palette/scripts/generic.css"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 </html>
 <body class="bg-neutral-900 text-neutral-100">
 	<template id="paletteTemplate">
-	<command-palette class="grow" placeholder="Type a command...">
-		<command-palette-group label="Brands">
-			<command-palette-item data-icon="simple-icons:amazon">Amazon</command-palette-item>
-			<command-palette-item data-icon="simple-icons:discord">Discord</command-palette-item>
-			<command-palette-item data-icon="simple-icons:facebook">Facebook</command-palette-item>
-			<command-palette-item data-icon="simple-icons:github">GitHub</command-palette-item>
-			<command-palette-item data-icon="simple-icons:google">Google</command-palette-item>
-			<command-palette-item data-icon="simple-icons:instagram">Instagram</command-palette-item>
-			<command-palette-item data-icon="simple-icons:linkedin">LinkedIn</command-palette-item>
-			<command-palette-item data-icon="simple-icons:netlify">Netlify</command-palette-item>
-			<command-palette-item data-icon="simple-icons:slack">Slack</command-palette-item>
-			<command-palette-item data-icon="simple-icons:spotify">Spotify</command-palette-item>
-			<command-palette-item data-icon="simple-icons:twitter">Twitter</command-palette-item>
-			<command-palette-item data-icon="simple-icons:vercel">Vercel</command-palette-item>
-			<command-palette-item data-icon="simple-icons:youtube">YouTube</command-palette-item>
-		</command-palette-group>
-		<command-palette-group label="Commands">
-			<command-palette-item data-icon="home">Go home</command-palette-item>
-			<command-palette-item data-icon="grass">Go touch some grass</command-palette-item>
-			<command-palette-item data-icon="search">Search files</command-palette-item>
-			<command-palette-item data-icon="file">Save document</command-palette-item>
-			<command-palette-item data-icon="delete">Delete file</command-palette-item>
-			<command-palette-item data-icon="edit">Edit settings</command-palette-item>
-			<command-palette-item data-icon="user">User profile</command-palette-item>
-			<command-palette-item data-icon="bell">Notifications</command-palette-item>
-			<command-palette-item data-icon="settings">Open settings</command-palette-item>
-			<command-palette-item data-icon="info">Get info</command-palette-item>
-			<command-palette-item data-icon="download">Download report</command-palette-item>
-			<command-palette-item data-icon="upload">Upload file</command-palette-item>
-			<command-palette-item data-icon="link">Connect</command-palette-item>
-			<command-palette-item data-icon="map">View map</command-palette-item>
-			<command-palette-item data-icon="calendar">Open calendar</command-palette-item>
-			<command-palette-item data-icon="tabler:chart-line">View statistics</command-palette-item>
-		</command-palette-group>
-	</command-palette>
+		<command-palette class="grow" placeholder="Type a command...">
+			<command-palette-group label="Brands">
+				<command-palette-item data-icon="simple-icons:amazon"
+					>Amazon</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:discord"
+					>Discord</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:facebook"
+					>Facebook</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:github"
+					>GitHub</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:google"
+					>Google</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:instagram"
+					>Instagram</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:linkedin"
+					>LinkedIn</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:netlify"
+					>Netlify</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:slack"
+					>Slack</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:spotify"
+					>Spotify</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:twitter"
+					>Twitter</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:vercel"
+					>Vercel</command-palette-item
+				>
+				<command-palette-item data-icon="simple-icons:youtube"
+					>YouTube</command-palette-item
+				>
+			</command-palette-group>
+			<command-palette-group label="Commands">
+				<command-palette-item data-icon="home">Go home</command-palette-item>
+				<command-palette-item data-icon="grass"
+					>Go touch some grass</command-palette-item
+				>
+				<command-palette-item data-icon="search"
+					>Search files</command-palette-item
+				>
+				<command-palette-item data-icon="file"
+					>Save document</command-palette-item
+				>
+				<command-palette-item data-icon="delete"
+					>Delete file</command-palette-item
+				>
+				<command-palette-item data-icon="edit"
+					>Edit settings</command-palette-item
+				>
+				<command-palette-item data-icon="user"
+					>User profile</command-palette-item
+				>
+				<command-palette-item data-icon="bell"
+					>Notifications</command-palette-item
+				>
+				<command-palette-item data-icon="settings"
+					>Open settings</command-palette-item
+				>
+				<command-palette-item data-icon="info">Get info</command-palette-item>
+				<command-palette-item data-icon="download"
+					>Download report</command-palette-item
+				>
+				<command-palette-item data-icon="upload"
+					>Upload file</command-palette-item
+				>
+				<command-palette-item data-icon="link">Connect</command-palette-item>
+				<command-palette-item data-icon="map">View map</command-palette-item>
+				<command-palette-item data-icon="calendar"
+					>Open calendar</command-palette-item
+				>
+				<command-palette-item data-icon="tabler:chart-line"
+					>View statistics</command-palette-item
+				>
+			</command-palette-group>
+		</command-palette>
 	</template>
 
-	<section class="relative h-svh bg-neutral-800 flex flex-col items-center justify-center">
-		<h1 class="text-center text-4xl font-bold text-neutral-100 m-10" >Command Palette Demo</h1>
+	<section
+		class="relative h-svh bg-neutral-800 flex flex-col items-center justify-center"
+	>
+		<h1 class="text-center text-4xl font-bold text-neutral-100 m-10">
+			Command Palette Demo
+		</h1>
 		<div class="w-full px-6 max-w-3xl">
-			<h2 class="text-center text-2xl font-bold text-neutral-100 m-10" >Dark theme</h2>
+			<h2 class="text-center text-2xl font-bold text-neutral-100 m-10">
+				Dark theme
+			</h2>
 			<div id="darkPalette" class="w-full"></div>
 		</div>
-		<Icon name="ph:arrow-down" class="absolute bottom-4 text-neutral-100 text-3xl animate-bounce"/>
+		<Icon
+			name="ph:arrow-down"
+			class="absolute bottom-4 text-neutral-100 text-3xl animate-bounce"
+		/>
 	</section>
 
-	<section class="relative h-svh bg-neutral-100 text-neutral-800 flex flex-col items-center justify-center">
+	<section
+		class="relative h-svh bg-neutral-100 text-neutral-800 flex flex-col items-center justify-center"
+	>
 		<div class="w-full px-6 max-w-3xl">
-			<h2 class="text-center text-2xl font-bold m-10" >Light theme</h2>
+			<h2 class="text-center text-2xl font-bold m-10">Light theme</h2>
 			<div id="lightPalette" class="w-full"></div>
 		</div>
 	</section>
 
 	<script type="module">
-	import '/projects/command-palette/scripts/command-palette.compiled.js';	
-	import iconifyPlugin from '/projects/command-palette/scripts/plugins/iconify-icon.js';
+		import "/projects/command-palette/scripts/command-palette.compiled.js";
+		import iconifyPlugin from "/projects/command-palette/scripts/plugins/iconify-icon.js";
 
-	const palettes = [
-		{
-			container: document.getElementById("darkPalette"),
-			theme: "dark"
-		},
-		{
-			container: document.getElementById("lightPalette"),
-			theme: "light"
-		},
-	]
+		const palettes = [
+			{
+				container: document.getElementById("darkPalette"),
+				theme: "dark",
+			},
+			{
+				container: document.getElementById("lightPalette"),
+				theme: "light",
+			},
+		];
 
-	for (const palette of palettes) {
-		const template = document.getElementById("paletteTemplate");
-		const clone = template.content.cloneNode(true);
-		const paletteElement = clone.querySelector("command-palette");
-		palette.container.appendChild(clone);
-		paletteElement.setAttribute("data-theme", palette.theme);
+		for (const palette of palettes) {
+			const template = document.getElementById("paletteTemplate");
+			const clone = template.content.cloneNode(true);
+			const paletteElement = clone.querySelector("command-palette");
+			palette.container.appendChild(clone);
+			paletteElement.setAttribute("data-theme", palette.theme);
 
-		paletteElement.style.colorScheme = palette.theme.includes("dark") ? "dark" : "light";
+			paletteElement.style.colorScheme = palette.theme.includes("dark")
+				? "dark"
+				: "light";
 
-		paletteElement.addPlugin(new iconifyPlugin({
-			cacheMethod: "localStorage",
-		}));
-	}
+			paletteElement.addPlugin(
+				new iconifyPlugin({
+					cacheMethod: "localStorage",
+				}),
+			);
+		}
 	</script>
 </body>

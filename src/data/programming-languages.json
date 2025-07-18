@@ -1,49 +1,49 @@
 [
-  {
-    "id": "javascript",
-    "name": "Javascript",
-    "icon": "logos:javascript",
-    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    "color": "text-yellow-400",
-    "featured": true
-  },
-  {
-    "id": "typescript",
-    "name": "Typescript",
-    "icon": "logos:typescript-icon",
-    "url": "https://www.typescriptlang.org/",
-    "color": "text-blue-500",
-    "featured": true
-  },
-  {
-    "id": "rust",
-    "name": "Rust",
-    "icon": "logos:rust",
-    "url": "https://www.rust-lang.org/",
-    "color": "text-neutral-200",
-    "featured": true
-  },
-  {
-    "id": "dotnet",
-    "name": "DotNet",
-    "icon": "logos:dotnet",
-    "url": "https://dotnet.microsoft.com/en-us/",
-    "featured": true
-  },
-  {
-    "id": "python",
-    "name": "Python",
-    "icon": "devicon:python",
-    "url": "https://www.python.org/",
-    "featured": true
-  },
-  {
-    "id": "godot",
-    "name": "GDScript",
-    "icon": "logos:godot-icon",
-    "url": "https://godotengine.org/",
-    "featured": true
-  },
+	{
+		"id": "javascript",
+		"name": "Javascript",
+		"icon": "logos:javascript",
+		"url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+		"color": "text-yellow-400",
+		"featured": true
+	},
+	{
+		"id": "typescript",
+		"name": "Typescript",
+		"icon": "logos:typescript-icon",
+		"url": "https://www.typescriptlang.org/",
+		"color": "text-blue-500",
+		"featured": true
+	},
+	{
+		"id": "rust",
+		"name": "Rust",
+		"icon": "logos:rust",
+		"url": "https://www.rust-lang.org/",
+		"color": "text-neutral-200",
+		"featured": true
+	},
+	{
+		"id": "dotnet",
+		"name": "DotNet",
+		"icon": "logos:dotnet",
+		"url": "https://dotnet.microsoft.com/en-us/",
+		"featured": true
+	},
+	{
+		"id": "python",
+		"name": "Python",
+		"icon": "devicon:python",
+		"url": "https://www.python.org/",
+		"featured": true
+	},
+	{
+		"id": "godot",
+		"name": "GDScript",
+		"icon": "logos:godot-icon",
+		"url": "https://godotengine.org/",
+		"featured": true
+	},
 	{
 		"id": "lua",
 		"name": "Lua",
@@ -63,28 +63,28 @@
 		"icon": "logos:css-3",
 		"url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
 	},
-  {
-    "id": "kotlin",
-    "name": "Kotlin",
-    "icon": "logos:kotlin-icon",
-    "url": "https://kotlinlang.org/"
-  },
-  {
-    "id": "go",
-    "name": "Go",
-    "icon": "logos:go",
-    "url": "https://go.dev/"
-  },
-  {
-    "id": "c",
-    "name": "C",
-    "icon": "logos:c",
-    "url": "https://en.wikipedia.org/wiki/C_(programming_language)"
-  },
-  {
-    "id": "c++",
-    "name": "C++",
-    "icon": "logos:c-plusplus",
-    "url": "https://en.wikipedia.org/wiki/C%2B%2B"
-  }
+	{
+		"id": "kotlin",
+		"name": "Kotlin",
+		"icon": "logos:kotlin-icon",
+		"url": "https://kotlinlang.org/"
+	},
+	{
+		"id": "go",
+		"name": "Go",
+		"icon": "logos:go",
+		"url": "https://go.dev/"
+	},
+	{
+		"id": "c",
+		"name": "C",
+		"icon": "logos:c",
+		"url": "https://en.wikipedia.org/wiki/C_(programming_language)"
+	},
+	{
+		"id": "c++",
+		"name": "C++",
+		"icon": "logos:c-plusplus",
+		"url": "https://en.wikipedia.org/wiki/C%2B%2B"
+	}
 ]
