@@ -31,8 +31,7 @@
 	"devDependencies": {
 		"@iconify-json/devicon": "^1.2.31",
 		"@iconify-json/logos": "^1.2.4",
-		"@iconify-json/mdi": "^1.2.3",
-		"@iconify-json/ph": "^1.2.2",
+		"@iconify-json/mingcute": "^1.2.3",
 		"@iconify-json/simple-icons": "^1.2.43",
 		"prettier": "^3.6.2",
 		"prettier-plugin-astro": "^0.14.1",
