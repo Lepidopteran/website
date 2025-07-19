@@ -4,21 +4,50 @@ import Project from "../layouts/Project.astro";
 
 <Project title="Nett Icon Viewer">
 	<div class="lines-horizontal" slot="background"></div>
+	<img
+		class="size-10"
+		slot="logo"
+		src="/projects/nett-icon-viewer/logo.svg"
+		alt="Nett Icon Viewer Logo"
+	/>
+	<div slot="background">
+		<div class="noise bg-neutral-900/50"></div>
+		<div
+			class="size-[240px] absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px]"
+		>
+			<div
+				class="size-full bg-primary-600 rounded-full absolute translate-y-64"
+			>
+			</div>
+			<div
+				class="size-full bg-accent-600 rounded-full absolute -translate-x-64"
+			>
+			</div>
+			<div
+				class="size-full bg-secondary-400 rounded-full absolute translate-x-64"
+			>
+			</div>
+		</div>
+		<div
+			class="bg-gradient-to-b from-neutral-900 from-10% via-50% via-neutral-800 to-neutral-900 to-90% size-full absolute"
+		>
+		</div>
+	</div>
 
 	<section>
 		<div class="flex items-center gap-4 justify-center">
+			<h1 class="text-3xl font-bold">
+				A <span class="bg-gradient-to-b text-primary-400 p-0.5 italic rounded"
+					>"Simple"</span
+				> Icon Viewer for GTK Icon Themes
+			</h1>
 			<img
-				class="size-24"
-				src="/projects/nett-icon-viewer/logo.svg"
-				alt="Nett Icon Viewer Logo"
+				class="w-2xl"
+				src="/projects/nett-icon-viewer/main-screenshot.png"
+				alt="Nett Icon Viewer Desktop Screenshot"
 			/>
-			<h1 class="text-4xl font-bold">Nett Icon Viewer</h1>
 		</div>
 	</section>
-	<img
-		src="/projects/nett-icon-viewer/main-screenshot.png"
-		alt="Nett Icon Viewer"
-	/>
 </Project>
 <style>
 	.lines-horizontal {
