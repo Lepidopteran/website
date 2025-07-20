@@ -10,20 +10,10 @@ import "../styles/global.css";
 
 export interface Props {
 	title: string;
+	stickyHeader?: boolean;
 }
 
-type Tab = {
-	name: string;
-	href: string;
-};
-
-const tabs: Tab[] = [
-	{ name: "Home", href: "/" },
-	{ name: "Projects", href: "/projects" },
-];
-
-const { title } = Astro.props;
-const currentYear = new Date().getFullYear();
+const { title, stickyHeader } = Astro.props;
 ---
 
 <!doctype html>
@@ -76,7 +66,7 @@ const currentYear = new Date().getFullYear();
 			<slot name="background" />
 		</div>
 		<header
-			class="grid xl:justify-center items-center w-full md:px-2 sticky top-0 md:top-1 z-10 transition-all h-14"
+			class={`grid xl:justify-center items-center w-full md:px-2 top-0 md:top-1 z-10 transition-all h-14 ${stickyHeader === false ? "relative" : "sticky"}`}
 		>
 			<div
 				id="mainHeaderContainer"
@@ -266,7 +256,7 @@ const currentYear = new Date().getFullYear();
 						</a>
 					</div>
 					<div class="text-sm opacity-50 mt-3">
-						&copy; Copyright by Blaine Nicholls {currentYear.toString()}
+						&copy; Copyright by Blaine Nicholls {new Date().getFullYear().toString()}
 					</div>
 				</div>
 			</div>
