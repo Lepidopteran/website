@@ -50,7 +50,6 @@ const currentYear = new Date().getFullYear();
 				& ~ header {
 					& > div:first-child {
 						border-bottom-right-radius: 0;
-							border-bottom-left-radius: 0;
 					}
 
 					& #mobileMenuToggleLabel > svg {
@@ -62,16 +61,26 @@ const currentYear = new Date().getFullYear();
 					}
 				}
 			}
+
+			@media screen and (width < 80rem) {
+				#mobileMenuToggle:checked {
+					& ~ header {
+						& > div:first-child {
+							border-bottom-left-radius: 0;
+						}
+					}
+				}
+			}
 		</style>
 		<div class="absolute h-full w-full overflow-hidden top-0 left-0 z-0">
 			<slot name="background" />
 		</div>
 		<header
-			class="w-full md:px-2 row-start-1 sticky top-0 md:top-1 z-10 transition-all h-14"
+			class="grid xl:justify-center items-center w-full md:px-2 sticky top-0 md:top-1 z-10 transition-all h-14"
 		>
 			<div
 				id="mainHeaderContainer"
-				class="flex justify-between bg-neutral-900/80 px-4 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-screen-2xl w-full xl:w-3/5 shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600/50 box-border h-full md:m-auto transition-all"
+				class="flex justify-between bg-neutral-900/80 px-4 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-screen-2xl w-full xl:w-[75svw] shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600/50 box-border py-2 md:m-auto transition"
 			>
 				<a class="flex gap-3 items-center relative" href="/">
 					<span class="font-redhat text-lg whitespace-nowrap"
@@ -95,7 +104,7 @@ const currentYear = new Date().getFullYear();
 							Astro.url.pathname === "/projects"
 								? "text-primary-300"
 								: "text-neutral-300"
-						} cursor-pointer`}
+						} cursor-pointer select-none`}
 						for="mobileMenuToggle"
 					>
 						Projects
@@ -108,11 +117,11 @@ const currentYear = new Date().getFullYear();
 			</div>
 			<div
 				id="mobileMenu"
-				class="hidden bg-neutral-900/80 rounded-xl rounded-t-none max-w-screen-2xl xl:w-3/5 shadow-inner shadow-white/5 md:mx-auto backdrop-blur-xl border border-t-0 border-neutral-600/50 box-border transition-all"
+				class="hidden bg-neutral-950/80 rounded-xl rounded-t-none shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600/50 box-border transition-all xl:justify-self-end"
 			>
-				<ul class="w-full">
+				<ul>
 					<li>
-						<a href="/nett-icon-viewer" class="link block py-2 px-4 ">
+						<a href="/nett-icon-viewer" class="link block py-2 px-4">
 							<img
 								class="w-6 inline mr-1"
 								src="/projects/nett-icon-viewer/logo.svg"
@@ -123,7 +132,7 @@ const currentYear = new Date().getFullYear();
 					</li>
 				</ul>
 				<hr class="text-neutral-600/50" />
-				<a href="/projects" class="link block px-4 py-2 font-bold w-full"
+				<a href="/projects" class="link block px-4 py-2 font-bold"
 					>All Projects <Icon
 						name="mingcute:arrow-right-line"
 						class="ml-1 inline"
