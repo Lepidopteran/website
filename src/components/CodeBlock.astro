@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+import { Code } from "astro:components";
+import type {
+	BundledLanguage,
+	LanguageRegistration,
+	SpecialLanguage,
+} from "shiki";
+
+export interface Props {
+	lang: BundledLanguage | SpecialLanguage | LanguageRegistration;
+	code: string;
+}
+
+const { lang, code } = Astro.props;
+---
+
+<div class="bg-neutral-900 rounded-lg overflow-hidden border border-neutral-500/15 shadow-lg shadow-black/25">
+	<div class="flex justify-between items-center inset-shadow-sm inset-shadow-neutral-700/75 shadow-md shadow-black">
+		<span class="font-semibold px-4 opacity-50">{lang}</span>
+		<!-- <button class="btn btn-ghost cursor-pointer py-0.5 px-1 my-1 mr-1 no-js-hidden">Copy <Icon name="mingcute:copy-line" class="inline" /> </button> -->
+	</div>
+	<Code theme="kanagawa-wave" lang={lang} code={code} class="p-2 inset-shadow-sm inset-shadow-black/15" />
+</div>
