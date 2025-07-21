@@ -2,15 +2,56 @@
 import Layout from "./Layout.astro";
 import { Icon } from "astro-icon/components";
 
-export interface Props {
-	title: string;
+export interface SourceCodeUrl {
+	url: string;
+	icon: string;
 }
 
-const { title } = Astro.props;
+export interface Props {
+	title: string;
+	sourceCode?: SourceCodeUrl;
+	hasGetStarted?: boolean;
+	getStartedUrl?: string;
+}
+
+const { title, hasGetStarted, sourceCode, getStartedUrl } = Astro.props;
 ---
 
 <Layout title={title} stickyHeader={false}>
+	<slot slot="background" name="background" />
 	<article>
+		<header
+			class="grid xl:justify-center items-center w-full md:px-2 top-0 md:top-1 z-[9] transition-all h-14 sticky"
+		>
+			<div
+				id="mainHeaderContainer"
+				class="flex justify-between bg-neutral-900/80 px-4 rounded-xl max-md:rounded-t-none items-center gap-4 max-w-screen-2xl w-full xl:w-[75svw] shadow-inner shadow-white/5 backdrop-blur-xl border border-t-0 border-neutral-600/50 box-border py-2 md:m-auto transition"
+			>
+				<div class="flex gap-3 items-center relative">
+					<slot name="logo" />
+					<span class="font-redhat text-lg whitespace-nowrap">{title}</span>
+				</div>
+				<nav class="flex gap-4 items-center">
+					{
+						sourceCode && (
+							<a href={sourceCode.url} class="btn size-10 btn-ghost">
+								<Icon name={sourceCode.icon} />
+							</a>
+						)
+					}
+					{
+						hasGetStarted && (
+							<a
+								href={getStartedUrl || "#getStarted"}
+								class="bg-secondary-600/15 shadow-inner shadow-secondary-500/25 px-4 py-2 rounded-full"
+							>
+								Get Started
+							</a>
+						)
+					}
+				</nav>
+			</div>
+		</header>
 		<slot />
 	</article>
 </Layout>
