@@ -1,8 +1,9 @@
 ---
 import Project from "../layouts/Project.astro";
+import CodeBlock from "../components/CodeBlock.astro";
 ---
 
-<Project title="Nett Icon Viewer">
+<Project title="Nett Icon Viewer" hasGetStarted={true}>
 	<div class="lines-horizontal" slot="background"></div>
 	<img
 		class="size-10"
@@ -11,10 +12,11 @@ import Project from "../layouts/Project.astro";
 		alt="Nett Icon Viewer Logo"
 	/>
 	<div slot="background">
-		<div class="noise bg-neutral-900/50"></div>
 		<div
-			class="size-[240px] absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px]"
+			class="bg-gradient-to-b from-neutral-900 from-10% via-50% via-neutral-800 to-neutral-900 to-90% size-full absolute"
 		>
+		</div>
+		<div class="size-[240px] absolute left-1/2 -translate-x-1/2 blur-[100px]">
 			<div
 				class="size-full bg-primary-600 rounded-full absolute translate-y-64"
 			>
@@ -28,15 +30,11 @@ import Project from "../layouts/Project.astro";
 			>
 			</div>
 		</div>
-		<div
-			class="bg-gradient-to-b from-neutral-900 from-10% via-50% via-neutral-800 to-neutral-900 to-90% size-full absolute"
-		>
-		</div>
 	</div>
 
 	<section>
-		<div class="flex items-center gap-4 justify-center">
-			<h1 class="text-3xl font-bold">
+		<div class="grid sm:grid-cols-2 items-center gap-4 justify-center">
+			<h1 class="text-3xl p-4 text-center font-bold">
 				A <span class="bg-gradient-to-b text-primary-400 p-0.5 italic rounded"
 					>"Simple"</span
 				> Icon Viewer for GTK Icon Themes
@@ -48,15 +46,36 @@ import Project from "../layouts/Project.astro";
 			/>
 		</div>
 	</section>
+	<section id="getStarted">
+		<h2 class="text-3xl p-4 text-center font-bold">Getting Started</h2>
+		<CodeBlock
+			lang="bash"
+			code={`meson build\nninja install -C build`}
+		/>
+		<div class="grid sm:grid-cols-2 items-center gap-4 justify-center">
+			<img
+				class="w-2xl"
+				src="/projects/nett-icon-viewer/installation-screenshot.png"
+				alt="Nett Icon Viewer Desktop Screenshot"
+			/>
+		</div>
+	</section>
 </Project>
 <style>
-	.lines-horizontal {
+	.background-grid {
+		--grid-size: 100svw;
+		--grid-width: 50%;
 		background-image: linear-gradient(
-			to right,
-			rgba(255, 255, 255, 0.5),
-			rgba(255, 255, 255, 0.5) 1px
+			90deg,
+			transparent var(--grid-width),
+			var(--grid-color, currentColor) var(--grid-width)
 		);
-		background-size: 4px 4px;
-		background-repeat: repeat;
+		background-size: calc(var(--grid-size) / 2) var(--grid-size);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
 	}
 </style>
