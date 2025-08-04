@@ -7,18 +7,122 @@ import type {
 	SpecialLanguage,
 } from "shiki";
 
+import type { CodeSnippets, CodeSnippet } from "../lib/code";
+
 export interface Props {
 	lang: BundledLanguage | SpecialLanguage | LanguageRegistration;
-	code: string;
+	code: string | CodeSnippets | CodeSnippet;
 }
 
 const { lang, code } = Astro.props;
+
+const singleSnippet =
+	typeof code === "string" ? code : "snippet" in code ? code.snippet : null;
+
+const icons: Partial<Record<BundledLanguage, string>> = {
+	cpp: "simple-icons:cpp",
+	csharp: "simple-icons:csharp",
+	css: "simple-icons:css3",
+	html: "simple-icons:html5",
+	javascript: "simple-icons:javascript",
+	json: "simple-icons:json",
+	python: "simple-icons:python",
+	rust: "simple-icons:rust",
+	bash: "simple-icons:gnubash",
+	go: "simple-icons:golang",
+	lua: "simple-icons:lua",
+	toml: "simple-icons:toml",
+	yaml: "simple-icons:yaml",
+	typescript: "simple-icons:typescript",
+	kotlin: "simple-icons:kotlin",
+	astro: "simple-icons:astro",
+	markdown: "simple-icons:markdown",
+	svelte: "simple-icons:svelte",
+};
 ---
 
-<div class="bg-neutral-900 rounded-lg overflow-hidden border border-neutral-500/15 shadow-lg shadow-black/25">
-	<div class="flex justify-between items-center inset-shadow-sm inset-shadow-neutral-700/75 shadow-md shadow-black">
-		<span class="font-semibold px-4 opacity-50">{lang}</span>
-		<!-- <button class="btn btn-ghost cursor-pointer py-0.5 px-1 my-1 mr-1 no-js-hidden">Copy <Icon name="mingcute:copy-line" class="inline" /> </button> -->
+<div
+	class={`relative ${Object.hasOwn(code as CodeSnippets, "snippets") ? "snippets" : ""}`}
+>
+	{
+		Object.hasOwn(code as CodeSnippets, "snippets") &&
+			(code as CodeSnippets).snippets.length > 1 &&
+			(code as CodeSnippets).snippets.map((snippet, index) => (
+				<input
+					type="radio"
+					id={snippet.name || `snippet-${index}`}
+					name={`snippets${(code as CodeSnippets).id}`}
+					checked={index === 0}
+				/>
+			))
+	}
+	<div data-tabs class="flex gap-2 overflow-x-auto">
+		{
+			Object.hasOwn(code as CodeSnippets, "snippets") &&
+				(code as CodeSnippets).snippets.length > 1 &&
+				(code as CodeSnippets).snippets.map((snippet, index) => (
+					<label data-tab for={snippet.name || `snippet-${index}`}>
+						{snippet.name || `Snippet ${index + 1}`}
+					</label>
+				))
+		}
 	</div>
-	<Code theme="kanagawa-wave" lang={lang} code={code} class="p-2 inset-shadow-sm inset-shadow-black/15" />
+	<div
+		class=`flex justify-between items-center inset-shadow-sm inset-shadow-neutral-700/75 shadow-md border border-b-0 border-black/25 shadow-black/25 rounded-t-lg ${
+			Object.hasOwn(code as CodeSnippets, "snippets") ? "rounded-tl-none" : ""}`
+	>
+		<div class="py-0.5 px-2 flex items-center text-neutral-600">
+			<Icon size={18} name={icons[lang as keyof typeof icons]} />
+			<span class="px-2">{lang}</span>
+		</div>
+		<div class="py-0.5 px-2">ghe</div>
+		<div class="py-0.5 px-2"></div>
+	</div>
+	<div
+		data-tab-content
+		class="relative rounded-b-lg border border-t-0 border-black/25"
+	>
+		{
+			singleSnippet && (
+				<Code
+					code={singleSnippet}
+					theme="kanagawa-wave"
+					class="p-2 rounded-b-lg"
+					lang={lang}
+				/>
+			)
+		}
+		{
+			Object.hasOwn(code as CodeSnippets, "snippets") &&
+				(code as CodeSnippets).snippets.map((snippet) => (
+					<Code
+						data-tab-content
+						code={snippet.snippet}
+						theme="kanagawa-wave"
+						class="p-2 rounded-b-lg"
+						lang={lang}
+					/>
+				))
+		}
+	</div>
 </div>
+<style>
+	.snippets {
+		& input[type="radio"] + label {
+			cursor: pointer;
+			background-color: #000;
+			color: #fff;
+			border-radius: 0.25em;
+			padding: 0.25em 0.5em;
+		}
+
+		& input[type="radio"] {
+			display: none;
+
+			&:checked + label {
+				background-color: #fff;
+				color: #000;
+			}
+		}
+	}
+</style>

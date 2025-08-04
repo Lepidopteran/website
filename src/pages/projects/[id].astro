@@ -14,8 +14,8 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { data } = project;
-const visible = data.sourceCode || data.demo || data.languages;
-const languages = data.languages && await getEntries(project.data.languages);
+const visible = data.sourcecode || data.demo || data.languages;
+const languages = data.languages && (await getEntries(data.languages));
 ---
 
 <Projects>

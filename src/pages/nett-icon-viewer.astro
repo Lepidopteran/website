@@ -1,9 +1,18 @@
 ---
 import Project from "../layouts/Project.astro";
 import CodeBlock from "../components/CodeBlock.astro";
+import CodeExtension from "../components/CodeBlockExt.svelte";
+import { Icon } from "astro-icon/components";
 ---
 
-<Project title="Nett Icon Viewer" hasGetStarted={true}>
+<Project
+	title="Nett Icon Viewer"
+	hasGetStarted={true}
+	sourceCode={{
+		url: "https://github.com/Lepidopteran/icon-viewer",
+		icon: "simple-icons:github",
+	}}
+>
 	<div class="lines-horizontal" slot="background"></div>
 	<img
 		class="size-10"
@@ -11,6 +20,12 @@ import CodeBlock from "../components/CodeBlock.astro";
 		src="/projects/nett-icon-viewer/logo.svg"
 		alt="Nett Icon Viewer Logo"
 	/>
+	<div
+		class="hidden sm:block text-sm bg-accent-600/75 px-2 rounded-full"
+		slot="afterTitle"
+	>
+		Alpha
+	</div>
 	<div slot="background">
 		<div
 			class="bg-gradient-to-b from-neutral-900 from-10% via-50% via-neutral-800 to-neutral-900 to-90% size-full absolute"
@@ -46,36 +61,82 @@ import CodeBlock from "../components/CodeBlock.astro";
 			/>
 		</div>
 	</section>
-	<section id="getStarted">
-		<h2 class="text-3xl p-4 text-center font-bold">Getting Started</h2>
-		<CodeBlock
-			lang="bash"
-			code={`meson build\nninja install -C build`}
-		/>
-		<div class="grid sm:grid-cols-2 items-center gap-4 justify-center">
-			<img
-				class="w-2xl"
-				src="/projects/nett-icon-viewer/installation-screenshot.png"
-				alt="Nett Icon Viewer Desktop Screenshot"
-			/>
+	<section>
+		<h2 class="text-3xl p-4 text-center font-bold">Features</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+			<div class="p-4">
+				<h3 class="text-2xl font-bold">"Simple"</h3>
+				<p>
+					Nett Icon Viewer is a simple icon viewer for GTK icon themes. It is
+					designed to be easy to use and simple to navigate, with a clean and
+					intuitive interface.
+				</p>
+			</div>
+			<div class="p-4">
+				<div class="flex gap-2 items-center">
+					<h3 class="text-2xl font-bold">Fast</h3>
+					<Icon size={24} name="simple-icons:rust" />
+				</div>
+				<p>
+					Since Nett Icon Viewer is written in Rust, it's obviously runs faster
+					and is better than other icon viewers.
+				</p>
+			</div>
+			<div class="p-4">
+				<div class="flex gap-2 items-center">
+					<h3 class="text-2xl font-bold">Filters</h3>
+					<Icon size={24} name="mingcute:filter-fill" />
+				</div>
+				<p>
+					Nett Icon Viewer uses filters that allow you to filter icons that are
+					in certain category or have certain properties such as if the icon is
+					embedded, symblolic, and is a symlink.
+				</p>
+			</div>
+			<div class="p-4">
+				<div class="flex gap-2 items-center">
+					<h3 class="text-2xl font-bold">Open Source</h3>
+					<Icon size={24} name="simple-icons:git" />
+				</div>
+				<p>
+					Nett Icon Viewer is open source, which means it is free to use and
+					modify. The source code is available on GitHub.
+				</p>
+			</div>
 		</div>
 	</section>
+	<section>
+		<CodeBlock
+			lang="bash"
+			code={{
+				id: "1",
+				snippets: [
+					{ snippet: "meson build" },
+					{ snippet: "ninja install -C build" },
+				],
+			}}
+		/>
+		<section id="getStarted">
+			<h2 class="text-3xl p-4 text-center font-bold">Getting Started</h2>
+			<CodeBlock lang="bash" code={`meson build\nninja install -C build`} />
+		</section>
+	</section>
+	<style>
+		.background-grid {
+			--grid-size: 100svw;
+			--grid-width: 50%;
+			background-image: linear-gradient(
+				90deg,
+				transparent var(--grid-width),
+				var(--grid-color, currentColor) var(--grid-width)
+			);
+			background-size: calc(var(--grid-size) / 2) var(--grid-size);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+	</style>
 </Project>
-<style>
-	.background-grid {
-		--grid-size: 100svw;
-		--grid-width: 50%;
-		background-image: linear-gradient(
-			90deg,
-			transparent var(--grid-width),
-			var(--grid-color, currentColor) var(--grid-width)
-		);
-		background-size: calc(var(--grid-size) / 2) var(--grid-size);
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-	}
-</style>
