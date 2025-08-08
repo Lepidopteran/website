@@ -1,83 +1,81 @@
-<script>
-/**
- * @typedef {Object} Asset
- * @property {"image" | "video" | "embed" | "audio"} type
- * @property {string} altText
- * @property {string} src
- */
+<script lang="ts">
+	import type { Snippet } from "svelte";
 
-/**
- * @typedef {Object} Props
- * @property {string[]} tags
- * @property {string} title
- * @property {Asset[]} assets
- * @property {string} description
- * @property {boolean} [featured]
- * @property {Snippet} [children]
- * @property {Snippet} [extraHeader]
- */
-
-let dialog;
-/** @type {HTMLDivElement} */
-let viewport;
-
-let activeIndex = $state(0);
-
-/**
- * Handles the scroll event to update the active index.
- * @param {Event} event
- */
-function onScroll(event) {
-	const target = /** @type {HTMLElement} */ (event.target);
-
-	if (!target) {
-		console.error("Invalid event target");
-		return;
+	interface Asset {
+		type: "image" | "video" | "embed" | "audio";
+		altText: string;
+		src: string;
 	}
 
-	const { scrollLeft, clientWidth } = target;
-	const center = scrollLeft + clientWidth / 2;
+	interface Props {
+		tags: string[];
+		title: string;
+		assets: Asset[];
+		description: string;
+		featured?: boolean;
+		children?: Snippet;
+		extraHeader?: Snippet;
+	}
 
-	let closestChild = null;
-	let closestDistance = Number.POSITIVE_INFINITY;
+	let dialog: HTMLDivElement;
+	let viewport: HTMLDivElement;
 
-	for (const element of target.querySelectorAll("[data-index]")) {
-		const child = /** @type {HTMLElement} */ (element);
-		const childCenter = child.offsetLeft + child.offsetWidth / 2;
-		const distance = Math.abs(childCenter - center);
+	let activeIndex = $state(0);
 
-		if (distance < closestDistance) {
-			closestDistance = distance;
-			closestChild = child;
+	function onScroll(event: Event) {
+		const target = event.target as HTMLElement;
+
+		if (!target) {
+			console.error("Invalid event target");
+			return;
+		}
+
+		const { scrollLeft, clientWidth } = target;
+		const center = scrollLeft + clientWidth / 2;
+
+		let closestChild: HTMLElement | null = null;
+		let closestDistance = Number.POSITIVE_INFINITY;
+
+		for (const element of target.querySelectorAll("[data-index]")) {
+			const child = element as HTMLElement;
+			const childCenter = child.offsetLeft + child.offsetWidth / 2;
+			const distance = Math.abs(childCenter - center);
+
+			if (distance < closestDistance) {
+				closestDistance = distance;
+				closestChild = child;
+			}
+		}
+
+		if (closestChild) {
+			activeIndex = Number.parseInt(closestChild.id);
 		}
 	}
 
-	if (closestChild) {
-		activeIndex = Number.parseInt(closestChild.id);
-	}
-}
+	function scrollToIndex(index: number) {
+		const child = viewport.querySelector(
+			`[data-index="${index}"]`,
+		) as HTMLElement;
 
-/**
- * Scrolls to the element at the specified index.
- * @param {number} index
- */
-function scrollToIndex(index) {
-	const child = /** @type {HTMLElement} */ (
-		viewport.querySelector(`[data-index="${index}"]`)
-	);
+		if (!child) {
+			console.error("Invalid child");
+		}
 
-	if (!child) {
-		console.error("Invalid child");
+		viewport.scrollTo({
+			left: child.offsetLeft,
+			behavior: "auto",
+		});
 	}
 
-	viewport.scrollTo({
-		left: child.offsetLeft,
-		behavior: "auto",
-	});
-}
-
-const { tags, title, description, featured, assets, children, extraHeader } =
-	/** @type {Props} */ ($props());
+	const {
+		tags,
+		title,
+		description,
+		featured,
+		assets,
+		children,
+		extraHeader,
+	}: Props = $props();
 </script>
 
 <div
@@ -203,7 +201,7 @@ const { tags, title, description, featured, assets, children, extraHeader } =
 	</div>
 </div>
 
-{#snippet buttonIcon(direction = "right")}
+{#snippet buttonIcon(direction: "left" | "right" = "right")}
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		width="24"
