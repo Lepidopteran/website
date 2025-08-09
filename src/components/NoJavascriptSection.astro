@@ -1,0 +1,6 @@
+---
+const contents = await Astro.slots.render("default");
+---
+
+<noscript set:html={contents}>
+</noscript>
