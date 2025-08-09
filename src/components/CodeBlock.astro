@@ -1,128 +1,127 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Code } from "astro:components";
+import NoJavascriptSection from "./NoJavascriptSection.astro";
+import { getCachedHighlighter } from "../lib/shiki";
+import InteractiveCodeBlock from "./InteractiveCodeBlock.svelte";
+import { bundledLanguages } from "shiki";
+
+import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
+import {
+	transformerNotationDiff,
+	transformerNotationWordHighlight,
+	transformerNotationHighlight,
+	transformerNotationFocus,
+	transformerNotationErrorLevel,
+} from "@shikijs/transformers";
+
 import type {
 	BundledLanguage,
 	LanguageRegistration,
+	ShikiTransformer,
 	SpecialLanguage,
 } from "shiki";
 
-import type { CodeSnippets, CodeSnippet } from "../lib/code";
+import type { CodeSnippet, ShikiCodeSnippet } from "../lib/code";
 
 export interface Props {
-	lang: BundledLanguage | SpecialLanguage | LanguageRegistration;
-	code: string | CodeSnippets | CodeSnippet;
+	lang?: BundledLanguage | SpecialLanguage | LanguageRegistration;
+	noJavascriptNamePrefix?: string;
+	noJavascriptNameSuffix?: string;
+	transformers?: ShikiTransformer[];
+	code: string | CodeSnippet[];
 }
 
-const { lang, code } = Astro.props;
+const {
+	lang,
+	code,
+	noJavascriptNamePrefix = "",
+	noJavascriptNameSuffix = "",
+	transformers = [
+		transformerColorizedBrackets(),
+		transformerNotationHighlight(),
+		transformerNotationFocus(),
+		transformerNotationWordHighlight(),
+		transformerNotationDiff(),
+		transformerNotationErrorLevel(),
+	],
+}: Props = Astro.props;
 
-const singleSnippet =
-	typeof code === "string" ? code : "snippet" in code ? code.snippet : null;
+const highlighter = await getCachedHighlighter({
+	langs: [
+		typeof lang === "string"
+			? Object.keys(bundledLanguages).includes(lang)
+				? lang
+				: "plaintext"
+			: (lang as any),
+	],
+	theme: "kanagawa-wave",
+});
 
-const icons: Partial<Record<BundledLanguage, string>> = {
-	cpp: "simple-icons:cpp",
-	csharp: "simple-icons:csharp",
-	css: "simple-icons:css3",
-	html: "simple-icons:html5",
-	javascript: "simple-icons:javascript",
-	json: "simple-icons:json",
-	python: "simple-icons:python",
-	rust: "simple-icons:rust",
-	bash: "simple-icons:gnubash",
-	go: "simple-icons:golang",
-	lua: "simple-icons:lua",
-	toml: "simple-icons:toml",
-	yaml: "simple-icons:yaml",
-	typescript: "simple-icons:typescript",
-	kotlin: "simple-icons:kotlin",
-	astro: "simple-icons:astro",
-	markdown: "simple-icons:markdown",
-	svelte: "simple-icons:svelte",
+const defaultAttributes: Record<string, string> = {
+	style: "overflow-x: auto; overflow-y: hidden; padding: .5rem 0;",
 };
+
+const snippets: ShikiCodeSnippet[] = [];
+const language: string | undefined =
+	typeof lang === "string" ? lang : lang?.name;
+
+if (typeof code === "string" && lang) {
+	snippets.push({
+		html: await highlighter.codeToHtml(code, language, {
+			transformers,
+			attributes: { ...defaultAttributes },
+		}),
+	});
+} else if (Array.isArray(code)) {
+	for (const snippet of code) {
+		snippets.push({
+			...snippet,
+			html: await highlighter.codeToHtml(
+				snippet.snippet,
+				snippet.language || language,
+				{
+					transformers,
+					attributes: { ...defaultAttributes },
+				},
+			),
+		});
+	}
+}
 ---
 
-<div
-	class={`relative ${Object.hasOwn(code as CodeSnippets, "snippets") ? "snippets" : ""}`}
->
+<NoJavascriptSection>
 	{
-		Object.hasOwn(code as CodeSnippets, "snippets") &&
-			(code as CodeSnippets).snippets.length > 1 &&
-			(code as CodeSnippets).snippets.map((snippet, index) => (
-				<input
-					type="radio"
-					id={snippet.name || `snippet-${index}`}
-					name={`snippets${(code as CodeSnippets).id}`}
-					checked={index === 0}
+		snippets.map((snippet, index) => (
+			<div class="mb-4">
+				{snippets.length > 1 && (
+					<h4 class="font-semibold">
+						{`${noJavascriptNamePrefix}${snippet.name || `Snippet ${index + 1}`}${noJavascriptNameSuffix}`}
+					</h4>
+				)}
+				<div class="flex justify-between items-center inset-shadow-sm inset-shadow-neutral-700/75 shadow-md border border-b-0 border-black/25 shadow-black/25 rounded-t-lg">
+					<div class="py-0.5 px-2 flex items-center text-neutral-500">
+						<div class="px-1">
+							{snippet.language || language || "plaintext"}
+						</div>
+					</div>
+				</div>
+				<div
+					class="relative rounded-b-lg border border-t-0 border-black/25 overflow-hidden"
+					set:html={snippet.html}
 				/>
-			))
+			</div>
+		))
 	}
-	<div data-tabs class="flex gap-2 overflow-x-auto">
-		{
-			Object.hasOwn(code as CodeSnippets, "snippets") &&
-				(code as CodeSnippets).snippets.length > 1 &&
-				(code as CodeSnippets).snippets.map((snippet, index) => (
-					<label data-tab for={snippet.name || `snippet-${index}`}>
-						{snippet.name || `Snippet ${index + 1}`}
-					</label>
-				))
-		}
-	</div>
-	<div
-		class=`flex justify-between items-center inset-shadow-sm inset-shadow-neutral-700/75 shadow-md border border-b-0 border-black/25 shadow-black/25 rounded-t-lg ${
-			Object.hasOwn(code as CodeSnippets, "snippets") ? "rounded-tl-none" : ""}`
-	>
-		<div class="py-0.5 px-2 flex items-center text-neutral-600">
-			<Icon size={18} name={icons[lang as keyof typeof icons]} />
-			<span class="px-2">{lang}</span>
-		</div>
-		<div class="py-0.5 px-2">ghe</div>
-		<div class="py-0.5 px-2"></div>
-	</div>
-	<div
-		data-tab-content
-		class="relative rounded-b-lg border border-t-0 border-black/25"
-	>
-		{
-			singleSnippet && (
-				<Code
-					code={singleSnippet}
-					theme="kanagawa-wave"
-					class="p-2 rounded-b-lg"
-					lang={lang}
-				/>
-			)
-		}
-		{
-			Object.hasOwn(code as CodeSnippets, "snippets") &&
-				(code as CodeSnippets).snippets.map((snippet) => (
-					<Code
-						data-tab-content
-						code={snippet.snippet}
-						theme="kanagawa-wave"
-						class="p-2 rounded-b-lg"
-						lang={lang}
-					/>
-				))
-		}
-	</div>
+</NoJavascriptSection>
+
+<div class="no-js-hidden">
+	<InteractiveCodeBlock lang={lang} code={snippets} client:load />
 </div>
-<style>
-	.snippets {
-		& input[type="radio"] + label {
-			cursor: pointer;
-			background-color: #000;
-			color: #fff;
-			border-radius: 0.25em;
-			padding: 0.25em 0.5em;
-		}
 
-		& input[type="radio"] {
-			display: none;
-
-			&:checked + label {
-				background-color: #fff;
-				color: #000;
-			}
-		}
+<style is:global>
+	code .line {
+		display: inline-block;
+		min-width: 100%;
+		padding: 0 0.5rem;
 	}
 </style>
