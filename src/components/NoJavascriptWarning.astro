@@ -1,0 +1,37 @@
+---
+import NoJavascriptSection from "./NoJavascriptSection.astro";
+interface Props {
+	severity?: "warning" | "error";
+}
+
+const { severity = "warning" } = Astro.props;
+---
+
+<NoJavascriptSection>
+	<div
+		class={`border-2 backdrop-blur-md p-2 shadow-md shadow-black/25 rounded-lg font-bold max-w-[50ch] mx-auto ${severity === "warning" ? "bg-yellow-500 text-black border-yellow-950" : "bg-red-500/75 border-red-950"}`}
+	>
+		<p class="text-center mb-2">
+			It looks like Javascript is disabled in your browser.
+		</p>
+		<slot name="warningText">
+			{
+				severity === "warning" ? (
+					<p>
+						This page <em>"should"</em> work without javascript, but it is recommended to
+						enable javascript for the best experience.
+					</p>
+				) : (
+					<p>
+				Unfortunately this page cannot work without javascript, <br />To enable javascript you can use one of the following guides:
+					</p>
+					<ul>
+						<li><a class="underline" href="https://www.enable-javascript.com/" target="_blank">Enable Javascript</a></li>
+						<li><a class="underline"href="https://support.google.com/adsense/answer/12654?hl=en" target="_blank">Allow JavaScript in Google Chrome</a></li>
+						<li><a class="underline"href="https://support.mozilla.org/en-US/kb/javascript-settings-for-interactive-web-pages" target="_blank">JavaScript settings and preferences for interactive web pages</a></li>
+					</ul>
+				)
+			}
+		</slot>
+	</div>
+</NoJavascriptSection>
