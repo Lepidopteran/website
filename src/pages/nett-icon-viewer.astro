@@ -1,7 +1,8 @@
 ---
 import Project from "../layouts/Project.astro";
+import NoJavascriptWarning from "../components/NoJavascriptWarning.astro";
 import CodeBlock from "../components/CodeBlock.astro";
-import CodeExtension from "../components/CodeBlockExt.svelte";
+import Steps from "../components/Steps.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -105,21 +106,47 @@ import { Icon } from "astro-icon/components";
 			</div>
 		</div>
 	</section>
-	<section>
-		<CodeBlock
-			lang="bash"
-			code={{
-				id: "1",
-				snippets: [
-					{ snippet: "meson build" },
-					{ snippet: "ninja install -C build" },
-				],
-			}}
-		/>
-		<section id="getStarted">
-			<h2 class="text-3xl p-4 text-center font-bold">Getting Started</h2>
-			<CodeBlock lang="bash" code={`meson build\nninja install -C build`} />
-		</section>
+	<NoJavascriptWarning severity="warning"/>
+	<section class="space-y-4 p-4" id="getStarted">
+		<h2 class="text-3xl p-4 text-center font-bold">Getting Started</h2>
+		<p>To install/build Nett Icon Viewer, follow the instructions below.</p>
+		<Steps>
+			<li class="step">
+				<p>Install the dependencies using the following command:</p>
+				<CodeBlock
+					lang="bash"
+					code={[
+						{
+							name: "Fedora",
+							snippet: "sudo dnf install gtk4-devel git",
+						},
+						{
+							name: "Debian",
+							snippet: "sudo apt install libgtk-4-dev build-essential git",
+						},
+						{
+							name: "Arch",
+							snippet: "sudo pacman -S gtk4 base-devel git",
+						},
+					]}
+				/>
+			</li>
+			<li class="step">
+				<p>Clone the repository:</p>
+				<CodeBlock
+					lang="bash"
+					code={`git clone https://github.com/Lepidopteran/icon-viewer.git\ncd icon-viewer`}
+				/>
+			</li>
+			<li class="step">
+				<p>Build and install:</p>
+				<CodeBlock lang="bash" code={`meson build\nninja install -C build`} />
+			</li>
+		</Steps>
+		<p>
+			After that, you should be able to run Nett Icon Viewer either from the
+			command line or from the application menu.
+		</p>
 	</section>
 	<style>
 		.background-grid {
