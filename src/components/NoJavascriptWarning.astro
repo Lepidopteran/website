@@ -4,12 +4,12 @@ interface Props {
 	severity?: "warning" | "error";
 }
 
-const { severity = "warning" } = Astro.props;
+const { severity = "warning"} = Astro.props;
 ---
 
 <NoJavascriptSection>
 	<div
-		class={`border-2 backdrop-blur-md p-2 shadow-md shadow-black/25 rounded-lg font-bold max-w-[50ch] mx-auto ${severity === "warning" ? "bg-yellow-500 text-black border-yellow-950" : "bg-red-500/75 border-red-950"}`}
+		class={`backdrop-blur-md p-2 shadow-md shadow-black/25 rounded-lg font-bold max-w-[48ch] inset-shadow-sm inset-shadow-white/25 mx-auto ${severity === "warning" ? "bg-yellow-500 text-black border-yellow-950" : "bg-red-500/75 border-red-950"}`}
 	>
 		<p class="text-center mb-2">
 			It looks like Javascript is disabled in your browser.
