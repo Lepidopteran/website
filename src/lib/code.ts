@@ -11,6 +11,7 @@ export interface ShikiCodeSnippet {
 	language?: string;
 	path?: string;
 	filename?: string;
+	snippet: string;
 	html: string;
 }
 

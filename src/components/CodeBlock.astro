@@ -67,6 +67,7 @@ const language: string | undefined =
 
 if (typeof code === "string" && lang) {
 	snippets.push({
+		snippet: code,
 		html: await highlighter.codeToHtml(code, language, {
 			transformers,
 			attributes: { ...defaultAttributes },
