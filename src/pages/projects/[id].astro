@@ -43,6 +43,14 @@ const languages = data.languages && (await getEntries(data.languages));
 								View source code
 							</a>
 						)}
+						{data.website && (
+							<a
+								href={data.website}
+								class="text-sm btn btn-primary rounded-full font-normal py-0"
+							>
+								View website
+							</a>
+						)}
 						{data.demo && (
 							<a
 								href={data.demo}

@@ -19,6 +19,7 @@ export const collections = {
 			...baseProjectSchema,
 			thumbnail: z.string().optional(),
 			sourcecode: z.string().optional(),
+			website: z.string().optional(),
 			demo: z.string().optional(),
 			assets: z.array(
 				z.object({

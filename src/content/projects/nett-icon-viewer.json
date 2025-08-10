@@ -4,7 +4,7 @@
 	"description": "A GTK application that allows users to view and search for icons from their current system's GTK icon theme.",
 	"thumbnail": "/projects/nett-icon-viewer/main-screenshot.png",
 	"languages": ["rust", "css"],
-	"website": "https://blaine.codes/nett-icon-viewer",
+	"website": "/nett-icon-viewer",
 	"tags": [
 		"icons",
 		"gtk",
