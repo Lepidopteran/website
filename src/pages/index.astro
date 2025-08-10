@@ -218,11 +218,11 @@ const languages = await getCollection(
 						class="grid grid-cols-4 gap-4"
 						>
 					{ languages.map(language => (
-						language.data.website ? (
+						language.data.url ? (
 						<SkillCard
 						name={language.data.name}
 						size="64"
-						link={language.data.website}
+						link={language.data.url}
 						icon={language.data.icon}
 						/>
 						) :	

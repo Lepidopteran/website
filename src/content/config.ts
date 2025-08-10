@@ -50,7 +50,6 @@ export const collections = {
 	"programming-languages": defineCollection({
 		loader: file("src/data/programming-languages.json"),
 		schema: z.object({
-			website: z.string().optional(),
 			name: z.string(),
 			icon: z.string(),
 			url: z.string().optional(),
