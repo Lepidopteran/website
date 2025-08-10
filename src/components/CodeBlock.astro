@@ -125,4 +125,9 @@ if (typeof code === "string" && lang) {
 		min-width: 100%;
 		padding: 0 0.5rem;
 	}
+
+	.astro-code:focus {
+		outline: none;
+		box-shadow: inset 0 0 calc(var(--spacing) * 2) rgb(from var(--color-primary-300) r g b / 0.5);
+	}
 </style>

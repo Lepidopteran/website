@@ -95,7 +95,10 @@
 			<span class="px-1">{lang}</span>
 		{/if}
 	</div>
-	<button onclick={onCopyButtonClick} class="py-0.5 px-2 flex items-center btn btn-ghost text-sm">
+	<button
+		onclick={onCopyButtonClick}
+		class="py-0.5 px-2 flex items-center btn btn-ghost text-sm"
+	>
 		{#if copied}
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
