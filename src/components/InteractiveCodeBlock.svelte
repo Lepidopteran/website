@@ -41,7 +41,6 @@
 			child.setAttribute("data-index", index.toString());
 			child.setAttribute("role", "tabpanel");
 			child.id = `${uid}-panel-${index}`;
-			child.setAttribute("tabindex", "0");
 			child.setAttribute("aria-labelledby", `${uid}-tab-${index}`);
 		}
 
