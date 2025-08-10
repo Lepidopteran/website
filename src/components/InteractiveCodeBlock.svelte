@@ -61,8 +61,6 @@
 	});
 </script>
 
-{#snippet copiedButtonContent()}{/snippet}
-
 {#if code.length > 1}
 	<div role="tablist" class="flex overflow-x-auto">
 		{#each code as snippet, index}
