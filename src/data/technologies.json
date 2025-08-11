@@ -42,6 +42,13 @@
 		"url": "https://podman.io/"
 	},
 	{
+		"id": "gtk",
+		"name": "GTK",
+		"featured": true,
+		"icon": "simple-icons:gtk",
+		"url": "https://www.gtk.org/"
+	},
+	{
 		"id": "web-components",
 		"name": "Web Components",
 		"featured": true,
