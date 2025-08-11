@@ -13,6 +13,13 @@ const languages = await getCollection(
 	"programming-languages",
 	({ data }) => data.featured,
 );
+
+const technologies = await getCollection(
+	"technologies",
+	({ data }) => data.featured,
+);
+
+const tools = await getCollection("software", ({ data }) => data.featured);
 ---
 
 <Layout title="Blaine's Portfolio">
@@ -240,49 +247,14 @@ const languages = await getCollection(
 					<div
 						class="grid grid-cols-3 md:grid-cols-4 justify-items-center gap-4"
 						>
+						{ technologies.map(technology => (
 						<SkillCard
-						name="TailwindCSS"
+						name={technology.data.name}
 						size="64"
-						link="https://tailwindcss.com/"
-						icon="logos:tailwindcss-icon"
+						link={technology.data.url}
+						icon={technology.data.icon}
 						/>
-						<SkillCard
-						name="React"
-						size="64"
-						link="https://reactjs.dev/"
-						icon="logos:react"
-						/>
-						<SkillCard
-						name="Svelte"
-						size="64"
-						link="https://svelte.dev/"
-						icon="logos:svelte-icon"
-						/>
-						<SkillCard
-						name="Astro"
-						size="64"
-						link="https://astro.build/"
-						icon="simple-icons:astro"
-						/>
-						<SkillCard
-						name="Docker"
-						size="64"
-						iconClassName="text-sky-500"
-						link="https://www.docker.com/"
-						icon="simple-icons:docker"
-						/>
-						<SkillCard
-						name="Web Components"
-						size="64"
-						link="https://developer.mozilla.org/en-US/docs/Web/Web_Components"
-						icon="mingcute:web-line"
-						/>
-						<SkillCard
-						name="Tauri"
-						size="64"
-						link="https://tauri.studio/"
-						icon="logos:tauri"
-						/>
+						))}
 					</div>
 				</div>
 			</div>
@@ -291,55 +263,14 @@ const languages = await getCollection(
 				<div
 					class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-4"
 					>
-					<SkillCard
-					name="VSCode"
-					size="64"
-					link="https://code.visualstudio.com/"
-					iconClassName="text-accent-500"
-					icon="logos:visual-studio-code"
-					/>
-					<SkillCard
-					name="Visual Studio"
-					size="64"
-					link="https://visualstudio.microsoft.com/"
-					icon="logos:visual-studio"
-					/>
-					<SkillCard
-					name="NeoVim"
-					size="64"
-					link="https://neovim.io/"
-					icon="devicon:neovim"
-					/>
-					<SkillCard
-					name="Git"
-					size="64"
-					link="https://git-scm.com/"
-					icon="logos:git-icon"
-					/>
-					<SkillCard
-					name="Blender"
-					size="64"
-					link="https://www.blender.org/"
-					icon="logos:blender"
-					/>
-					<SkillCard
-					name="Godot"
-					size="64"
-					link="https://godotengine.org/"
-					icon="logos:godot-icon"
-					/>
-					<SkillCard
-					name="Gimp"
-					size="64"
-					link="https://www.gimp.org/"
-					icon="devicon:gimp"
-					/>
-					<SkillCard
-					name="Inkscape"
-					size="64"
-					link="https://inkscape.org/"
-					icon="devicon:inkscape"
-					/>
+					{ tools.map(tool => (
+						<SkillCard
+						name={tool.data.name}
+						size="64"
+						link={tool.data.url}
+						icon={tool.data.icon}
+						/>
+					))}
 				</div>
 
 			</div>

@@ -1,0 +1,65 @@
+[
+	{
+		"id": "vscode",
+		"name": "VSCode",
+		"icon": "logos:visual-studio-code",
+		"url": "https://code.visualstudio.com/",
+		"featured": true
+	},
+	{
+		"id": "visual-studio",
+		"name": "Visual Studio",
+		"icon": "logos:visual-studio",
+		"url": "https://visualstudio.microsoft.com/",
+		"featured": true
+	},
+	{
+		"id": "neovim",
+		"name": "Neovim",
+		"icon": "devicon:neovim",
+		"url": "https://neovim.io/",
+		"featured": true
+	},
+	{
+		"id": "git",
+		"name": "Git",
+		"icon": "logos:git-icon",
+		"url": "https://git-scm.com/",
+		"featured": true
+	},
+	{
+		"id": "blender",
+		"name": "Blender",
+		"icon": "logos:blender",
+		"url": "https://www.blender.org/",
+		"featured": true
+	},
+	{
+		"id": "gimp",
+		"name": "GIMP",
+		"icon": "devicon:gimp",
+		"url": "https://www.gimp.org/",
+		"featured": true
+	},
+	{
+		"id": "inkscape",
+		"name": "Inkscape",
+		"icon": "devicon:inkscape",
+		"url": "https://inkscape.org/",
+		"featured": true
+	},
+	{
+		"id": "godot",
+		"name": "GDScript",
+		"icon": "logos:godot-icon",
+		"url": "https://godotengine.org/",
+		"featured": true
+	},
+	{
+		"id": "astro",
+		"name": "Astro",
+		"icon": "devicon:astro",
+		"url": "https://astro.build/",
+		"featured": false
+	}
+]

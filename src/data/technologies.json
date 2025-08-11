@@ -1,0 +1,51 @@
+[
+	{
+		"id": "react",
+		"name": "React",
+		"featured": true,
+		"icon": "logos:react",
+		"url": "https://react.dev/"
+	},
+	{
+		"id": "tailwind",
+		"name": "Tailwind",
+		"featured": true,
+		"icon": "logos:tailwindcss-icon",
+		"url": "https://tailwindcss.com/"
+	},
+	{
+		"id": "svelte",
+		"name": "Svelte",
+		"featured": true,
+		"icon": "logos:svelte-icon",
+		"url": "https://kit.svelte.dev/"
+	},
+	{
+		"id": "tauri",
+		"name": "Tauri",
+		"featured": true,
+		"icon": "logos:tauri",
+		"url": "https://tauri.app/"
+	},
+	{
+		"id": "docker",
+		"name": "Docker",
+		"featured": true,
+		"icon": "logos:docker-icon",
+		"url": "https://www.docker.com/"
+	},
+	{
+		"id": "podman",
+		"name": "Podman",
+		"featured": true,
+		"icon": "devicon:podman",
+		"url": "https://podman.io/"
+	},
+	{
+		"id": "web-components",
+		"name": "Web Components",
+		"featured": true,
+		"icon": "mingcute:web-line",
+		"url": "https://developer.mozilla.org/en-US/docs/Web/Web_Components"
+	}
+]

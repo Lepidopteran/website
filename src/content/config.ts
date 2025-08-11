@@ -12,6 +12,14 @@ const baseProjectSchema = {
 	featured: z.boolean().optional(),
 };
 
+const skillSchema = {
+	name: z.string(),
+	icon: z.string(),
+	url: z.string().optional(),
+	color: z.string().optional(),
+	featured: z.boolean().optional().default(false),
+};
+
 export const collections = {
 	projects: defineCollection({
 		loader: glob({ pattern: "**/[^_]*.json", base: "./src/content/projects" }),
@@ -47,14 +55,16 @@ export const collections = {
 			albumArt: z.string().optional(),
 		}),
 	}),
+	software: defineCollection({
+		loader: file("src/data/software.json"),
+		schema: z.object(skillSchema),
+	}),
+	technologies: defineCollection({
+		loader: file("src/data/technologies.json"),
+		schema: z.object(skillSchema),
+	}),
 	"programming-languages": defineCollection({
 		loader: file("src/data/programming-languages.json"),
-		schema: z.object({
-			name: z.string(),
-			icon: z.string(),
-			url: z.string().optional(),
-			color: z.string().optional(),
-			featured: z.boolean().optional().default(false),
-		}),
+		schema: z.object(skillSchema),
 	}),
 };
