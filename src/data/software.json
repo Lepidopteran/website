@@ -50,7 +50,7 @@
 	},
 	{
 		"id": "godot",
-		"name": "GDScript",
+		"name": "Godot",
 		"icon": "logos:godot-icon",
 		"url": "https://godotengine.org/",
 		"featured": true
