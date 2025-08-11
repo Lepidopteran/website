@@ -5,6 +5,7 @@ const baseSchema = {
 	title: z.string(),
 	description: z.string().optional(),
 	tags: z.array(z.string()).optional(),
+	created: z.coerce.date().optional(),
 };
 
 const baseProjectSchema = {
@@ -36,7 +37,13 @@ export const collections = {
 					altText: z.string().optional(),
 				}),
 			),
-			post: reference("projects").optional(),
+			roles: z.array(z.string()).optional(),
+			assisted: z.boolean().optional().default(false),
+			commercial: z.boolean().optional().default(false),
+			inProgress: z.boolean().optional().default(false),
+			released: z.coerce.date().optional(),
+			tools: reference("software").array().optional(),
+			technologies: reference("technologies").array().optional(),
 			languages: reference("programming-languages").array().optional(),
 		}),
 	}),
