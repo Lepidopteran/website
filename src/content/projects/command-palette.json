@@ -5,6 +5,7 @@
 	"demo": "/projects/demos/command-palette",
 	"tags": ["commercial", "component", "web component", "demo"],
 	"thumbnail": "/projects/command-palette/light-mode-palette.png",
+	"created": "2024",
 	"languages": ["css", "typescript"],
 	"assets": [
 		{

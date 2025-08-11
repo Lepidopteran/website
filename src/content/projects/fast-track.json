@@ -5,6 +5,9 @@
 	"tags": ["commercial", "tracking", "loads", "shipments", "map"],
 	"thumbnail": "/projects/fast-track/thumbnail.png",
 	"languages": ["dotnet", "javascript", "html", "css"],
+	"roles": ["design", "frontend", "backend"],
+	"commercial": true,
+	"created": "2023",
 	"assets": [
 		{
 			"type": "image",

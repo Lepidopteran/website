@@ -1,6 +1,10 @@
 {
 	"title": "Fleet Portal",
 	"featured": true,
+	"created": "2024",
+	"assisted": true,
+	"roles": ["design", "frontend", "backend"],
+	"commercial": true,
 	"description": "A web-based portal for managing a fleet of vehicles. The portal includes a dashboard with charts and maps, being able to view message history between drivers and dispatch, and a tracking system.",
 	"tags": ["commercial", "charts", "dashboard", "messages", "maps", "tracking"],
 	"thumbnail": "/projects/fleet-portal/dashboard.png",
