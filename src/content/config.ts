@@ -3,9 +3,9 @@ import { file, glob } from "astro/loaders";
 
 const baseSchema = {
 	title: z.string(),
-	description: z.string().optional(),
+	description: z.string(),
+	created: z.coerce.date(),
 	tags: z.array(z.string()).optional(),
-	created: z.coerce.date().optional(),
 };
 
 const baseProjectSchema = {
