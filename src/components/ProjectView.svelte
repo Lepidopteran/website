@@ -48,7 +48,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
 			{#each projects as project}
 				<a class="hover:scale-[101%] transition" href="/projects/{project.id}">
-					<div class="card bg-neutral-800/50 backdrop-blur-md h-full">
+					<div class="card h-full">
 						<div class="relative">
 							{#if project.thumbnail}
 								<img
