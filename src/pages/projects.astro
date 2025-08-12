@@ -4,6 +4,10 @@ import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
 
 const projects = await getCollection("projects");
+
+projects.sort((a, b) => {
+	return b.data.created?.getTime() - a.data.created?.getTime();
+});
 ---
 
 <Layout title="Projects">
