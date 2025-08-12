@@ -30,6 +30,10 @@ export const collections = {
 			sourcecode: z.string().optional(),
 			website: z.string().optional(),
 			demo: z.string().optional(),
+			category: z
+				.enum(["library", "software", "component", "website", "game", "mod", "plugin", "other"])
+				.optional()
+				.default("other"),
 			assets: z.array(
 				z.object({
 					src: z.string(),
