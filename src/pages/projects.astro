@@ -1,12 +1,22 @@
 ---
+import View from "../components/ProjectView.svelte";
+import NoJavascriptSection from "../components/NoJavascriptSection.astro";
+import NoJavascriptWarning from "../components/NoJavascriptWarning.astro";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
 
-const projects = await getCollection("projects");
+const projectCollection = await getCollection("projects");
 
-projects.sort((a, b) => {
+projectCollection.sort((a, b) => {
 	return b.data.created?.getTime() - a.data.created?.getTime();
+});
+
+const projects = projectCollection.map((project) => {
+	return {
+		id: project.id,
+		...project.data,
+	};
 });
 ---
 
@@ -30,40 +40,15 @@ projects.sort((a, b) => {
 	<div class="px-4">
 		<slot />
 	</div>
-	<section id="projects" class="p-4">
+	<div class="py-4">
+		<NoJavascriptWarning />
+	</div>
+	<div class="px-4">
 		<h2 class="text-center text-3xl font-bold text-neutral-100 m-4">
 			Software Projects
 		</h2>
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-			{
-				projects.map((project) => {
-					return (
-						<a
-							class="hover:scale-105 hover:shadow-lg transition duration-75 h-full"
-							href={`/projects/${project.id}`}
-						>
-							<div
-								class="bg-neutral-900 h-full shadow-md shadow-black/85 p-4 rounded-lg border-t border-white/25 bg-gradient-to-b from-neutral-800"
-								id={project.id}
-							>
-								<img
-									src={project.data.thumbnail}
-									class="rounded-lg border-t border-white/25 h-48 object-cover shadow-md shadow-black/25 inline-block"
-									alt={project.data.title}
-								/>
-								<h4 class="text-xl font-bold mt-4">{project.data.title}</h4>
-								<p class="mt-2">{project.data.description}</p>
-							</div>
-						</a>
-					);
-				})
-			}
-		</div>
-	</section>
-
-	<span class="text-xl font-bold mt-4 text-center block"
-		>And more to come...</span
-	>
+		<View {projects} />
+	</div>
 
 	<style>
 		.noise {
