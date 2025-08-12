@@ -2,12 +2,13 @@
 	"title": "Fast Track",
 	"featured": true,
 	"description": "A web application that allows users to track their shipments and loads in real-time on a map. The application is designed to be used by commercial truck drivers and dispatchers.",
-	"tags": ["commercial", "tracking", "loads", "shipments", "map"],
+	"tags": ["tracking", "loads", "shipments", "map"],
+	"category": "website",
 	"thumbnail": "/projects/fast-track/thumbnail.png",
 	"languages": ["dotnet", "javascript", "html", "css"],
 	"roles": ["design", "frontend", "backend"],
 	"commercial": true,
-	"created": "2023",
+	"created": "2022-01-02",
 	"assets": [
 		{
 			"type": "image",

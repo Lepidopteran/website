@@ -5,10 +5,11 @@
 	"thumbnail": "/projects/nett-icon-viewer/main-screenshot.png",
 	"technologies": ["gtk"],
 	"languages": ["rust", "css"],
+	"category": "software",
 	"website": "/nett-icon-viewer",
 	"created": "2025-06",
 	"released": "2025-08-08",
-	"tags": ["icons", "gtk", "desktop"],
+	"tags": ["icons", "viewer", "theme"],
 	"assets": [
 		{
 			"type": "image",
