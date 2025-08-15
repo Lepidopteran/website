@@ -91,7 +91,8 @@ const { title, stickyHeader } = Astro.props;
 					<label
 						id="mobileMenuToggleLabel"
 						class={`${
-							Astro.url.pathname === "/projects"
+							Astro.url.pathname.startsWith("/projects") ||
+							Astro.url.pathname === "/nett-icon-viewer"
 								? "text-primary-300"
 								: "text-neutral-300"
 						} cursor-pointer select-none`}
@@ -193,7 +194,9 @@ const { title, stickyHeader } = Astro.props;
 									<a href="/certifications" class="link py-1">Certificates</a>
 								</li>
 								<li>
-									<a href="/nett-icon-viewer" class="link py-1">Nett Icon Viewer</a>
+									<a href="/nett-icon-viewer" class="link py-1"
+										>Nett Icon Viewer</a
+									>
 								</li>
 								<!-- TODO: Add legal stuff -->
 								<!-- <li> -->
@@ -259,7 +262,9 @@ const { title, stickyHeader } = Astro.props;
 						</a>
 					</div>
 					<div class="text-sm opacity-50 mt-3">
-						&copy; Copyright by Blaine Nicholls {new Date().getFullYear().toString()}
+						&copy; Copyright by Blaine Nicholls {
+							new Date().getFullYear().toString()
+						}
 					</div>
 				</div>
 			</div>
