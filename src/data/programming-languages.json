@@ -42,14 +42,14 @@
 		"name": "GDScript",
 		"icon": "logos:godot-icon",
 		"url": "https://godotengine.org/",
-		"featured": true
+		"featured": false
 	},
 	{
 		"id": "lua",
 		"name": "Lua",
 		"icon": "logos:lua",
 		"url": "https://www.lua.org/",
-		"featured": true
+		"featured": false
 	},
 	{
 		"id": "html",
@@ -67,7 +67,8 @@
 		"id": "kotlin",
 		"name": "Kotlin",
 		"icon": "logos:kotlin-icon",
-		"url": "https://kotlinlang.org/"
+		"url": "https://kotlinlang.org/",
+		"featured": true
 	},
 	{
 		"id": "go",
@@ -86,5 +87,12 @@
 		"name": "C++",
 		"icon": "logos:c-plusplus",
 		"url": "https://en.wikipedia.org/wiki/C%2B%2B"
+	},
+	{
+		"id": "java",
+		"name": "Java",
+		"icon": "logos:java",
+		"url": "https://www.java.com/",
+		"featured": true
 	}
 ]
