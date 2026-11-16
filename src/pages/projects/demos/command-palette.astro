@@ -4,10 +4,10 @@ import { Icon } from "astro-icon/components";
 
 <html>
 	<head>
-		<link
-			rel="stylesheet"
-			href="/projects/command-palette/scripts/generic.css"
-		/>
+		<link rel="stylesheet" href="/projects/command-palette/generic.css" />
+		<script
+			src="/projects/command-palette/command-palette.compiled.js"
+			type="module"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 </html>
@@ -128,8 +128,7 @@ import { Icon } from "astro-icon/components";
 	</section>
 
 	<script type="module">
-		import "/projects/command-palette/scripts/command-palette.compiled.js";
-		import iconifyPlugin from "/projects/command-palette/scripts/plugins/iconify-icon.js";
+		import iconifyPlugin from "./scripts/iconify-icon.js";
 
 		const palettes = [
 			{

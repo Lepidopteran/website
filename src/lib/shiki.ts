@@ -1,23 +1,62 @@
 import {
-	createShikiHighlighter,
-	type ShikiConfig,
-	type ShikiHighlighter,
-} from '@astrojs/markdown-remark';
+	createHighlighter,
+	type Highlighter,
+	type CodeToHtmlOptions,
+} from "shiki";
 
-// Caches Promise<ShikiHighlighter> for reuse when the same theme and langs are provided
-const cachedHighlighters = new Map();
+// Caches Promise<Highlighter> for reuse when the same theme and langs are provided
+const cachedHighlighters = new Map<string, Promise<Highlighter>>();
 
-export function getCachedHighlighter(opts: ShikiConfig): Promise<ShikiHighlighter> {
-	// Always sort keys before stringifying to make sure objects match regardless of parameter ordering
-	const key = JSON.stringify(opts, Object.keys(opts).sort());
+// Caches HTML results
+const cachedHtml = new Map<string, string>();
 
-	// Highlighter has already been requested, reuse the same instance
+export interface ShikiConfig {
+	langs: string[];
+	theme: string;
+}
+
+export interface ShikiHighlighter {
+	codeToHtml: (code: string, lang: string, options?: any) => Promise<string>;
+}
+
+export async function getCachedHighlighter(config: ShikiConfig): Promise<ShikiHighlighter> {
+	// Create a unique key for the highlighter config
+	const key = JSON.stringify({
+		langs: [...config.langs].sort(),
+		theme: config.theme,
+	});
+
+	// If highlighter already exists, return it
 	if (cachedHighlighters.has(key)) {
-		return cachedHighlighters.get(key);
+		return cachedHighlighters.get(key)!;
 	}
 
-	const highlighter = createShikiHighlighter(opts);
+	// Create new highlighter and cache it
+	const highlighter = await createHighlighter({
+		themes: [config.theme],
+		langs: config.langs,
+	});
+
 	cachedHighlighters.set(key, highlighter);
 
-	return highlighter;
+	// Return an object with codeToHtml method
+	return {
+		codeToHtml: async (code: string, lang: string, options?: any) => {
+			const cacheKey = `${lang}-${code}`;
+			if (cachedHtml.has(cacheKey)) {
+				return cachedHtml.get(cacheKey)!;
+			}
+
+			// In shiki v4, codeToHtml takes options as the second parameter
+			const html = await highlighter.codeToHtml(code, {
+				lang,
+				theme: config.theme,
+				transformers: options?.transformers || [],
+				attributes: options?.attributes || {},
+			} as CodeToHtmlOptions);
+
+			cachedHtml.set(cacheKey, html);
+			return html;
+		}
+	};
 }
