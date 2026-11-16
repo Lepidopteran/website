@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "publish": "astro build && netlify deploy --dir=dist --prod",
+    "publish": "netlify deploy --dir=dist --prod",
     "astro": "astro"
   },
   "dependencies": {
