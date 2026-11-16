@@ -8,6 +8,10 @@ import { Icon } from "astro-icon/components";
 			rel="stylesheet"
 			href="/projects/command-palette/scripts/generic.css"
 		/>
+		<!-- Fallback: Script tag from public folder -->
+		<script
+			src="/projects/command-palette/scripts/command-palette.compiled.js"
+			type="module"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 </html>
@@ -128,8 +132,7 @@ import { Icon } from "astro-icon/components";
 	</section>
 
 	<script type="module">
-		import "/projects/command-palette/scripts/command-palette.compiled.js";
-		import iconifyPlugin from "/projects/command-palette/scripts/plugins/iconify-icon.js";
+		import iconifyPlugin from "/projects/command-palette/scripts/plugins/iconify-icon.js?url";
 
 		const palettes = [
 			{
